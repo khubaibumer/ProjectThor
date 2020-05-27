@@ -24,6 +24,8 @@ typedef struct data_node {
 	struct data_node *prev, *next;
 } data_node_t;
 
+#define LIST_CAST(x) ((data_node_t *) x)
+
 /*	Check if node is empty	*/
 #define is_empty_node(head)												\
 	({																	\

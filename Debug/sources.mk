@@ -16,4 +16,5 @@ SUBDIRS := \
 comm \
 core \
 . \
+security \
 

@@ -4,17 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../comm/server.c 
+../security/authorize.c 
 
 OBJS += \
-./comm/server.o 
+./security/authorize.o 
 
 C_DEPS += \
-./comm/server.d 
+./security/authorize.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-comm/%.o: ../comm/%.c
+security/%.o: ../security/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C Compiler'
 	gcc -I"/home/aircodtest/eclipse-workspace/THOR/headers" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"

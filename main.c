@@ -16,12 +16,11 @@ int main(int argc, char **argv) {
 
 	printf("%s", str);
 
-	CAST(THIS)->server.accept();
-	CAST(THIS)->server.down();
-	CAST(THIS)->server.kick(12);
-	CAST(THIS)->server.list();
-	CAST(THIS)->server.listen();
-	CAST(THIS)->server.up();
+	CAST(THIS)->server.up(THIS);
+	CAST(THIS)->server.accept(THIS);
+//	CAST(THIS)->server.kick(THIS, 12);
+	CAST(THIS)->server.list(THIS);
+	CAST(THIS)->server.down(THIS);
 
 	return 0;
 }
