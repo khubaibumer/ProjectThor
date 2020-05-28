@@ -14,6 +14,8 @@
 #include <string.h>
 #include <strings.h>
 #include <stdint.h>
+#include <list.h>
+#include <openssl/ssl.h>
 
 #define DECLARE_SYMBOL(__type,  __sym) __type __sym
 #define DECLARE_STATIC_SYMBOL(__type, __sym) static __type __sym
@@ -22,12 +24,19 @@
 #define ELVT_USR 1000
 #define ROOT_USR 0
 
-		#include <list.h>
-
 typedef struct thor_data {
 
 	/*	Flags of execution	*/
 	uint32_t exec_flags;
+	uint8_t use_ssl;
+	struct {
+		int (*write) (void*, const void*, size_t);
+		int (*read) (void*, void*, size_t);
+		int (*ssl_init) (void*);
+		SSL *ssl;
+	    SSL_CTX *ctx;
+	} ssl_tls;
+
 	struct {
 		struct {
 			long alias;

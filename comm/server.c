@@ -154,6 +154,8 @@ void get_ip(void *ptr) {
 
 void __up(void *ptr) {
 
+	CAST(ptr)->ssl_tls.ssl_init(ptr);
+
 	get_ip(ptr);
 
 	CAST(ptr)->server.port = 50005;
@@ -183,6 +185,12 @@ void __accept(void *ptr) {
 		case DFL_USR:
 		case ELVT_USR:
 		case ROOT_USR: {
+
+			if(CAST(ptr)->use_ssl) {
+				CAST(ptr)->ssl_tls.ssl = SSL_new(CAST(ptr)->ssl_tls.ctx);
+				SSL_set_fd(CAST(ptr)->ssl_tls.ssl, cfd);
+			}
+
 			void *dnode = CAST(ptr)->mknod(usr_lvl);
 			CAST(dnode)->client.fd = cfd;
 			CAST(dnode)->client.port = clientAddr.sin_port;
@@ -217,6 +225,11 @@ void __kick(void *ptr, int _fd) {
 }
 
 void close_all_clients(data_node_t *node) {
+
+	if(CAST(node->data)->use_ssl) {
+		SSL_get_fd(CAST(node->data)->ssl_tls.ssl);
+		SSL_CTX_free(CAST(node->data)->ssl_tls.ctx);
+	}
 
 	send(CAST(node->data)->client.fd, "Server is shutting Down!\n", 1024, 0);
 	shutdown(CAST(node->data)->client.fd, SHUT_RDWR);

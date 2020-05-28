@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../security/authorize.c 
+../security/authorize.c \
+../security/ssl_tls.c 
 
 OBJS += \
-./security/authorize.o 
+./security/authorize.o \
+./security/ssl_tls.o 
 
 C_DEPS += \
-./security/authorize.d 
+./security/authorize.d \
+./security/ssl_tls.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

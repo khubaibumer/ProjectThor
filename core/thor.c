@@ -19,6 +19,9 @@ extern void __kick(void*, int);
 extern void __down(void*);
 extern int __auth(int fd);
 extern void* __mknod(int mode);
+extern int __ssl_initialize(void*);
+extern int thor_writer(void *ptr, const void *buf, size_t len);
+extern int thor_reader(void *ptr, void *buf, size_t len);
 
 static const thor_data_t init_data_root = {
 
@@ -33,6 +36,12 @@ static const thor_data_t init_data_root = {
 		.server.port = 0,
 		.server.ip = NULL,
 		.server.sock.fd = 0,
+
+		.use_ssl = 1,
+		.ssl_tls.read = thor_reader,
+		.ssl_tls.write = thor_writer,
+		.ssl_tls.ssl_init = __ssl_initialize,
+		.ssl_tls.ssl = NULL,
 
 		.ctrl.actv_client_count = 0,
 		.ctrl.list_head = NULL,
@@ -59,6 +68,12 @@ static const thor_data_t init_data_dflt = {
 		.exec_flags = DFL_USR,
 		.mknod = __mknod,
 
+		.use_ssl = 1,
+		.ssl_tls.read = thor_reader,
+		.ssl_tls.write = thor_writer,
+		.ssl_tls.ssl_init = __ssl_initialize,
+		.ssl_tls.ssl = NULL,
+
 		.user.uid = DFL_USR,
 		.user.gid = DFL_USR,
 
@@ -77,6 +92,12 @@ static const thor_data_t init_data_elvt = {
 
 		.exec_flags = ELVT_USR,
 		.mknod = __mknod,
+
+		.use_ssl = 1,
+		.ssl_tls.read = thor_reader,
+		.ssl_tls.write = thor_writer,
+		.ssl_tls.ssl_init = __ssl_initialize,
+		.ssl_tls.ssl = NULL,
 
 		.ctrl.actv_client_count = 0,
 		.ctrl.list_head = NULL,
@@ -123,6 +144,7 @@ void* __mknod(int mode) {
 void* thor_() {
 
 	static thor_data_t data = init_data_root;
+	data.use_ssl = 0;
 
 	return &data;
 }
