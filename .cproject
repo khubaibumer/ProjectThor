@@ -63,6 +63,10 @@
                                 								
                                 <option id="gnu.c.compiler.option.dialect.std.2110428700" name="Language standard" superClass="gnu.c.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.c.compiler.dialect.default" valueType="enumerated"/>
                                 								
+                                <option id="gnu.c.compiler.option.misc.pic.1088766447" superClass="gnu.c.compiler.option.misc.pic" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+                                								
+                                <option id="gnu.c.compiler.option.pthread.1876670337" superClass="gnu.c.compiler.option.pthread" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+                                								
                                 <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.179845792" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
                                 							
                             </tool>
