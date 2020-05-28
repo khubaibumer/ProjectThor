@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lssl -lpthread -lcrypto
+LIBS := -lssl -lsqlite3 -lpthread -lcrypto
 

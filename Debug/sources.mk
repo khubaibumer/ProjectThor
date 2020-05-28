@@ -15,6 +15,7 @@ C_DEPS :=
 SUBDIRS := \
 comm \
 core \
+database \
 . \
 security \
 

@@ -175,12 +175,12 @@ void __accept(void *ptr) {
 		// Get user-name & passwd
 		// Authenticate
 		// Add to active user list
-		struct sockaddr_in clientAddr;
-		int len;
+		struct sockaddr_in clientAddr = {};
+		int len = 0;
 		int cfd = accept(CAST(ptr)->server.sock.fd,
 				(struct sockaddr*) &clientAddr, (socklen_t*) &len);
 
-		int usr_lvl = CAST(ptr)->user.secure.auth(cfd);
+		int usr_lvl = CAST(ptr)->user.secure.auth(ptr, cfd);
 		switch (usr_lvl) {
 		case DFL_USR:
 		case ELVT_USR:
@@ -205,6 +205,8 @@ void __accept(void *ptr) {
 		}
 			break;
 		};
+		if(CAST(ptr)->ssl_tls.write(ptr, "Welcome", sizeof("Welcome")) <= 0)
+			perror("Error Writing!\n");
 	}
 }
 

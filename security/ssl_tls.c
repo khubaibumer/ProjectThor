@@ -46,9 +46,9 @@ void load_certs(SSL_CTX *ctx, char *CertFile, char *KeyFile) {
 void show_certs(SSL *ssl) {
 
 	X509 *cert;
-	char *line;
 	cert = SSL_get_peer_certificate(ssl); /* Get certificates (if available) */
 	if (cert != NULL) {
+		char *line;
 		printf("Server certificates:\n");
 		line = X509_NAME_oneline(X509_get_subject_name(cert), 0, 0);
 		printf("Subject: %s\n", line);
@@ -64,7 +64,8 @@ void show_certs(SSL *ssl) {
 int __ssl_initialize(void *ptr) {
 
 	CAST(ptr)->ssl_tls.ctx = init_server_ctx();
-	load_certs(CAST(ptr)->ssl_tls.ctx, "$HOME/mycert.pem", "$HOME/mycert.pem");
+	load_certs(CAST(ptr)->ssl_tls.ctx, "/cert/mycert.pem", "/cert/mycert.pem");
 
+	CAST(ptr)->use_ssl = 1;
 	return 0;
 }

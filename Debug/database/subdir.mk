@@ -4,23 +4,20 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../security/authorize.c \
-../security/hash.c \
-../security/ssl_tls.c 
+../database/thor_db.c \
+../database/usr_info_db.c 
 
 OBJS += \
-./security/authorize.o \
-./security/hash.o \
-./security/ssl_tls.o 
+./database/thor_db.o \
+./database/usr_info_db.o 
 
 C_DEPS += \
-./security/authorize.d \
-./security/hash.d \
-./security/ssl_tls.d 
+./database/thor_db.d \
+./database/usr_info_db.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-security/%.o: ../security/%.c
+database/%.o: ../database/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C Compiler'
 	gcc -I"/home/aircodtest/eclipse-workspace/THOR/headers" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
