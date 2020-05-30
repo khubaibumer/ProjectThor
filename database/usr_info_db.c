@@ -12,15 +12,15 @@
 int callback_(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
    for(i = 0; i<argc; i++) {
-      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+      log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
    }
-   printf("\n");
+   log.v("%s", "\n");
    return 0;
 }
 
 int __create_usr_table(void *ptr, const char *uname, const char *upsswd, int role) {
 
-	printf("%s() called\n", __func__);
+	log.d("%s() called\n", __func__);
 
 	char *err_msg = NULL;
 	char *psswd = NULL;
@@ -32,11 +32,11 @@ int __create_usr_table(void *ptr, const char *uname, const char *upsswd, int rol
 	size_t len = strlen(sql);
 	sprintf(&sql[len], "'%s','%s',%d,''); " , uname, psswd, role);
 
-	printf("Query is: %s\n", sql);
+	log.i("Query is: %s\n", sql);
 
 	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, callback_, 0, &err_msg);
 	if(rt != SQLITE_OK) {
-		printf("Error: %s\n", err_msg);
+		log.e("Error: %s\n", err_msg);
 		sqlite3_free(err_msg);
 	}
 
@@ -48,14 +48,14 @@ int __create_usr_table(void *ptr, const char *uname, const char *upsswd, int rol
 int __update_usr_table(void *ptr, const char *oname, const char *opsswd,
 		const char *nname, const char *npsswd) {
 
-	printf("%s() called\n", __func__);
+	log.d("%s() called\n", __func__);
 
 	return 0;
 }
 
 int __dlt_usr_info(void *ptr, const char *uname, const char *upsswd) {
 
-	printf("%s() called\n", __func__);
+	log.d("%s() called\n", __func__);
 
 	return 0;
 }

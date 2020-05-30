@@ -19,10 +19,13 @@ typedef struct {
 	const int mode;
 } valid_users_t;
 
-static const valid_users_t valid_users[] = { { "admin", "admin",
-		sizeof("admin"), ROOT_USR },
-		{ "user", "user", sizeof("user"), DFL_USR }, { "audit", "audit",
-				sizeof("audit"), ELVT_USR }, };
+static const valid_users_t valid_users[] = {
+		{ "admin", "admin", sizeof("admin"), ROOT_USR },
+		{ "user", "user", sizeof("user"), DFL_USR },
+		{ "audit", "audit",	sizeof("audit"), ELVT_USR },
+		{ "admin@admin.com", "admin123" , sizeof("admin@admin.com"),  ROOT_USR },
+		{ "merchant@merchant.com", "merchant123" , sizeof("merchant@merchant.com"),  DFL_USR },
+};
 
 DECLARE_SYMBOL(const size_t, usr_list_len) = sizeof(valid_users)
 		/ sizeof(valid_users_t);
@@ -56,27 +59,82 @@ int register_users() {
 	return 0;
 }
 
+void remove_escape(char *name, size_t *inlen, char *pass, size_t *iplen) {
+
+	size_t _nlen = *inlen;
+	size_t _plen = *iplen;
+
+	for(int i = _nlen; i >= 0; i--) {
+		if(name[i] == '\n' || name[i] == '\r' /*|| name[i] == '\s'*/)
+			name[i] = '\0';
+	}
+
+	for(int i = _plen; i >= 0; i--) {
+		if(pass[i] == '\n' || pass[i] == '\r' /*|| pass[i] == '\s'*/)
+			pass[i] = '\0';
+	}
+
+	*inlen = strlen(name);
+	*iplen = strlen(pass);
+}
+
 int __auth(void *ptr, int fd) {
 
-	char name[1024] = { };
-	char pass[1024] = { };
-	int wb = send(fd, "Enter Username: ", 1024, 0);
-	wb = recv(fd, name, 1024, 0);
-	wb = send(fd, "Enter Password: ", 1024, 0);
-	wb = recv(fd, pass, 1024, 0);
+	if(CAST(ptr)->use_ssl) {
 
-	if (wb < 0)
-		perror("something wrong!");
+		BIO *sbio = BIO_new_socket(fd, BIO_NOCLOSE);
+		SSL *ssl = SSL_new(CAST(THIS)->ssl_tls.ctx);
+		SSL_set_bio(ssl, sbio, sbio);
+		if(SSL_accept(ssl) <= 0) {
+			perror("Error");
+		}
+		SSL_do_handshake(ssl);
+		CAST(ptr)->tmp_cli_info.tssl = ssl;
+		CAST(ptr)->tmp_cli_info.tbio = sbio;
 
-	size_t unlen = strlen(name);
-	size_t uplen = strlen(pass);
+		char buf[1024] = { };
+		SSL_write(ssl, "Enter Username: ", 1024);
+		SSL_read(ssl, buf, 1024);
 
-	if(name[unlen-1] == '\n')
-		name[--unlen] = '\0';
+		log.v("Got: %s\n", buf);
 
-	if(pass[uplen-1] == '\n')
-		pass[--uplen] = '\0';
+		if(strlen(buf) > 0) {
+			if(strstr(buf, ",")) {
+				char *name = strtok(buf, ",");
+				char *pass = strtok(NULL, ",");
 
-	return get_user_mode(ptr, name, pass, unlen, uplen);
+				size_t inlen = name == NULL ? 0 : strlen(name);
+				size_t iplen = pass == NULL ? 0 : strlen(pass);
+
+				remove_escape(name, &inlen, pass, &iplen);
+
+				if(inlen && iplen) {
+					return get_user_mode(ptr, name, pass, inlen, iplen);
+				}
+			}
+		}
+	} else {
+		char name[1024] = { };
+		char pass[1024] = { };
+		int wb = send(fd, "Enter Username: ", 1024, 0);
+		wb = recv(fd, name, 1024, 0);
+		wb = send(fd, "Enter Password: ", 1024, 0);
+		wb = recv(fd, pass, 1024, 0);
+
+		if (wb < 0)
+			perror("something wrong!");
+
+		size_t unlen = strlen(name);
+		size_t uplen = strlen(pass);
+
+		if(name[unlen-1] == '\n')
+			name[--unlen] = '\0';
+
+		if(pass[uplen-1] == '\n')
+			pass[--uplen] = '\0';
+
+		return get_user_mode(ptr, name, pass, unlen, uplen);
+	}
+	return -1;
 }
 

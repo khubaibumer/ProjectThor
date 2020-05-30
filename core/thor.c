@@ -59,6 +59,9 @@ static const thor_data_t init_data_root = {
 		.ssl_tls.write = thor_writer,
 		.ssl_tls.ssl_init = __ssl_initialize,
 		.ssl_tls.ssl = NULL,
+		.ssl_tls.bio = NULL,
+		.tmp_cli_info.tssl = NULL,
+		.tmp_cli_info.tbio = NULL,
 
 		.ctrl.actv_client_count = 0,
 		.ctrl.list_head = NULL,
@@ -96,6 +99,7 @@ static const thor_data_t init_data_dflt = {
 		.ssl_tls.write = thor_writer,
 		.ssl_tls.ssl_init = __ssl_initialize,
 		.ssl_tls.ssl = NULL,
+		.ssl_tls.bio = NULL,
 
 		.user.uid = DFL_USR,
 		.user.gid = DFL_USR,
@@ -128,6 +132,7 @@ static const thor_data_t init_data_elvt = {
 		.ssl_tls.write = thor_writer,
 		.ssl_tls.ssl_init = __ssl_initialize,
 		.ssl_tls.ssl = NULL,
+		.ssl_tls.bio = NULL,
 
 		.ctrl.actv_client_count = 0,
 		.ctrl.list_head = NULL,

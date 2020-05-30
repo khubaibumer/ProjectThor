@@ -26,7 +26,7 @@ int __compute_hash(void *ptr, const char *key, char **hash) {
 		snprintf(&((*hash)[i * 2]), 16 * 2, "%02x", md_value[i]);
 	}
 
-	printf("key: %s\nhash: %s\n", key, *hash);
+	log.i("key: %s\nhash: %s\n", key, *hash);
 
 	return 0;
 }

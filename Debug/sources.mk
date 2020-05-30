@@ -18,4 +18,5 @@ core \
 database \
 . \
 security \
+src \
 

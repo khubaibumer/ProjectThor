@@ -12,23 +12,23 @@ int mode = -1;
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 	int i;
 	for (i = 0; i < argc; i++) {
-		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+		log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
 	}
-	printf("\n");
+	log.v("%s", "\n");
 	return 0;
 }
 
 static int slct_callback(void *data, int argc, char **argv, char **azColName){
    int i;
-   fprintf(stderr, "%s: ", (const char*)data);
+   log.v("%s: ", (const char*)data);
 
    for(i = 0; i<argc; i++){
-      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+      log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
 		if(argv[i])
 			mode = atoi(argv[i]);
    }
 
-   printf("\n");
+   log.v("%s", "\n");
    return 0;
 }
 
@@ -40,6 +40,8 @@ int __get_usr_role(void *ptr, const char *name, const char *pass) {
 	char sql[256] = "SELECT PrivMode FROM UserPsswd WHERE ";
 	size_t len = strlen(sql);
 	sprintf(&sql[len], " UserName = '%s' AND UserPsswd = '%s' ;", name, pswd);
+
+	log.i("%s\n", sql);
 
 	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, slct_callback, 0, &err_msg);
 	if(rt != SQLITE_OK) {
@@ -70,7 +72,7 @@ int __init_sqlite3_instance(void *ptr) {
 			"UserPsswd TEXT NOT NULL, "
 			"PrivMode INTEGER NOT NULL, "
 			"AdditionalInfo TEXT, "
-			"UNIQUE(UserName, UserPsswd, PrivMode)"
+			"UNIQUE(UserName, PrivMode)"
 			");";
 
 	rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, callback, 0, &err_msg);

@@ -14,10 +14,6 @@ extern int register_users();
 
 int main(int argc, char **argv) {
 
-	DECLARE_SYMBOL(char *, str) = "Hello World!\n";
-
-	printf("%s", str);
-
 	CAST(THIS)->db.init_db(THIS);
 	register_users();
 	CAST(THIS)->db.psswd_db.creat_usr(THIS, "admin", "admin", ROOT_USR);
@@ -26,8 +22,8 @@ int main(int argc, char **argv) {
 
 	CAST(THIS)->server.up(THIS);
 
-	char *hash = NULL;
-	CAST(THIS)->ssl_tls.hash(THIS, "Hello WORlD!\n", &hash);
+//	char *hash = NULL;
+//	CAST(THIS)->ssl_tls.hash(THIS, "Hello WORlD!\n", &hash);
 
 	CAST(THIS)->server.accept(THIS);
 //	CAST(THIS)->server.kick(THIS, 12);

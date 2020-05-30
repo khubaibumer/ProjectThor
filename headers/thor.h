@@ -15,11 +15,10 @@
 #include <strings.h>
 #include <stdint.h>
 #include <list.h>
+#include <logger.h>
 #include <openssl/ssl.h>
 #include <sqlite3.h>
 
-#define DECLARE_SYMBOL(__type,  __sym) __type __sym
-#define DECLARE_STATIC_SYMBOL(__type, __sym) static __type __sym
 #define CAST(x) ((thor_data_t*) x)
 #define DFL_USR 2000
 #define ELVT_USR 1000
@@ -36,8 +35,14 @@ typedef struct thor_data {
 		int (*ssl_init) (void*);
 		int (*hash)(void *, const char *, char **);
 		SSL *ssl;
+		BIO *bio;
 	    SSL_CTX *ctx;
 	} ssl_tls;
+
+	struct {
+		SSL *tssl;
+		BIO *tbio;
+	} tmp_cli_info;
 
 	struct {
 		struct {
