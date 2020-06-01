@@ -18,11 +18,20 @@
 #include <logger.h>
 #include <openssl/ssl.h>
 #include <sqlite3.h>
+#include <pthread.h>
 
 #define CAST(x) ((thor_data_t*) x)
+#define GETTHOR(x) ((thor_data_t*) (((data_node_t*) x)->data))
 #define DFL_USR 2000
 #define ELVT_USR 1000
 #define ROOT_USR 0
+
+#define STATE_HELD 2
+#define STATE_RUN 1
+#define STATE_CLOSE 0
+#define STATE_INVALID -1
+
+extern void* serve_clients(void *ptr);
 
 typedef struct thor_data {
 
@@ -37,6 +46,7 @@ typedef struct thor_data {
 		SSL *ssl;
 		BIO *bio;
 	    SSL_CTX *ctx;
+	    SSL_SESSION *session;
 	} ssl_tls;
 
 	struct {
@@ -58,7 +68,8 @@ typedef struct thor_data {
 		uint32_t gid;
 	} user; // User data
 
-	void* (*mknod) (int mode);
+	void* (*mknod) (int);
+	void (*set_state) (int);
 
 	struct {
 		int port;
@@ -100,6 +111,11 @@ typedef struct thor_data {
 		data_node_t *list_head;
 		uint16_t actv_client_count;
 	} ctrl;
+
+	struct {
+		pthread_t tid;
+		void* (*thread_func) (void *);
+	} thread;
 
 	struct {
 		int (*to_ui) (void*);

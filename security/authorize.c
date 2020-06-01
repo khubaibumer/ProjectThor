@@ -89,12 +89,13 @@ int __auth(void *ptr, int fd) {
 			perror("Error");
 		}
 		SSL_do_handshake(ssl);
-		CAST(ptr)->tmp_cli_info.tssl = ssl;
+
+		CAST(ptr)->tmp_cli_info.tssl = SSL_dup(ssl);
 		CAST(ptr)->tmp_cli_info.tbio = sbio;
 
 		char buf[1024] = { };
-		SSL_write(ssl, "Enter Username: ", 1024);
-		SSL_read(ssl, buf, 1024);
+		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "Enter Credentials: \n", sizeof("Enter Credentials: \n"));
+		SSL_read(CAST(ptr)->tmp_cli_info.tssl, buf, 1024);
 
 		log.v("Got: %s\n", buf);
 
@@ -116,9 +117,9 @@ int __auth(void *ptr, int fd) {
 	} else {
 		char name[1024] = { };
 		char pass[1024] = { };
-		int wb = send(fd, "Enter Username: ", 1024, 0);
+		int wb = send(fd, "Enter Username: ", sizeof("Enter Username: "), 0);
 		wb = recv(fd, name, 1024, 0);
-		wb = send(fd, "Enter Password: ", 1024, 0);
+		wb = send(fd, "Enter Password: ", sizeof("Enter Password: "), 0);
 		wb = recv(fd, pass, 1024, 0);
 
 		if (wb < 0)

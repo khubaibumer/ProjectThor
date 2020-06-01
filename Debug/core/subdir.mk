@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../core/sched.c \
 ../core/thor.c 
 
 OBJS += \
+./core/sched.o \
 ./core/thor.o 
 
 C_DEPS += \
+./core/sched.d \
 ./core/thor.d 
 
 

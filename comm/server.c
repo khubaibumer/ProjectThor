@@ -67,12 +67,12 @@ enum {
 			int server_fd = -1;													\
 			struct sockaddr_in server_addr = { };											\
 			server_fd = socket(AF_INET, SOCK_STREAM, 0);										\
-			setsockopt(server_fd, SOL_TCP, TCP_NODELAY, &(int){1}, 4);	\
+			/*setsockopt(server_fd, SOL_TCP, TCP_NODELAY, &(int){1}, 4);	\
 			setsockopt(server_fd, SOL_SOCKET, SO_KEEPALIVE, &(int){1}, 4);	\
 			setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &(int){1}, 4); 	\
 			int flags = fcntl(server_fd,F_GETFL,0);	\
 			assert(flags != -1);	\
-			fcntl(server_fd, F_SETFL, flags | O_NONBLOCK);	\
+			fcntl(server_fd, F_SETFL, flags | O_NONBLOCK);*/	\
 			assert(server_fd != -1);												\
 			server_addr.sin_family = AF_INET;											\
 			server_addr.sin_port = htons(_PORT);											\
@@ -178,11 +178,14 @@ void get_ip(void *ptr) {
 
 void __up(void *ptr) {
 
+	CAST(ptr)->set_state(STATE_HELD);
+	assert(pthread_create(&CAST(ptr)->thread.tid, NULL, CAST(ptr)->thread.thread_func, ptr) == 0);
+
 	CAST(ptr)->ssl_tls.ssl_init(ptr);
 
 	get_ip(ptr);
 
-	CAST(ptr)->server.port = 50004;
+	CAST(ptr)->server.port = 50005;
 
 	CAST(ptr)->server.sock.fd = CREATE_INET_SERVER(CAST(ptr)->server.ip,
 			CAST(ptr)->server.port, CAST(ptr)->client.max_count);
@@ -192,9 +195,11 @@ void __up(void *ptr) {
 
 }
 
+void set_ssl(void *_ssl);
+
 void __accept(void *ptr) {
 
-	while (CAST(ptr)->ctrl.actv_client_count < 4/*CAST(ptr)->client.max_count*/) {
+	while (CAST(ptr)->ctrl.actv_client_count < /*4*/CAST(ptr)->client.max_count) {
 		// Accept a connection
 		// Get user-name & passwd
 		// Authenticate
@@ -220,16 +225,22 @@ void __accept(void *ptr) {
 			CAST(dnode)->client.port = clientAddr.sin_port;
 			CAST(dnode)->client.ip = strdup(inet_ntoa(clientAddr.sin_addr));
 			if (CAST(ptr)->use_ssl) {
-				CAST(dnode)->ssl_tls.ssl = CAST(ptr)->tmp_cli_info.tssl;
+				set_ssl(CAST(ptr)->tmp_cli_info.tssl);
+				CAST(dnode)->ssl_tls.ssl = SSL_dup(CAST(ptr)->tmp_cli_info.tssl);
 				CAST(dnode)->ssl_tls.bio = CAST(ptr)->tmp_cli_info.tbio;
+				CAST(dnode)->ssl_tls.session = SSL_get1_session(CAST(dnode)->ssl_tls.ssl);
+				/*	Reset	*/
+				CAST(ptr)->tmp_cli_info.tssl = NULL;
+				CAST(ptr)->tmp_cli_info.tbio = NULL;
 			}
 
-			if (CAST(dnode)->ssl_tls.write(dnode, "Welcome", sizeof("Welcome"))
+			if (CAST(dnode)->ssl_tls.write(dnode, "Welcome\n", sizeof("Welcome\n"))
 					<= 0)
 				perror("Error Writing!\n");
 
 			insert_node(&CAST(ptr)->ctrl.list_head, dnode);
 			++CAST(ptr)->ctrl.actv_client_count;
+			CAST(ptr)->set_state(STATE_RUN);
 		}
 			break;
 		default: {
@@ -255,9 +266,9 @@ void __list(void *ptr) {
 void __kick(void *ptr, int _fd) {
 
 	if (CAST(ptr)->use_ssl) {
-		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "KICK! KICK! kicked you out", 1024);
+		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "KICK! KICK! kicked you out", sizeof("KICK! KICK! kicked you out"));
 	} else {
-		send(_fd, "You are being kicked out!\n", 1024, 0);
+		send(_fd, "You are being kicked out!", 1024, 0);
 	}
 
 	shutdown(_fd, SHUT_RDWR);
@@ -269,15 +280,19 @@ void close_all_clients(data_node_t *node) {
 	if (CAST(node->data)->use_ssl) {
 		SSL_get_fd(CAST(node->data)->ssl_tls.ssl);
 		SSL_CTX_free(CAST(node->data)->ssl_tls.ctx);
+		SSL_shutdown(GETTHOR(node)->ssl_tls.ssl);
 	}
 
-	send(CAST(node->data)->client.fd, "Server is shutting Down!\n", 1024, 0);
+	send(CAST(node->data)->client.fd, "Server is shutting Down!", sizeof("Server is shutting Down!"), 0);
 	shutdown(CAST(node->data)->client.fd, SHUT_RDWR);
 	close(CAST(node->data)->client.fd);
 }
 
 void __down(void *ptr) {
 
+	CAST(ptr)->set_state(STATE_CLOSE);
 	foreach_node_callback(&CAST(ptr)->ctrl.list_head, close_all_clients);
 	close(CAST(ptr)->server.sock.fd);
+
+	pthread_join(CAST(ptr)->thread.tid, 0);
 }

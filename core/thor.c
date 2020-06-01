@@ -29,11 +29,15 @@ extern int __create_usr_table(void *ptr, const char *uname, const char *upsswd, 
 extern int __init_sqlite3_instance(void *ptr);
 extern int __compute_hash(void *ptr, const char *key, char **hash);
 extern int __get_usr_role(void *ptr, const char *name, const char *pass);
+extern void __set_state (int state);
 
 static const thor_data_t init_data_root = {
 
 		.exec_flags = ROOT_USR,
 		.mknod = __mknod,
+		.set_state = __set_state,
+		.thread.tid = 0,
+		.thread.thread_func = serve_clients,
 
 		.db.is_open = 0,
 		.db.db_hndl = NULL,

@@ -7,7 +7,7 @@
 
 #include <thor.h>
 
-int mode = -1;
+//int mode = -1;
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 	int i;
@@ -18,23 +18,36 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 	return 0;
 }
 
-static int slct_callback(void *data, int argc, char **argv, char **azColName){
-   int i;
-   log.v("%s: ", (const char*)data);
+static int get_user_mode_from_db(void *data, int argc, char **argv, char **azColName) {
+	int *_mode = (int*) data;
+	for (int i = 0; i < argc; i++) {
+		log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+		if (argv[i])
+			*_mode = atoi(argv[i]);
+	}
 
-   for(i = 0; i<argc; i++){
-      log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-		if(argv[i])
-			mode = atoi(argv[i]);
-   }
-
-   log.v("%s", "\n");
-   return 0;
+	return 0;
 }
+
+//static int slct_callback(void *data, int argc, char **argv, char **azColName) {
+//
+//	int i;
+//	log.v("%s: ", (const char*) data);
+//
+//	for (i = 0; i < argc; i++) {
+//		log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+//		if (argv[i])
+//			*_mode = atoi(argv[i]);
+//	}
+//
+//	log.v("%s", "\n");
+//	return 0;
+//}
 
 int __get_usr_role(void *ptr, const char *name, const char *pass) {
 
 	char *pswd = NULL, *err_msg = NULL;
+	int mode = -1;
 	CAST(ptr)->ssl_tls.hash(ptr, pass, &pswd);
 
 	char sql[256] = "SELECT PrivMode FROM UserPsswd WHERE ";
@@ -43,8 +56,9 @@ int __get_usr_role(void *ptr, const char *name, const char *pass) {
 
 	log.i("%s\n", sql);
 
-	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, slct_callback, 0, &err_msg);
-	if(rt != SQLITE_OK) {
+	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, get_user_mode_from_db, &mode,
+			&err_msg);
+	if (rt != SQLITE_OK) {
 		sqlite3_free(err_msg);
 	} else {
 		return mode;
