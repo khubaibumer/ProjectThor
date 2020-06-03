@@ -6,16 +6,11 @@
  */
 
 #include <thor.h>
+#include <errno.h>
 
 #define SCH_DELAY 500
 
 static int process_state = STATE_INVALID;
-
-static SSL *ssl = NULL;
-
-void set_ssl(void *_ssl) {
-	ssl = (SSL*) _ssl;
-}
 
 void __set_state(int state) {
 
@@ -71,19 +66,32 @@ void* serve_clients(void *ptr) {
 				i < CAST(THIS)->ctrl.actv_client_count
 						&& process_state == STATE_RUN && node != NULL; i++) {
 
+			errno = 0;
 			node = get_next_node(&CAST(THIS)->ctrl.list_head);
 
 			if (node) {
+				char buf[1024] = { };
+				int bytes = GETTHOR(node)->ssl_tls.read(GETTHOR(node), buf,
+						1023);
+				if (bytes == -1 || bytes == 0) {
+					// no data is available
+					log.i("Client: %d - Read Timed Out with errno:%d\n",
+							GETTHOR(node)->user.uid, errno);
+					continue;
+				}
+				log.i("Got: %s From: %s\n", buf, GETTHOR(node)->client.ip);
+
+				if(memcmp(buf, "BYE!\n\n", sizeof("BYE!\n\n") <= strlen(buf) ? sizeof("BYE!\n\n") : strlen(buf)) == 0) {
+					// Client removed
+					CAST(ptr)->ctrl.actv_client_count -= 1;
+					// Add close client function to server functions
+					SSL_shutdown(GETTHOR(node)->ssl_tls.ssl);
+					SSL_free(GETTHOR(node)->ssl_tls.ssl);
+					delete_node(&CAST(THIS)->ctrl.list_head, node);
+				}
+
 				GETTHOR(node)->ssl_tls.write(GETTHOR(node), "RESP,OK,200\n",
 						sizeof("RESP,OK,200\n"));
-				int byte_flag = SSL_has_pending(GETTHOR(node)->ssl_tls.ssl);
-				if (byte_flag == 1) {
-					char buf[1024] = { };
-					GETTHOR(node)->ssl_tls.read(GETTHOR(node), buf, 1023);
-					log.i("Got: %s From: %s\n", buf, GETTHOR(node)->client.ip);
-					GETTHOR(node)->ssl_tls.write(GETTHOR(node), "RESP,OK,200\n",
-							sizeof("RESP,OK,200\n"));
-				}
 			}
 		}
 
@@ -91,7 +99,6 @@ void* serve_clients(void *ptr) {
 			break;
 
 		usleep(SCH_DELAY * 1000);
-
 	}
 
 	return 0;

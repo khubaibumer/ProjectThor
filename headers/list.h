@@ -133,4 +133,20 @@ typedef struct data_node {
 		} while(0);														\
 	})
 
+#define foreach_node_free(_head)										\
+	({																	\
+		data_node_t *node = (data_node_t*) *_head;						\
+		do {															\
+			if(is_empty_node(&node))									\
+				break;													\
+			;;;															\
+			data_node_t *tmp = node;									\
+			while(node != NULL) {										\
+				tmp = node;										\
+				node = node->next;										\
+				free(tmp);												\
+			}															\
+		} while(0);														\
+	})
+
 #endif /*	__CONTAINER_H__	*/

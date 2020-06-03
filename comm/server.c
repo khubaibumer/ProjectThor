@@ -151,6 +151,8 @@ enum {
 
 #endif /*	__SOCKET_UTILITY__	*/
 
+DECLARE_STATIC_SYMBOL(const struct timeval, timeout) = { .tv_sec = 0, .tv_usec = 300 * 1000};
+
 void get_ip(void *ptr) {
 	DECLARE_SYMBOL(struct ifaddrs, *ifAddrStruct) = NULL;
 	DECLARE_SYMBOL(struct ifaddrs, *ifa) = NULL;
@@ -185,7 +187,7 @@ void __up(void *ptr) {
 
 	get_ip(ptr);
 
-	CAST(ptr)->server.port = 50005;
+	CAST(ptr)->server.port = 50001;
 
 	CAST(ptr)->server.sock.fd = CREATE_INET_SERVER(CAST(ptr)->server.ip,
 			CAST(ptr)->server.port, CAST(ptr)->client.max_count);
@@ -199,7 +201,7 @@ void set_ssl(void *_ssl);
 
 void __accept(void *ptr) {
 
-	while (CAST(ptr)->ctrl.actv_client_count < /*4*/CAST(ptr)->client.max_count) {
+	while (CAST(ptr)->ctrl.actv_client_count < 4/*CAST(ptr)->client.max_count*/) {
 		// Accept a connection
 		// Get user-name & passwd
 		// Authenticate
@@ -214,18 +216,12 @@ void __accept(void *ptr) {
 		case DFL_USR:
 		case ELVT_USR:
 		case ROOT_USR: {
-
-//			if (CAST(ptr)->use_ssl) {
-//				CAST(ptr)->ssl_tls.ssl = SSL_new(CAST(ptr)->ssl_tls.ctx);
-//				SSL_set_fd(CAST(ptr)->ssl_tls.ssl, cfd);
-//			}
-
 			void *dnode = CAST(ptr)->mknod(usr_lvl);
 			CAST(dnode)->client.fd = cfd;
+			setsockopt(cfd, SOL_SOCKET, SO_RCVTIMEO, (const char*) &timeout, sizeof(timeout));
 			CAST(dnode)->client.port = clientAddr.sin_port;
 			CAST(dnode)->client.ip = strdup(inet_ntoa(clientAddr.sin_addr));
 			if (CAST(ptr)->use_ssl) {
-				set_ssl(CAST(ptr)->tmp_cli_info.tssl);
 				CAST(dnode)->ssl_tls.ssl = SSL_dup(CAST(ptr)->tmp_cli_info.tssl);
 				CAST(dnode)->ssl_tls.bio = CAST(ptr)->tmp_cli_info.tbio;
 				CAST(dnode)->ssl_tls.session = SSL_get1_session(CAST(dnode)->ssl_tls.ssl);
@@ -281,6 +277,7 @@ void close_all_clients(data_node_t *node) {
 		SSL_get_fd(CAST(node->data)->ssl_tls.ssl);
 		SSL_CTX_free(CAST(node->data)->ssl_tls.ctx);
 		SSL_shutdown(GETTHOR(node)->ssl_tls.ssl);
+		SSL_free(CAST(node->data)->ssl_tls.ssl);
 	}
 
 	send(CAST(node->data)->client.fd, "Server is shutting Down!", sizeof("Server is shutting Down!"), 0);
@@ -292,6 +289,7 @@ void __down(void *ptr) {
 
 	CAST(ptr)->set_state(STATE_CLOSE);
 	foreach_node_callback(&CAST(ptr)->ctrl.list_head, close_all_clients);
+	foreach_node_free(&CAST(ptr)->ctrl.list_head);
 	close(CAST(ptr)->server.sock.fd);
 
 	pthread_join(CAST(ptr)->thread.tid, 0);

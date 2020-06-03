@@ -6,7 +6,6 @@
  */
 
 #include <thor.h>
-
 #include <sqlite3.h>
 
 int callback_(void *NotUsed, int argc, char **argv, char **azColName) {

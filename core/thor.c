@@ -157,22 +157,26 @@ static const thor_data_t init_data_elvt = {
 
 void* __mknod(int mode) {
 
+	static int uid = 0;
 	switch(mode) {
 	case DFL_USR: {
 		thor_data_t *tdata = calloc(1, sizeof(thor_data_t));
 		memcpy(tdata, &init_data_dflt, sizeof(thor_data_t));
+		tdata->user.uid = ++uid;
 		return tdata;
 	}
 	break;
 	case ELVT_USR: {
 		thor_data_t *tdata = calloc(1, sizeof(thor_data_t));
 		memcpy(tdata, &init_data_elvt, sizeof(thor_data_t));
+		tdata->user.uid = ++uid;
 		return tdata;
 	}
 	break;
 	case ROOT_USR: {
 		thor_data_t *tdata = calloc(1, sizeof(thor_data_t));
 		memcpy(tdata, &init_data_root, sizeof(thor_data_t));
+		tdata->user.uid = ++uid;
 		return tdata;
 	}
 	break;
@@ -186,3 +190,6 @@ void* thor_() {
 
 	return &data;
 }
+
+
+

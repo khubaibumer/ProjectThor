@@ -55,6 +55,7 @@ int __get_usr_role(void *ptr, const char *name, const char *pass) {
 	sprintf(&sql[len], " UserName = '%s' AND UserPsswd = '%s' ;", name, pswd);
 
 	log.i("%s\n", sql);
+	free(pswd);
 
 	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, get_user_mode_from_db, &mode,
 			&err_msg);
