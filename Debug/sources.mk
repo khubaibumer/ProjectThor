@@ -17,6 +17,7 @@ comm \
 core \
 database \
 . \
+rpc \
 security \
 src \
 

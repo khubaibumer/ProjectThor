@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include src/subdir.mk
 -include security/subdir.mk
+-include rpc/subdir.mk
 -include database/subdir.mk
 -include core/subdir.mk
 -include comm/subdir.mk

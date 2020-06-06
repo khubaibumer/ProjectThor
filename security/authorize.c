@@ -25,6 +25,7 @@ static const valid_users_t valid_users[] = {
 		{ "audit", "audit",	sizeof("audit"), ELVT_USR },
 		{ "admin@admin.com", "admin123" , sizeof("admin@admin.com"),  ROOT_USR },
 		{ "merchant@merchant.com", "merchant123" , sizeof("merchant@merchant.com"),  DFL_USR },
+		{ "checkoutuser", "user123", sizeof("checkoutuser"), DFL_USR },
 };
 
 DECLARE_SYMBOL(const size_t, usr_list_len) = sizeof(valid_users)
@@ -59,23 +60,23 @@ int register_users() {
 	return 0;
 }
 
-void remove_escape(char *name, size_t *inlen, char *pass, size_t *iplen) {
+void remove_escape(char *name, size_t *inlen) {
 
 	size_t _nlen = *inlen;
-	size_t _plen = *iplen;
+//	size_t _plen = *iplen;
 
 	for(int i = _nlen; i >= 0; i--) {
 		if(name[i] == '\n' || name[i] == '\r' /*|| name[i] == '\s'*/)
 			name[i] = '\0';
 	}
 
-	for(int i = _plen; i >= 0; i--) {
-		if(pass[i] == '\n' || pass[i] == '\r' /*|| pass[i] == '\s'*/)
-			pass[i] = '\0';
-	}
+//	for(int i = _plen; i >= 0; i--) {
+//		if(pass[i] == '\n' || pass[i] == '\r' /*|| pass[i] == '\s'*/)
+//			pass[i] = '\0';
+//	}
 
 	*inlen = strlen(name);
-	*iplen = strlen(pass);
+//	*iplen = strlen(pass);
 }
 
 int __auth(void *ptr, int fd) {
@@ -94,20 +95,22 @@ int __auth(void *ptr, int fd) {
 		CAST(ptr)->tmp_cli_info.tbio = sbio;
 
 		char buf[1024] = { };
-		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "Enter Credentials: \n", sizeof("Enter Credentials: \n"));
+		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,who\n", sizeof("auth,who\n"));
 		SSL_read(CAST(ptr)->tmp_cli_info.tssl, buf, 1024);
 
 		log.v("Got: %s\n", buf);
 
 		if(strlen(buf) > 0) {
 			if(strstr(buf, ",")) {
-				char *name = strtok(buf, ",");
+				char *cmd = strtok(buf, ",");
+				char *name = strtok(NULL, ",");
 				char *pass = strtok(NULL, ",");
 
 				size_t inlen = name == NULL ? 0 : strlen(name);
 				size_t iplen = pass == NULL ? 0 : strlen(pass);
 
-				remove_escape(name, &inlen, pass, &iplen);
+				remove_escape(name, &inlen);
+				remove_escape(pass, &iplen);
 
 				if(inlen && iplen) {
 					return get_user_mode(ptr, name, pass, inlen, iplen);

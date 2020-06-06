@@ -9,34 +9,36 @@
 #include <sqlite3.h>
 
 int callback_(void *NotUsed, int argc, char **argv, char **azColName) {
-   int i;
-   for(i = 0; i<argc; i++) {
-      log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-   }
-   log.v("%s", "\n");
-   return 0;
+	int i;
+	for (i = 0; i < argc; i++) {
+		log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+	}
+	log.v("%s", "\n");
+	return 0;
 }
 
-int __create_usr_table(void *ptr, const char *uname, const char *upsswd, int role) {
+int __create_usr_table(void *ptr, const char *uname, const char *upsswd,
+		int role) {
 
 	log.d("%s() called\n", __func__);
 
-	char *err_msg = NULL;
 	char *psswd = NULL;
+
 	CAST(ptr)->ssl_tls.hash(ptr, upsswd, &psswd);
 
 	char sql[256] =
 			"INSERT INTO UserPsswd(UserName,UserPsswd,PrivMode,AdditionalInfo) "
 					"VALUES( ";
 	size_t len = strlen(sql);
-	sprintf(&sql[len], "'%s','%s',%d,''); " , uname, psswd, role);
+	sprintf(&sql[len], "'%s','%s',%d,''); ", uname, psswd, role);
 
 	log.i("Query is: %s\n", sql);
 
-	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, callback_, 0, &err_msg);
-	if(rt != SQLITE_OK) {
-		log.e("Error: %s\n", err_msg);
-		sqlite3_free(err_msg);
+	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, NULL, 0,
+			&CAST(ptr)->rpc.return_value.response);
+	if (rt != SQLITE_OK) {
+		log.e("Error: %s\n", CAST(ptr)->rpc.return_value.response);
+		return -1;
 	}
 
 	free(psswd);

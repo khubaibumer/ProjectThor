@@ -43,6 +43,7 @@ typedef struct thor_data {
 		int (*read) (void*, void*, size_t);
 		int (*ssl_init) (void*);
 		int (*hash)(void *, const char *, char **);
+		void (*close) (void*);
 		SSL *ssl;
 		BIO *bio;
 	    SSL_CTX *ctx;
@@ -70,6 +71,8 @@ typedef struct thor_data {
 
 	void* (*mknod) (int);
 	void (*set_state) (int);
+	void (*trim) (char*, size_t*);
+	void (*free) (void*);
 
 	struct {
 		int port;
@@ -101,6 +104,7 @@ typedef struct thor_data {
 	} db;
 
 	struct {
+		uint8_t is_connected;
 		int fd;
 		int port;
 		int max_count;
@@ -116,6 +120,14 @@ typedef struct thor_data {
 		pthread_t tid;
 		void* (*thread_func) (void *);
 	} thread;
+
+	struct {
+		struct {
+			char *response;
+			int status;
+		} return_value;
+		void (*rpc_call) (void*, char*);
+	} rpc;
 
 	struct {
 		int (*to_ui) (void*);

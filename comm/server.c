@@ -187,7 +187,7 @@ void __up(void *ptr) {
 
 	get_ip(ptr);
 
-	CAST(ptr)->server.port = 50001;
+	CAST(ptr)->server.port = 443;
 
 	CAST(ptr)->server.sock.fd = CREATE_INET_SERVER(CAST(ptr)->server.ip,
 			CAST(ptr)->server.port, CAST(ptr)->client.max_count);
@@ -197,11 +197,9 @@ void __up(void *ptr) {
 
 }
 
-void set_ssl(void *_ssl);
-
 void __accept(void *ptr) {
 
-	while (CAST(ptr)->ctrl.actv_client_count < 4/*CAST(ptr)->client.max_count*/) {
+	while (CAST(ptr)->ctrl.actv_client_count < /*4*/ CAST(ptr)->client.max_count) {
 		// Accept a connection
 		// Get user-name & passwd
 		// Authenticate
@@ -221,6 +219,7 @@ void __accept(void *ptr) {
 			setsockopt(cfd, SOL_SOCKET, SO_RCVTIMEO, (const char*) &timeout, sizeof(timeout));
 			CAST(dnode)->client.port = clientAddr.sin_port;
 			CAST(dnode)->client.ip = strdup(inet_ntoa(clientAddr.sin_addr));
+			CAST(dnode)->client.is_connected = 1;
 			if (CAST(ptr)->use_ssl) {
 				CAST(dnode)->ssl_tls.ssl = SSL_dup(CAST(ptr)->tmp_cli_info.tssl);
 				CAST(dnode)->ssl_tls.bio = CAST(ptr)->tmp_cli_info.tbio;
@@ -230,7 +229,10 @@ void __accept(void *ptr) {
 				CAST(ptr)->tmp_cli_info.tbio = NULL;
 			}
 
-			if (CAST(dnode)->ssl_tls.write(dnode, "Welcome\n", sizeof("Welcome\n"))
+			char response[25] = {};
+			sprintf(response, "auth,ok,%d\n", usr_lvl);
+
+			if (CAST(dnode)->ssl_tls.write(dnode, response, strlen(response)+1)
 					<= 0)
 				perror("Error Writing!\n");
 
@@ -262,7 +264,7 @@ void __list(void *ptr) {
 void __kick(void *ptr, int _fd) {
 
 	if (CAST(ptr)->use_ssl) {
-		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "KICK! KICK! kicked you out", sizeof("KICK! KICK! kicked you out"));
+		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,fail,-1\n", sizeof("auth,fail,-1\n"));
 	} else {
 		send(_fd, "You are being kicked out!", 1024, 0);
 	}
@@ -271,18 +273,33 @@ void __kick(void *ptr, int _fd) {
 	close(_fd);
 }
 
-void close_all_clients(data_node_t *node) {
+void __close_client(void *ptr) {
 
-	if (CAST(node->data)->use_ssl) {
-		SSL_get_fd(CAST(node->data)->ssl_tls.ssl);
-		SSL_CTX_free(CAST(node->data)->ssl_tls.ctx);
-		SSL_shutdown(GETTHOR(node)->ssl_tls.ssl);
-		SSL_free(CAST(node->data)->ssl_tls.ssl);
+	CAST(ptr)->client.is_connected = 0;
+	if(CAST(ptr)->use_ssl) {
+		SSL_SESSION_free(CAST(ptr)->ssl_tls.session);
+		BIO_free_all(CAST(ptr)->ssl_tls.bio);
+		SSL_CTX_free(CAST(ptr)->ssl_tls.ctx);
+		SSL_free(CAST(ptr)->ssl_tls.ssl);
+		close(CAST(ptr)->client.fd);
+	} else {
+		close(CAST(ptr)->client.fd);
 	}
 
-	send(CAST(node->data)->client.fd, "Server is shutting Down!", sizeof("Server is shutting Down!"), 0);
-	shutdown(CAST(node->data)->client.fd, SHUT_RDWR);
-	close(CAST(node->data)->client.fd);
+}
+
+void close_all_clients(data_node_t *node) {
+
+	GETTHOR(node)->client.is_connected = 0;
+	if(GETTHOR(node)->use_ssl) {
+		SSL_SESSION_free(GETTHOR(node)->ssl_tls.session);
+		BIO_free_all(GETTHOR(node)->ssl_tls.bio);
+		SSL_CTX_free(GETTHOR(node)->ssl_tls.ctx);
+		SSL_free(GETTHOR(node)->ssl_tls.ssl);
+		close(GETTHOR(node)->client.fd);
+	} else {
+		close(GETTHOR(node)->client.fd);
+	}
 }
 
 void __down(void *ptr) {

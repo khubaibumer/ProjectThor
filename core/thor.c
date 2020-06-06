@@ -30,12 +30,19 @@ extern int __init_sqlite3_instance(void *ptr);
 extern int __compute_hash(void *ptr, const char *key, char **hash);
 extern int __get_usr_role(void *ptr, const char *name, const char *pass);
 extern void __set_state (int state);
+extern void remove_escape(char *name, size_t *inlen);
+extern void __process_cmd(void *node, char *cmd);
+extern void __close_client(void *ptr);
+extern void __free(void *node);
 
 static const thor_data_t init_data_root = {
 
 		.exec_flags = ROOT_USR,
 		.mknod = __mknod,
 		.set_state = __set_state,
+		.trim = remove_escape,
+		.free = __free,
+
 		.thread.tid = 0,
 		.thread.thread_func = serve_clients,
 
@@ -61,6 +68,7 @@ static const thor_data_t init_data_root = {
 		.ssl_tls.hash =__compute_hash,
 		.ssl_tls.read = thor_reader,
 		.ssl_tls.write = thor_writer,
+		.ssl_tls.close = __close_client,
 		.ssl_tls.ssl_init = __ssl_initialize,
 		.ssl_tls.ssl = NULL,
 		.ssl_tls.bio = NULL,
@@ -79,10 +87,13 @@ static const thor_data_t init_data_root = {
 		.user.secure.alias = ((DFL_USR << 4) | ELVT_USR) | ROOT_USR,
 		.user.secure.auth = __auth,
 
+		.client.is_connected = 0,
 		.client.fd = 0,
 		.client.ip = NULL,
 		.client.max_count = 32,
 		.client.port = 0,
+
+		.rpc.rpc_call = __process_cmd,
 
 		.ui.to_ui =  NULL,
 };
@@ -91,6 +102,7 @@ static const thor_data_t init_data_dflt = {
 
 		.exec_flags = DFL_USR,
 		.mknod = __mknod,
+		.trim = remove_escape,
 
 		.db.is_open = 0,
 		.db.db_name = "thor.db",
@@ -101,6 +113,7 @@ static const thor_data_t init_data_dflt = {
 		.ssl_tls.hash =__compute_hash,
 		.ssl_tls.read = thor_reader,
 		.ssl_tls.write = thor_writer,
+		.ssl_tls.close = __close_client,
 		.ssl_tls.ssl_init = __ssl_initialize,
 		.ssl_tls.ssl = NULL,
 		.ssl_tls.bio = NULL,
@@ -117,12 +130,16 @@ static const thor_data_t init_data_dflt = {
 		.client.ip = NULL,
 		.client.max_count = 32,
 		.client.port = 0,
+
+		.rpc.rpc_call = __process_cmd,
+
 };
 
 static const thor_data_t init_data_elvt = {
 
 		.exec_flags = ELVT_USR,
 		.mknod = __mknod,
+		.trim = remove_escape,
 
 		.db.is_open = 0,
 		.db.db_name = "thor.db",
@@ -134,6 +151,7 @@ static const thor_data_t init_data_elvt = {
 		.ssl_tls.hash =__compute_hash,
 		.ssl_tls.read = thor_reader,
 		.ssl_tls.write = thor_writer,
+		.ssl_tls.close = __close_client,
 		.ssl_tls.ssl_init = __ssl_initialize,
 		.ssl_tls.ssl = NULL,
 		.ssl_tls.bio = NULL,
@@ -153,6 +171,8 @@ static const thor_data_t init_data_elvt = {
 		.client.ip = NULL,
 		.client.max_count = 32,
 		.client.port = 0,
+
+		.rpc.rpc_call = __process_cmd,
 };
 
 void* __mknod(int mode) {
@@ -163,6 +183,7 @@ void* __mknod(int mode) {
 		thor_data_t *tdata = calloc(1, sizeof(thor_data_t));
 		memcpy(tdata, &init_data_dflt, sizeof(thor_data_t));
 		tdata->user.uid = ++uid;
+		tdata->db.db_hndl = CAST(THIS)->db.db_hndl;
 		return tdata;
 	}
 	break;
@@ -170,6 +191,7 @@ void* __mknod(int mode) {
 		thor_data_t *tdata = calloc(1, sizeof(thor_data_t));
 		memcpy(tdata, &init_data_elvt, sizeof(thor_data_t));
 		tdata->user.uid = ++uid;
+		tdata->db.db_hndl = CAST(THIS)->db.db_hndl;
 		return tdata;
 	}
 	break;
@@ -177,11 +199,17 @@ void* __mknod(int mode) {
 		thor_data_t *tdata = calloc(1, sizeof(thor_data_t));
 		memcpy(tdata, &init_data_root, sizeof(thor_data_t));
 		tdata->user.uid = ++uid;
+		tdata->db.db_hndl = CAST(THIS)->db.db_hndl;
 		return tdata;
 	}
 	break;
 	};
 	return NULL;
+}
+
+void __free(void *node) {
+
+	free(GETTHOR(node)->client.ip);
 }
 
 void* thor_() {
