@@ -31,6 +31,8 @@
 #define STATE_CLOSE 0
 #define STATE_INVALID -1
 
+#define PRIVATE __attribute__((hidden))
+
 extern void* serve_clients(void *ptr);
 
 typedef struct thor_data {
@@ -101,6 +103,9 @@ typedef struct thor_data {
 			int (*update_usr) (void *, const char *, const char *, const char *, const char *);
 			int (*dlt_usr) (void *, const char *, const char *);
 		} psswd_db;
+
+		int (*log_cmd) (void *ptr, char *proc, char *command);
+
 	} db;
 
 	struct {

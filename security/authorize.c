@@ -63,20 +63,14 @@ int register_users() {
 void remove_escape(char *name, size_t *inlen) {
 
 	size_t _nlen = *inlen;
-//	size_t _plen = *iplen;
 
 	for(int i = _nlen; i >= 0; i--) {
 		if(name[i] == '\n' || name[i] == '\r' /*|| name[i] == '\s'*/)
 			name[i] = '\0';
 	}
 
-//	for(int i = _plen; i >= 0; i--) {
-//		if(pass[i] == '\n' || pass[i] == '\r' /*|| pass[i] == '\s'*/)
-//			pass[i] = '\0';
-//	}
 
 	*inlen = strlen(name);
-//	*iplen = strlen(pass);
 }
 
 int __auth(void *ptr, int fd) {

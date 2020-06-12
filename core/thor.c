@@ -34,6 +34,7 @@ extern void remove_escape(char *name, size_t *inlen);
 extern void __process_cmd(void *node, char *cmd);
 extern void __close_client(void *ptr);
 extern void __free(void *node);
+extern int __log_rpc_command(void *ptr, const char *process, const char *command);
 
 static const thor_data_t init_data_root = {
 
@@ -54,6 +55,7 @@ static const thor_data_t init_data_root = {
 		.db.psswd_db.creat_usr = __create_usr_table,
 		.db.psswd_db.update_usr = __update_usr_table,
 		.db.psswd_db.dlt_usr = __dlt_usr_info,
+		.db.log_cmd = __log_rpc_command,
 
 		.server.accept = __accept,
 		.server.up = __up,
@@ -108,6 +110,7 @@ static const thor_data_t init_data_dflt = {
 		.db.db_name = "thor.db",
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
+		.db.log_cmd = __log_rpc_command,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,
@@ -146,6 +149,7 @@ static const thor_data_t init_data_elvt = {
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
 		.db.psswd_db.update_usr = __update_usr_table,
+		.db.log_cmd = __log_rpc_command,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,

@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../rpc/db_manager.c \
 ../rpc/interface.c 
 
 OBJS += \
+./rpc/db_manager.o \
 ./rpc/interface.o 
 
 C_DEPS += \
+./rpc/db_manager.d \
 ./rpc/interface.d 
 
 

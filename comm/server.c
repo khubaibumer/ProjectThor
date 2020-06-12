@@ -153,6 +153,7 @@ enum {
 
 DECLARE_STATIC_SYMBOL(const struct timeval, timeout) = { .tv_sec = 0, .tv_usec = 300 * 1000};
 
+PRIVATE
 void get_ip(void *ptr) {
 	DECLARE_SYMBOL(struct ifaddrs, *ifAddrStruct) = NULL;
 	DECLARE_SYMBOL(struct ifaddrs, *ifa) = NULL;
@@ -178,6 +179,7 @@ void get_ip(void *ptr) {
 		freeifaddrs(ifAddrStruct);
 }
 
+PRIVATE
 void __up(void *ptr) {
 
 	CAST(ptr)->set_state(STATE_HELD);
@@ -187,7 +189,7 @@ void __up(void *ptr) {
 
 	get_ip(ptr);
 
-	CAST(ptr)->server.port = 443;
+	CAST(ptr)->server.port = 50001;
 
 	CAST(ptr)->server.sock.fd = CREATE_INET_SERVER(CAST(ptr)->server.ip,
 			CAST(ptr)->server.port, CAST(ptr)->client.max_count);
@@ -197,15 +199,16 @@ void __up(void *ptr) {
 
 }
 
+PRIVATE
 void __accept(void *ptr) {
 
-	while (CAST(ptr)->ctrl.actv_client_count < /*4*/ CAST(ptr)->client.max_count) {
+	while (CAST(ptr)->ctrl.actv_client_count < 4 /*CAST(ptr)->client.max_count*/) {
 		// Accept a connection
 		// Get user-name & passwd
 		// Authenticate
 		// Add to active user list
 		struct sockaddr_in clientAddr = { };
-		int len = 0;
+		int len = sizeof(clientAddr);
 		int cfd = accept(CAST(ptr)->server.sock.fd,
 				(struct sockaddr*) &clientAddr, (socklen_t*) &len);
 
@@ -251,16 +254,19 @@ void __accept(void *ptr) {
 	}
 }
 
+PRIVATE
 void print_nodes(data_node_t *node) {
 	log.v("IP:%s, Port:%d, Mode:%d\n", CAST(node->data)->client.ip,
 			CAST(node->data)->client.port, CAST(node->data)->user.uid);
 }
 
+PRIVATE
 void __list(void *ptr) {
 	log.v("::Active Client List::\n");
 	foreach_node_callback(&CAST(ptr)->ctrl.list_head, print_nodes);
 }
 
+PRIVATE
 void __kick(void *ptr, int _fd) {
 
 	if (CAST(ptr)->use_ssl) {
@@ -273,6 +279,7 @@ void __kick(void *ptr, int _fd) {
 	close(_fd);
 }
 
+PRIVATE
 void __close_client(void *ptr) {
 
 	CAST(ptr)->client.is_connected = 0;
@@ -288,6 +295,7 @@ void __close_client(void *ptr) {
 
 }
 
+PRIVATE
 void close_all_clients(data_node_t *node) {
 
 	GETTHOR(node)->client.is_connected = 0;
@@ -302,6 +310,7 @@ void close_all_clients(data_node_t *node) {
 	}
 }
 
+PRIVATE
 void __down(void *ptr) {
 
 	CAST(ptr)->set_state(STATE_CLOSE);

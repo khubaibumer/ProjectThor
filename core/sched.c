@@ -41,12 +41,9 @@ void* serve_clients(void *ptr) {
 					GETTHOR(node)->trim(buf, &bsz);
 					if (bytes != -1 && bytes != 0) {
 						log.i("Got: %s From Client: %d\n", buf,
-								GETTHOR(node)->user.uid);
+						GETTHOR(node)->user.uid);
 
 						GETTHOR(node)->rpc.rpc_call(node, buf);
-
-						GETTHOR(node)->ssl_tls.write(GETTHOR(node),
-								"resp,ok,\n", sizeof("resp,ok,\n"));
 					} else {
 						if (bytes == 0) {
 							GETTHOR(node)->client.is_connected = 0;
