@@ -880,3 +880,816 @@
  [Info] THOR: Query is: select * from UserInformation;
  [Info] THOR: ::Server Info::
  [Info] THOR: IP:192.168.10.16, Port:50001
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: 
+
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Got: bye From Client: 1
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,user From Client: 2
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Got: bye From Client: 1
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,add,items,Deadpool 720p,200,15,Comedy From Client: 1
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,add,items,After Earth 720p,200,11,Action From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'After Earth 720p','200','11','Action'); 
+ [Info] THOR: Got: db,add,items,Baby Driver 1080p,150,9,Action From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'Baby Driver 1080p','150','9','Action'); 
+ [Info] THOR: Got: db,add,items,After Earth 3D,130,12,Action From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'After Earth 3D','130','12','Action'); 
+ [Info] THOR: Got: db,add,items,Orange County 2160p,112,32,Adventure From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'Orange County 2160p','112','32','Adventure'); 
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Got: db,add,items,Deadpool 720p,210,22,Action From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'Deadpool 720p','210','22','Action'); 
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,add,items,Deadpool 720p,210,22,Action From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'Deadpool 720p','210','22','Action'); 
+ [Error] THOR: Error: UNIQUE constraint failed: ItemsInformation.Name
+ [Info] THOR: Got: db,add,items,Vampyr 480p,140,11,Horror From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'Vampyr 480p','140','11','Horror'); 
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Info] THOR: Got: db,add,items,db,add,items,Vampyr 480p,140,11,Horror From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'db','add','items','Vampyr 480p'); 
+ [Info] THOR: Got: db,add,items,Vampyr 480p,140,11,Horror From Client: 1
+ [Info] THOR: Query is: INSERT INTO ItemsInformation (Name,Quantity,Price,AdditionalInfo) VALUES( 'Vampyr 480p','140','11','Horror'); 
+ [Error] THOR: Error: UNIQUE constraint failed: ItemsInformation.Name
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"},{ "ID" : "7","Name" : "db","Quantity" : "add","Price" : "items","AdditionalInfo" : "Vampyr 480p"}]
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Got: bye From Client: 1
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,user From Client: 2
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Got: db,get-list,items From Client: 2
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Info] THOR: Got: bye From Client: 2
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,user From Client: 1
+ [Info] THOR: Query is: select * from UserInformation;
+ [Verbose] THOR: [ { "ID" : "1","UserName" : "admin","UserPsswd" : "21232f297a57a5a743894a0e4a801fc3","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "2","UserName" : "user","UserPsswd" : "ee11cbb19052e40b07aac0ca060c23ee","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "3","UserName" : "audit","UserPsswd" : "a5a63d9b90e6bfe9261e70b66afec721","PrivMode" : "1000","AdditionalInfo" : ""},{ "ID" : "4","UserName" : "admin@admin.com","UserPsswd" : "0192023a7bbd73250516f069df18b500","PrivMode" : "0","AdditionalInfo" : ""},{ "ID" : "5","UserName" : "merchant@merchant.com","UserPsswd" : "a52f2c0dbf38ade4f715e02c7124046e","PrivMode" : "2000","AdditionalInfo" : ""},{ "ID" : "6","UserName" : "checkoutuser","UserPsswd" : "6ad14ba9986e3615423dfca256d04e3f","PrivMode" : "2000","AdditionalInfo" : ""}]
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Info] THOR: Got: db,get-list,user From Client: 2
+ [Info] THOR: Got: db,get-list,items From Client: 2
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Info] THOR: Got: db,get-list,items From Client: 3
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Verbose] THOR: ::Active Client List::
+ [Verbose] THOR: IP:192.168.10.16, Port:44226, Mode:4
+ [Verbose] THOR: IP:192.168.10.16, Port:22722, Mode:3
+ [Verbose] THOR: IP:192.168.10.16, Port:39104, Mode:2
+ [Verbose] THOR: IP:192.168.10.16, Port:64191, Mode:1
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: auth,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Info] THOR: Got: db,get-list,items From Client: 2
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,checkoutuser,user123
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'checkoutuser' AND UserPsswd = '6ad14ba9986e3615423dfca256d04e3f' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Info] THOR: Got: db,get-list,items From Client: 3
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Verbose] THOR: ::Active Client List::
+ [Verbose] THOR: IP:192.168.10.16, Port:62148, Mode:4
+ [Verbose] THOR: IP:192.168.10.16, Port:29892, Mode:3
+ [Verbose] THOR: IP:192.168.10.16, Port:11972, Mode:2
+ [Verbose] THOR: IP:192.168.10.16, Port:58563, Mode:1
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin','21232f297a57a5a743894a0e4a801fc3',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'user','ee11cbb19052e40b07aac0ca060c23ee',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'audit','a5a63d9b90e6bfe9261e70b66afec721',1000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'admin@admin.com','0192023a7bbd73250516f069df18b500',0,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'merchant@merchant.com','a52f2c0dbf38ade4f715e02c7124046e',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: Query is: INSERT INTO UserInformation(UserName,UserPsswd,PrivMode,AdditionalInfo) VALUES( 'checkoutuser','6ad14ba9986e3615423dfca256d04e3f',2000,''); 
+ [Error] THOR: Error: UNIQUE constraint failed: UserInformation.UserName, UserInformation.PrivMode
+ [Info] THOR: ::Server Info::
+ [Info] THOR: IP:192.168.10.16, Port:50001
+ [Verbose] THOR: Got: aut,admin,admin
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'admin' AND UserPsswd = '21232f297a57a5a743894a0e4a801fc3' ;
+ [Verbose] THOR: PrivMode = 0
+ [Info] THOR: Got: db,get-list,items From Client: 1
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Info] THOR: Got: db,get-list,items From Client: 2
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Info] THOR: Got: db,get-list,items From Client: 3
+ [Info] THOR: Query is: select * from ItemsInformation;
+ [Verbose] THOR: [ { "ID" : "1","Name" : "After Earth 720p","Quantity" : "200","Price" : "11","AdditionalInfo" : "Action"},{ "ID" : "2","Name" : "Baby Driver 1080p","Quantity" : "150","Price" : "9","AdditionalInfo" : "Action"},{ "ID" : "3","Name" : "After Earth 3D","Quantity" : "130","Price" : "12","AdditionalInfo" : "Action"},{ "ID" : "4","Name" : "Orange County 2160p","Quantity" : "112","Price" : "32","AdditionalInfo" : "Adventure"},{ "ID" : "5","Name" : "Deadpool 720p","Quantity" : "210","Price" : "22","AdditionalInfo" : "Action"},{ "ID" : "6","Name" : "Vampyr 480p","Quantity" : "140","Price" : "11","AdditionalInfo" : "Horror"}]
+ [Verbose] THOR: Got: auth,user,user
+
+ [Info] THOR: SELECT PrivMode FROM UserInformation WHERE  UserName = 'user' AND UserPsswd = 'ee11cbb19052e40b07aac0ca060c23ee' ;
+ [Verbose] THOR: PrivMode = 2000
+ [Verbose] THOR: ::Active Client List::
+ [Verbose] THOR: IP:192.168.10.16, Port:33992, Mode:4
+ [Verbose] THOR: IP:192.168.10.16, Port:17608, Mode:3
+ [Verbose] THOR: IP:192.168.10.16, Port:54471, Mode:2
+ [Verbose] THOR: IP:192.168.10.16, Port:14023, Mode:1

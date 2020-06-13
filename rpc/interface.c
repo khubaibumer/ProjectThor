@@ -33,7 +33,7 @@ void __process_cmd(void *node, char *cmd) {
 			char *process = strtok(NULL, ",");
 			char *command = strtok(NULL, ",");
 			GETTHOR(node)->db.log_cmd(GETTHOR(node), process, command); // log every command
-			switch(find_cmd(process)) {
+			switch (find_cmd(process)) {
 			case clinode:
 				// c-lightning node command
 				send_response(node, "%s\n", "resp,status,work-in-progress");

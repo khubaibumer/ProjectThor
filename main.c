@@ -11,14 +11,14 @@
 #include <thor.h>
 
 extern int register_users();
-extern int __get_all_users(void *ptr);
+//extern int __get_all_users(void *ptr);
 
 int main(int argc, char **argv) {
 
 	CAST(THIS)->db.init_db(THIS);
 	register_users();
 
-	__get_all_users(THIS);
+//	__get_all_users(THIS);
 
 	CAST(THIS)->server.up(THIS);
 	CAST(THIS)->server.accept(THIS);

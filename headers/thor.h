@@ -102,7 +102,15 @@ typedef struct thor_data {
 			int (*creat_usr) (void *, const char *, const char *, int);
 			int (*update_usr) (void *, const char *, const char *, const char *, const char *);
 			int (*dlt_usr) (void *, const char *, const char *);
+			int (*get_all) (void*);
 		} psswd_db;
+
+		struct {
+			int (*add_item) (void*, const char*, const char*, const char*, const char*);
+			int (*update_item) (void*, const char*, int, const char*);
+			int (*dlt_item) (void*, const char*, const char*, const char*, const char*);
+			int (*get_all) (void*);
+		} items;
 
 		int (*log_cmd) (void *ptr, char *proc, char *command);
 
@@ -128,6 +136,10 @@ typedef struct thor_data {
 
 	struct {
 		struct {
+			struct {
+				size_t len;
+				char *value;
+			} ret;
 			char *response;
 			int status;
 		} return_value;

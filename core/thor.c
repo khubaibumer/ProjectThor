@@ -35,6 +35,9 @@ extern void __process_cmd(void *node, char *cmd);
 extern void __close_client(void *ptr);
 extern void __free(void *node);
 extern int __log_rpc_command(void *ptr, const char *process, const char *command);
+extern int __get_all_users(void *ptr);
+extern int __add_items(void *ptr, const char*, const char*, const char*, const char*);
+extern int __get_all_items(void *ptr);
 
 static const thor_data_t init_data_root = {
 
@@ -55,7 +58,12 @@ static const thor_data_t init_data_root = {
 		.db.psswd_db.creat_usr = __create_usr_table,
 		.db.psswd_db.update_usr = __update_usr_table,
 		.db.psswd_db.dlt_usr = __dlt_usr_info,
+		.db.psswd_db.get_all = __get_all_users,
 		.db.log_cmd = __log_rpc_command,
+		.db.items.add_item = __add_items,
+		.db.items.get_all = __get_all_items,
+		.db.items.update_item = NULL,
+		.db.items.dlt_item = NULL,
 
 		.server.accept = __accept,
 		.server.up = __up,
@@ -111,6 +119,8 @@ static const thor_data_t init_data_dflt = {
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
 		.db.log_cmd = __log_rpc_command,
+		.db.items.get_all = __get_all_items,
+		.db.items.update_item = NULL,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,
@@ -150,6 +160,7 @@ static const thor_data_t init_data_elvt = {
 		.db.get_role = __get_usr_role,
 		.db.psswd_db.update_usr = __update_usr_table,
 		.db.log_cmd = __log_rpc_command,
+		.db.items.get_all = __get_all_items,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,

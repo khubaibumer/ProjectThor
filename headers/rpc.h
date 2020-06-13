@@ -28,7 +28,12 @@ enum commands {
 	usermode,
 	rpccmd,
 	clinode,
-
+	getlist,
+	items,
+	itemname,
+	itemcount,
+	itemprice,
+	itemextra,
 };
 
 typedef struct {
@@ -48,6 +53,12 @@ const static rpc_commands_t rpc_commands[] = {
 		{ "usermode", usermode },
 		{ "rpc-cmd", rpccmd },
 		{ "cli-node", clinode },
+		{ "get-list", getlist },
+		{ "items", items },
+		{ "item-name", itemname },
+		{ "item-quantity", itemcount },
+		{ "item-price", itemprice },
+		{ "item-extra", itemextra },
 };
 
 static inline int find_cmd(char *in) {
@@ -64,7 +75,7 @@ static inline int find_cmd(char *in) {
 
 static inline int send_response(void *node, const char *fmt, ...) {
 
-	char repose[64] = { };
+	char repose[8000] = { };
 	va_list arg;
 	va_start(arg, fmt);
 	int size = vsprintf(repose, fmt, arg);
