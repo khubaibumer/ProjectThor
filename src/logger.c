@@ -21,13 +21,14 @@ DECLARE_STATIC_SYMBOL(FILE *, logfile) = NULL;
 
 int _logv(const char *fmt, ...) {
 
-	if(level < verbose)
+	if (level < verbose)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);
 	DECLARE_SYMBOL(int, r) = 0;
 	DECLARE_SYMBOL(int, fmtlen) = strlen(fmt) + strlen(PMODNAM) + 2;
-	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char))+ 15, GFP_KERNEL);
+	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char)) + 15,
+			GFP_KERNEL);
 
 	strcat(_fmt, " [Verbose] ");
 	strcat(_fmt, PMODNAM);
@@ -42,13 +43,14 @@ int _logv(const char *fmt, ...) {
 
 int _logd(const char *fmt, ...) {
 
-	if(level < debug)
+	if (level < debug)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);
 	DECLARE_SYMBOL(int, r) = 0;
 	DECLARE_SYMBOL(int, fmtlen) = strlen(fmt) + strlen(PMODNAM) + 2;
-	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char))+ 15, GFP_KERNEL);
+	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char)) + 15,
+			GFP_KERNEL);
 
 	strcat(_fmt, " [Debug] ");
 	strcat(_fmt, PMODNAM);
@@ -63,13 +65,14 @@ int _logd(const char *fmt, ...) {
 
 int _logi(const char *fmt, ...) {
 
-	if(level < info)
+	if (level < info)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);
 	DECLARE_SYMBOL(int, r) = 0;
 	DECLARE_SYMBOL(int, fmtlen) = strlen(fmt) + strlen(PMODNAM) + 2;
-	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char))+ 15, GFP_KERNEL);
+	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char)) + 15,
+			GFP_KERNEL);
 
 	strcat(_fmt, " [Info] ");
 	strcat(_fmt, PMODNAM);
@@ -84,13 +87,14 @@ int _logi(const char *fmt, ...) {
 
 int _loga(const char *fmt, ...) {
 
-	if(level < alert)
+	if (level < alert)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);
 	DECLARE_SYMBOL(int, r) = 0;
 	DECLARE_SYMBOL(int, fmtlen) = strlen(fmt) + strlen(PMODNAM) + 2;
-	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char))+ 15, GFP_KERNEL);
+	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char)) + 15,
+			GFP_KERNEL);
 
 	strcat(_fmt, " [Alert] ");
 	strcat(_fmt, PMODNAM);
@@ -105,13 +109,14 @@ int _loga(const char *fmt, ...) {
 
 int _logw(const char *fmt, ...) {
 
-	if(level < warning)
+	if (level < warning)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);
 	DECLARE_SYMBOL(int, r) = 0;
 	DECLARE_SYMBOL(int, fmtlen) = strlen(fmt) + strlen(PMODNAM) + 2;
-	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char))+ 15, GFP_KERNEL);
+	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char)) + 15,
+			GFP_KERNEL);
 
 	strcat(_fmt, " [Warn] ");
 	strcat(_fmt, PMODNAM);
@@ -126,13 +131,14 @@ int _logw(const char *fmt, ...) {
 
 int _logc(const char *fmt, ...) {
 
-	if(level < critical)
+	if (level < critical)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);
 	DECLARE_SYMBOL(int, r) = 0;
 	DECLARE_SYMBOL(int, fmtlen) = strlen(fmt) + strlen(PMODNAM) + 2;
-	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char))+ 15, GFP_KERNEL);
+	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char)) + 15,
+			GFP_KERNEL);
 
 	strcat(_fmt, " [Critical] ");
 	strcat(_fmt, PMODNAM);
@@ -147,13 +153,14 @@ int _logc(const char *fmt, ...) {
 
 int _loge(const char *fmt, ...) {
 
-	if(level < error)
+	if (level < error)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);
 	DECLARE_SYMBOL(int, r) = 0;
 	DECLARE_SYMBOL(int, fmtlen) = strlen(fmt) + strlen(PMODNAM) + 2;
-	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char))+ 15, GFP_KERNEL);
+	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char)) + 15,
+			GFP_KERNEL);
 
 	strcat(_fmt, " [Error] ");
 	strcat(_fmt, PMODNAM);
@@ -168,13 +175,14 @@ int _loge(const char *fmt, ...) {
 
 int _logf(const char *fmt, ...) {
 
-	if(level < fatal)
+	if (level < fatal)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);
 	DECLARE_SYMBOL(int, r) = 0;
 	DECLARE_SYMBOL(int, fmtlen) = strlen(fmt) + strlen(PMODNAM) + 2;
-	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char))+ 15, GFP_KERNEL);
+	DECLARE_SYMBOL(char, *_fmt) = kmalloc((fmtlen * sizeof(char)) + 15,
+			GFP_KERNEL);
 
 	strcat(_fmt, " [Fatal] ");
 	strcat(_fmt, PMODNAM);
@@ -192,14 +200,14 @@ void set_logging_level(kLoggingLevel _level) {
 }
 
 FILE* __get_logfile(void) {
-	if(logfile)
+	if (logfile)
 		return logfile;
 	return stderr;
 }
 
-logger_t get_logger_instance( void ) {
+logger_t get_logger_instance(void) {
 
-	if(logfile == NULL) {
+	if (logfile == NULL) {
 		logfile = fopen("thor-logs", "aw+");
 		setvbuf(logfile, NULL, _IOLBF, 1024);
 	}

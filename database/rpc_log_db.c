@@ -7,18 +7,15 @@
 
 #include <rpc.h>
 #define LOGS_TABLE "TransactionLogs"
-
+#define SCHEMA " (User,UserId,Epoch,Process,StackTrace) "
 int __log_rpc_command(void *ptr, const char *process, const char *command) {
 
 	time_t now = time(NULL);
 
-	char sql[256] =
-			"INSERT INTO " LOGS_TABLE "(User,UserId,Epoch,Process,StackTrace) "
-			"VALUES( ";
+	char sql[256] = "INSERT INTO " LOGS_TABLE SCHEMA "VALUES( ";
 	size_t len = strlen(sql);
 	sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s'); ", CAST(ptr)->client.ip,
-			CAST(ptr)->client.port, CAST(ptr)->user.uid, now, process,
-			command);
+	CAST(ptr)->client.port, CAST(ptr)->user.uid, now, process, command);
 
 	log.i("Query is: %s\n", sql);
 

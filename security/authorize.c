@@ -19,14 +19,14 @@ typedef struct {
 	const int mode;
 } valid_users_t;
 
-static const valid_users_t valid_users[] = {
-		{ "admin", "admin", sizeof("admin"), ROOT_USR },
-		{ "user", "user", sizeof("user"), DFL_USR },
-		{ "audit", "audit",	sizeof("audit"), ELVT_USR },
-		{ "admin@admin.com", "admin123" , sizeof("admin@admin.com"),  ROOT_USR },
-		{ "merchant@merchant.com", "merchant123" , sizeof("merchant@merchant.com"),  DFL_USR },
-		{ "checkoutuser", "user123", sizeof("checkoutuser"), DFL_USR },
-};
+static const valid_users_t valid_users[] = { { "admin", "admin",
+		sizeof("admin"), ROOT_USR },
+		{ "user", "user", sizeof("user"), DFL_USR }, { "audit", "audit",
+				sizeof("audit"), ELVT_USR }, { "admin@admin.com", "admin123",
+				sizeof("admin@admin.com"), ROOT_USR }, {
+				"merchant@merchant.com", "merchant123",
+				sizeof("merchant@merchant.com"), DFL_USR }, { "checkoutuser",
+				"user123", sizeof("checkoutuser"), DFL_USR }, };
 
 DECLARE_SYMBOL(const size_t, usr_list_len) = sizeof(valid_users)
 		/ sizeof(valid_users_t);
@@ -64,23 +64,22 @@ void remove_escape(char *name, size_t *inlen) {
 
 	size_t _nlen = *inlen;
 
-	for(int i = _nlen; i >= 0; i--) {
-		if(name[i] == '\n' || name[i] == '\r' /*|| name[i] == '\s'*/)
+	for (int i = _nlen; i >= 0; i--) {
+		if (name[i] == '\n' || name[i] == '\r' /*|| name[i] == '\s'*/)
 			name[i] = '\0';
 	}
-
 
 	*inlen = strlen(name);
 }
 
 int __auth(void *ptr, int fd) {
 
-	if(CAST(ptr)->use_ssl) {
+	if (CAST(ptr)->use_ssl) {
 
 		BIO *sbio = BIO_new_socket(fd, BIO_NOCLOSE);
 		SSL *ssl = SSL_new(CAST(THIS)->ssl_tls.ctx);
 		SSL_set_bio(ssl, sbio, sbio);
-		if(SSL_accept(ssl) <= 0) {
+		if (SSL_accept(ssl) <= 0) {
 			perror("Error");
 		}
 		SSL_do_handshake(ssl);
@@ -89,13 +88,14 @@ int __auth(void *ptr, int fd) {
 		CAST(ptr)->tmp_cli_info.tbio = sbio;
 
 		char buf[1024] = { };
-		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,who\n", sizeof("auth,who\n"));
+		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,who\n",
+				sizeof("auth,who\n"));
 		SSL_read(CAST(ptr)->tmp_cli_info.tssl, buf, 1024);
 
 		log.v("Got: %s\n", buf);
 
-		if(strlen(buf) > 0) {
-			if(strstr(buf, ",")) {
+		if (strlen(buf) > 0) {
+			if (strstr(buf, ",")) {
 				char *cmd = strtok(buf, ",");
 				char *name = strtok(NULL, ",");
 				char *pass = strtok(NULL, ",");
@@ -106,7 +106,7 @@ int __auth(void *ptr, int fd) {
 				remove_escape(name, &inlen);
 				remove_escape(pass, &iplen);
 
-				if(inlen && iplen) {
+				if (inlen && iplen) {
 					return get_user_mode(ptr, name, pass, inlen, iplen);
 				}
 			}
@@ -125,10 +125,10 @@ int __auth(void *ptr, int fd) {
 		size_t unlen = strlen(name);
 		size_t uplen = strlen(pass);
 
-		if(name[unlen-1] == '\n')
+		if (name[unlen - 1] == '\n')
 			name[--unlen] = '\0';
 
-		if(pass[uplen-1] == '\n')
+		if (pass[uplen - 1] == '\n')
 			pass[--uplen] = '\0';
 
 		return get_user_mode(ptr, name, pass, unlen, uplen);

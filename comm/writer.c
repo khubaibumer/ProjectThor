@@ -8,7 +8,7 @@
 #include <thor.h>
 #include <sys/socket.h>
 
-extern ssize_t send (int __fd, const void *__buf, size_t __n, int __flags);
+extern ssize_t send(int __fd, const void *__buf, size_t __n, int __flags);
 
 int thor_writer(void *ptr, const void *buf, size_t len) {
 

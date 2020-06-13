@@ -151,7 +151,8 @@ enum {
 
 #endif /*	__SOCKET_UTILITY__	*/
 
-DECLARE_STATIC_SYMBOL(const struct timeval, timeout) = { .tv_sec = 0, .tv_usec = 300 * 1000};
+DECLARE_STATIC_SYMBOL(const struct timeval, timeout) = { .tv_sec = 0, .tv_usec =
+		300 * 1000 };
 
 PRIVATE
 void get_ip(void *ptr) {
@@ -183,7 +184,8 @@ PRIVATE
 void __up(void *ptr) {
 
 	CAST(ptr)->set_state(STATE_HELD);
-	assert(pthread_create(&CAST(ptr)->thread.tid, NULL, CAST(ptr)->thread.thread_func, ptr) == 0);
+	assert(
+			pthread_create(&CAST(ptr)->thread.tid, NULL, CAST(ptr)->thread.thread_func, ptr) == 0);
 
 	CAST(ptr)->ssl_tls.ssl_init(ptr);
 
@@ -219,24 +221,27 @@ void __accept(void *ptr) {
 		case ROOT_USR: {
 			void *dnode = CAST(ptr)->mknod(usr_lvl);
 			CAST(dnode)->client.fd = cfd;
-			setsockopt(cfd, SOL_SOCKET, SO_RCVTIMEO, (const char*) &timeout, sizeof(timeout));
+			setsockopt(cfd, SOL_SOCKET, SO_RCVTIMEO, (const char*) &timeout,
+					sizeof(timeout));
 			CAST(dnode)->client.port = clientAddr.sin_port;
 			CAST(dnode)->client.ip = strdup(inet_ntoa(clientAddr.sin_addr));
 			CAST(dnode)->client.is_connected = 1;
 			if (CAST(ptr)->use_ssl) {
-				CAST(dnode)->ssl_tls.ssl = SSL_dup(CAST(ptr)->tmp_cli_info.tssl);
+				CAST(dnode)->ssl_tls.ssl = SSL_dup(
+						CAST(ptr)->tmp_cli_info.tssl);
 				CAST(dnode)->ssl_tls.bio = CAST(ptr)->tmp_cli_info.tbio;
-				CAST(dnode)->ssl_tls.session = SSL_get1_session(CAST(dnode)->ssl_tls.ssl);
+				CAST(dnode)->ssl_tls.session = SSL_get1_session(
+						CAST(dnode)->ssl_tls.ssl);
 				/*	Reset	*/
 				CAST(ptr)->tmp_cli_info.tssl = NULL;
 				CAST(ptr)->tmp_cli_info.tbio = NULL;
 			}
 
-			char response[25] = {};
+			char response[25] = { };
 			sprintf(response, "auth,ok,%d\n", usr_lvl);
 
-			if (CAST(dnode)->ssl_tls.write(dnode, response, strlen(response)+1)
-					<= 0)
+			if (CAST(dnode)->ssl_tls.write(dnode, response,
+					strlen(response) + 1) <= 0)
 				perror("Error Writing!\n");
 
 			insert_node(&CAST(ptr)->ctrl.list_head, dnode);
@@ -257,7 +262,7 @@ void __accept(void *ptr) {
 PRIVATE
 void print_nodes(data_node_t *node) {
 	log.v("IP:%s, Port:%d, Mode:%d\n", CAST(node->data)->client.ip,
-			CAST(node->data)->client.port, CAST(node->data)->user.uid);
+	CAST(node->data)->client.port, CAST(node->data)->user.uid);
 }
 
 PRIVATE
@@ -270,7 +275,8 @@ PRIVATE
 void __kick(void *ptr, int _fd) {
 
 	if (CAST(ptr)->use_ssl) {
-		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,fail,-1\n", sizeof("auth,fail,-1\n"));
+		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,fail,-1\n",
+				sizeof("auth,fail,-1\n"));
 	} else {
 		send(_fd, "You are being kicked out!", 1024, 0);
 	}
@@ -283,7 +289,7 @@ PRIVATE
 void __close_client(void *ptr) {
 
 	CAST(ptr)->client.is_connected = 0;
-	if(CAST(ptr)->use_ssl) {
+	if (CAST(ptr)->use_ssl) {
 		SSL_SESSION_free(CAST(ptr)->ssl_tls.session);
 		BIO_free_all(CAST(ptr)->ssl_tls.bio);
 		SSL_CTX_free(CAST(ptr)->ssl_tls.ctx);
@@ -299,7 +305,7 @@ PRIVATE
 void close_all_clients(data_node_t *node) {
 
 	GETTHOR(node)->client.is_connected = 0;
-	if(GETTHOR(node)->use_ssl) {
+	if (GETTHOR(node)->use_ssl) {
 		SSL_SESSION_free(GETTHOR(node)->ssl_tls.session);
 		BIO_free_all(GETTHOR(node)->ssl_tls.bio);
 		SSL_CTX_free(GETTHOR(node)->ssl_tls.ctx);

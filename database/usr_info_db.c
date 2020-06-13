@@ -105,7 +105,7 @@ int __get_all_users(void *ptr) {
 	sprintf(CAST(ptr)->rpc.return_value.ret.value, "[ %s", stbuf);
 
 	CAST(ptr)->rpc.return_value.ret.len = strlen(
-			CAST(ptr)->rpc.return_value.ret.value);
+	CAST(ptr)->rpc.return_value.ret.value);
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len
 			- 1] = ']';
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len] =

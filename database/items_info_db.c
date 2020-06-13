@@ -55,7 +55,8 @@ int __get_all_items(void *ptr) {
 	char sql[] = "select * from " ITEM_TABLE ";";
 	log.i("Query is: %s\n", sql);
 
-	CAST(ptr)->rpc.return_value.ret.value = calloc(5 * 1000 * 1000, sizeof(char));
+	CAST(ptr)->rpc.return_value.ret.value = calloc(5 * 1000 * 1000,
+			sizeof(char));
 	CAST(ptr)->rpc.return_value.ret.len = sprintf(
 	CAST(ptr)->rpc.return_value.ret.value, "%s", "[ ");
 	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, get_items_list,
@@ -69,7 +70,7 @@ int __get_all_items(void *ptr) {
 	sprintf(CAST(ptr)->rpc.return_value.ret.value, "[ %s", stbuf);
 
 	CAST(ptr)->rpc.return_value.ret.len = strlen(
-			CAST(ptr)->rpc.return_value.ret.value);
+	CAST(ptr)->rpc.return_value.ret.value);
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len
 			- 1] = ']';
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len] =

@@ -55,9 +55,8 @@ int __process_db_items_cmds(void *node, enum commands action) {
 			} else {
 				//error
 				send_response(node, "resp,fail,reason,%s\n",
-						GETTHOR(node)->rpc.return_value.response == NULL ?
-								"db-error" :
-								GETTHOR(node)->rpc.return_value.response);
+				GETTHOR(node)->rpc.return_value.response == NULL ? "db-error" :
+				GETTHOR(node)->rpc.return_value.response);
 			}
 		} else {
 			// un-authorized

@@ -37,7 +37,7 @@
                             							
                             <targetPlatform binaryParser="org.eclipse.cdt.core.GNU_ELF" id="cdt.managedbuild.target.gnu.platform.exe.debug.38299035" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
                             							
-                            <builder buildPath="${workspace_loc:/THOR}/Debug" id="cdt.managedbuild.target.gnu.builder.exe.debug.1649585333" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.exe.debug"/>
+                            <builder buildPath="${workspace_loc:/THOR}/Debug" id="cdt.managedbuild.target.gnu.builder.exe.debug.1649585333" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="cdt.managedbuild.target.gnu.builder.exe.debug"/>
                             							
                             <tool id="cdt.managedbuild.tool.gnu.archiver.base.956303623" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
                             							
@@ -90,6 +90,8 @@
                                     <listOptionValue builtIn="false" value="crypto"/>
                                     								
                                 </option>
+                                								
+                                <option id="gnu.c.link.option.noshared.960026645" name="No shared libraries (-static)" superClass="gnu.c.link.option.noshared" useByScannerDiscovery="false" value="false" valueType="boolean"/>
                                 								
                                 <inputType id="cdt.managedbuild.tool.gnu.c.linker.input.502284870" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
                                     									

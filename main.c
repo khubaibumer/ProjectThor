@@ -11,7 +11,6 @@
 #include <thor.h>
 
 extern int register_users();
-//extern int __get_all_users(void *ptr);
 
 int main(int argc, char **argv) {
 
