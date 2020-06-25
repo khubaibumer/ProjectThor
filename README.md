@@ -1,6 +1,8 @@
 # libThor
 Interfacing Library for c-lightning
 
+[![CodeFactor](https://www.codefactor.io/repository/github/khubaibumer/libthor/badge?s=431fd03279c42ac1ec2eaa4238b0b139d9388921)](https://www.codefactor.io/repository/github/khubaibumer/libthor)
+
 ## :: LIST OF COMMANDS ::
 
 > db,add,user,<name>,<pass>,<mode>,<extra>
