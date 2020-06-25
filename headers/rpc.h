@@ -75,13 +75,16 @@ static inline int find_cmd(char *in) {
 
 static inline int send_response(void *node, const char *fmt, ...) {
 
-	char repose[8000] = { };
+	char *repose = calloc(5*1000*1000, sizeof(char));
 	va_list arg;
 	va_start(arg, fmt);
 	int size = vsprintf(repose, fmt, arg);
 	va_end(arg);
 
-	return GETTHOR(node)->ssl_tls.write(GETTHOR(node), repose, size+1);
+	int ret = GETTHOR(node)->ssl_tls.write(GETTHOR(node), repose, size);
+	free(repose);
+
+	return ret;
 }
 
 #endif /* RPC_H_ */

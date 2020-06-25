@@ -52,7 +52,8 @@ int __get_all_items(void *ptr) {
 	fp1 = fopen("/dev/null", "w+");
 	setvbuf(fp1, stbuf, _IOFBF, BUFSIZ);
 
-	char sql[] = "select * from " ITEM_TABLE ";";
+	char sql[] =
+			"select Name, Quantity, Price, AdditionalInfo from " ITEM_TABLE ";";
 	log.i("Query is: %s\n", sql);
 
 	CAST(ptr)->rpc.return_value.ret.value = calloc(5 * 1000 * 1000,
@@ -84,3 +85,21 @@ int __get_all_items(void *ptr) {
 
 	return 0;
 }
+
+int __delete_item(void *ptr, const char *name) {
+
+	char sql[256] = "DELETE FROM " ITEM_TABLE " where Name= ";
+	size_t len = strlen(sql);
+	sprintf(&sql[len], "'%s'; ", name);
+	log.i("Query is: %s\n", sql);
+
+	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, NULL, 0,
+			&CAST(ptr)->rpc.return_value.response);
+	if (rt != SQLITE_OK) {
+		log.e("Error: %s\n", CAST(ptr)->rpc.return_value.response);
+		return -1;
+	}
+
+	return 0;
+}
+

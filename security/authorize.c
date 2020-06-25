@@ -19,14 +19,14 @@ typedef struct {
 	const int mode;
 } valid_users_t;
 
-static const valid_users_t valid_users[] = { { "admin", "admin",
-		sizeof("admin"), ROOT_USR },
-		{ "user", "user", sizeof("user"), DFL_USR }, { "audit", "audit",
-				sizeof("audit"), ELVT_USR }, { "admin@admin.com", "admin123",
-				sizeof("admin@admin.com"), ROOT_USR }, {
-				"merchant@merchant.com", "merchant123",
-				sizeof("merchant@merchant.com"), DFL_USR }, { "checkoutuser",
-				"user123", sizeof("checkoutuser"), DFL_USR }, };
+static const valid_users_t valid_users[] = {
+		{ "admin", "admin",	sizeof("admin"), ROOT_USR },
+		{ "user", "user", sizeof("user"), DFL_USR },
+		{ "audit", "audit",	sizeof("audit"), ELVT_USR },
+		{ "admin@admin.com", "admin123", sizeof("admin@admin.com"), ROOT_USR },
+		{ "merchant@merchant.com", "merchant123", sizeof("merchant@merchant.com"), ELVT_USR },
+		{ "checkoutuser", "user123", sizeof("checkoutuser"), DFL_USR },
+};
 
 DECLARE_SYMBOL(const size_t, usr_list_len) = sizeof(valid_users)
 		/ sizeof(valid_users_t);

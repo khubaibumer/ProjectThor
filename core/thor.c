@@ -11,6 +11,10 @@
 
 #pragma GCC diagnostic ignored "-Wdiscarded-qualifiers"
 
+PRIVATE const char root[] = "/thor";
+PRIVATE const char config[] = "thor.config";
+
+extern int __load_cfg (void*);
 extern void __up (void*);
 extern void __listen(void*);
 extern void __accept(void*);
@@ -38,10 +42,12 @@ extern int __log_rpc_command(void *ptr, const char *process, const char *command
 extern int __get_all_users(void *ptr);
 extern int __add_items(void *ptr, const char*, const char*, const char*, const char*);
 extern int __get_all_items(void *ptr);
+extern int __delete_item(void *ptr, const char *name);
 
 static const thor_data_t init_data_root = {
 
 		.exec_flags = ROOT_USR,
+		.load_config = __load_cfg,
 		.mknod = __mknod,
 		.set_state = __set_state,
 		.trim = remove_escape,
@@ -63,7 +69,7 @@ static const thor_data_t init_data_root = {
 		.db.items.add_item = __add_items,
 		.db.items.get_all = __get_all_items,
 		.db.items.update_item = NULL,
-		.db.items.dlt_item = NULL,
+		.db.items.dlt_item = __delete_item,
 
 		.server.accept = __accept,
 		.server.up = __up,
@@ -120,7 +126,6 @@ static const thor_data_t init_data_dflt = {
 		.db.get_role = __get_usr_role,
 		.db.log_cmd = __log_rpc_command,
 		.db.items.get_all = __get_all_items,
-		.db.items.update_item = NULL,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,
@@ -161,6 +166,9 @@ static const thor_data_t init_data_elvt = {
 		.db.psswd_db.update_usr = __update_usr_table,
 		.db.log_cmd = __log_rpc_command,
 		.db.items.get_all = __get_all_items,
+		.db.items.add_item = __add_items,
+		.db.items.update_item = NULL,
+		.db.items.dlt_item = __delete_item,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,
@@ -220,6 +228,57 @@ void* __mknod(int mode) {
 	break;
 	};
 	return NULL;
+}
+
+int __load_cfg (void *ptr) {
+
+/*
+	DECLARE_STATIC_SYMBOL(const char*, ipK) = "IP=";
+	DECLARE_STATIC_SYMBOL(const char*, prtK) = "PORT=";
+	DECLARE_STATIC_SYMBOL(const char*, crtK) = "CERT=";
+	DECLARE_STATIC_SYMBOL(const char*, logK) = "LOG=";
+	DECLARE_STATIC_SYMBOL(const char*, dbK) = "DB=";
+
+	unsigned char cfg[64] = {};
+	sprintf(cfg, "%s/%s", root, config);
+
+	FILE *cfp = fopen(cfg, "r");
+	if(cfp == NULL) {
+		// store defaults
+	}
+
+	char *ip;
+	char *port;
+	char *cer;
+	char *logF;
+	char *db;
+	unsigned char buf[512] = { };
+	if(fgets(buf, 511, cfp)) {
+		ip = strtok(buf, ipK);
+		printf("%s %s\n", ipK, ip);
+	}
+	if(fgets(buf, 511, cfp)) {
+		port = strtok(buf, prtK);
+		printf("%s %s\n", prtK, port);
+	}
+	if(fgets(buf, 511, cfp)) {
+		cer = strtok(buf, crtK);
+		printf("%s %s\n", crtK, cer);
+	}
+	if(fgets(buf, 511, cfp)) {
+		logF = strtok(buf, logK);
+		printf("%s %s\n", logK, logF);
+	}
+	if(fgets(buf, 511, cfp)) {
+		db = strtok(buf, dbK);
+		printf("%s %s\n", dbK, db);
+	}
+*/
+
+
+
+
+	return 0;
 }
 
 void __free(void *node) {

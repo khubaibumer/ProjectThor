@@ -20,24 +20,33 @@ int __process_db_items_cmds(void *node, enum commands action) {
 			if (GETTHOR(node)->db.items.add_item(GETTHOR(node), name, quantity,
 					price, extra) == 0) {
 				// success
-				send_response(node, "resp,ok,0,response,%s\n",
-				GETTHOR(node)->rpc.return_value.ret.value == NULL ? "success" :
-				GETTHOR(node)->rpc.return_value.ret.value);
+				send_response(node, "resp,status,%s\n", "success");
 			} else {
 				// some error
-				send_response(node, "resp,fail,reason,%s\n",
+				send_response(node, "resp,status,fail,reason,%s\n",
 				GETTHOR(node)->rpc.return_value.response == NULL ? "db error" :
 				GETTHOR(node)->rpc.return_value.response);
 			}
 		} else {
 			// un-authorized
-			send_response(node, "%s\n", "resp,fail,reason,unauthorized");
+			send_response(node, "%s\n", "resp,status,fail,reason,unauthorized");
 		}
 
 	}
 		break;
 	case del: {
-		send_response(node, "%s\n", "resp,status,work-in-progress");
+		char *name = strtok(NULL, ",");
+		if(GETTHOR(node)->db.items.dlt_item) {
+			if(GETTHOR(node)->db.items.dlt_item(GETTHOR(node), name) == 0) {
+				send_response(node, "resp,status,%s\n", "success");
+			} else {
+				send_response(node, "resp,status,fail,reason,%s\n",
+				GETTHOR(node)->rpc.return_value.response == NULL ? "db error" :
+				GETTHOR(node)->rpc.return_value.response);
+			}
+		} else {
+			send_response(node, "%s\n", "resp,status,fail,reason,unauthorized");
+		}
 	}
 		break;
 	case update: {
@@ -166,6 +175,9 @@ PRIVATE int __process_db_cmds(void *node) {
 		switch (table) {
 		case user:
 			__process_db_user_cmds(node, del);
+			break;
+		case items:
+			__process_db_items_cmds(node, del);
 			break;
 		default:
 			send_response(node, "%s\n", "resp,fail,reason,invalid command");

@@ -191,7 +191,7 @@ void __up(void *ptr) {
 
 	get_ip(ptr);
 
-	CAST(ptr)->server.port = 50001;
+	CAST(ptr)->server.port = 50002;
 
 	CAST(ptr)->server.sock.fd = CREATE_INET_SERVER(CAST(ptr)->server.ip,
 			CAST(ptr)->server.port, CAST(ptr)->client.max_count);
@@ -204,7 +204,7 @@ void __up(void *ptr) {
 PRIVATE
 void __accept(void *ptr) {
 
-	while (CAST(ptr)->ctrl.actv_client_count < 4 /*CAST(ptr)->client.max_count*/) {
+	while (CAST(ptr)->ctrl.actv_client_count < /*4*/ CAST(ptr)->client.max_count) {
 		// Accept a connection
 		// Get user-name & passwd
 		// Authenticate

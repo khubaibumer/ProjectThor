@@ -40,6 +40,7 @@ typedef struct thor_data {
 	/*	Flags of execution	*/
 	uint32_t exec_flags;
 	uint16_t use_ssl;
+	int (*load_config) (void*);
 	struct {
 		int (*write) (void*, const void*, size_t);
 		int (*read) (void*, void*, size_t);
@@ -92,7 +93,7 @@ typedef struct thor_data {
 	} server;
 
 	struct {
-		const char *db_name;
+		char *db_name;
 		sqlite3 *db_hndl;
 		uint8_t is_open;
 
@@ -108,7 +109,7 @@ typedef struct thor_data {
 		struct {
 			int (*add_item) (void*, const char*, const char*, const char*, const char*);
 			int (*update_item) (void*, const char*, int, const char*);
-			int (*dlt_item) (void*, const char*, const char*, const char*, const char*);
+			int (*dlt_item) (void*, const char*);
 			int (*get_all) (void*);
 		} items;
 
