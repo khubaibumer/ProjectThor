@@ -10,7 +10,6 @@ compiler:
   - clang
 os:
   - linux
-  - osx
 script:
  - cd Debug
  - make all
