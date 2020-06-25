@@ -4,4 +4,4 @@ compiler:
   - clang
 os:
   - linux
-script: make clean && make all
+script: build.sh
