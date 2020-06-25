@@ -1,27 +1,37 @@
 # libThor
 Interfacing Library for c-lightning
 
-:: LIST OF COMMANDS ::
+## :: LIST OF COMMANDS ::
 
-db,add,user,<name>,<pass>,<mode>,<extra>
-db,del,user,<name>{,<pass>,<mode>,<extra>}
-db,update,user,<name>,<key>,<value>
-db,get-list,user
+> db,add,user,<name>,<pass>,<mode>,<extra>
+  
+> db,del,user,<name>{,<pass>,<mode>,<extra>}
+  
+> db,update,user,<name>,<key>,<value>
+  
+> db,get-list,user
 
-db,get-list,items
-db,update,items,<name>,<key>,<value>
-db,add,items,<name>,<quantity>,<price>,<extra>
-db,del,items,<name>,<quantity>,<price>{,<extra>}
+> db,get-list,items
 
-rpc-cmd,cli-node,[command to execute]
+> db,update,items,<name>,<key>,<value>
+  
+> db,add,items,<name>,<quantity>,<price>,<extra>
+  
+> db,del,items,<name>,<quantity>,<price>{,<extra>}
+
+> rpc-cmd,cli-node,[command to execute]
 
 
-:: LIST OF RESPONSE ::
+## :: LIST OF RESPONSE ::
 
-resp,ok,0,response,<response>
-resp,fail,reason,<reason>
-resp,status,<status>
+> resp,ok,0,response,<response>
+  
+> resp,fail,reason,<reason>
+  
+> resp,status,<status>
+  
 
-:: RPC STRUCTURE ::
+## :: RPC STRUCTURE ::
 
-rpc-type,rpc-action,rpc-identifier,Args...
+> rpc-type,rpc-action,rpc-identifier,Args...
+
