@@ -1,8 +1,7 @@
 language: c
 compiler:
-	- gcc
-	- clang
+  - gcc
+  - clang
 os:
-	- linux
-	- osx
+  - linux
 script: make clean && make all
