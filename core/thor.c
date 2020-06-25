@@ -288,7 +288,7 @@ void __free(void *node) {
 
 void* thor_() {
 
-	static thor_data_t data = init_data_root;
+	static thor_data_t data = (const thor_data_t) init_data_root;
 
 	return &data;
 }
