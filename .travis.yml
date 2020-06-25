@@ -4,4 +4,6 @@ compiler:
   - clang
 os:
   - linux
-script: ./build.sh
+script:
+ - cd Debug
+ - make clean && make all
