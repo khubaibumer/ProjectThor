@@ -36,7 +36,6 @@
 extern void* serve_clients(void *ptr);
 
 typedef struct thor_data {
-
 	/*	Flags of execution	*/
 	uint32_t exec_flags;
 	uint16_t use_ssl;
@@ -65,7 +64,6 @@ typedef struct thor_data {
 			uint8_t iv[32];
 
 			int (*auth) (void *, int);
-
 		} secure;
 
 		uint32_t uid;
@@ -114,7 +112,6 @@ typedef struct thor_data {
 		} items;
 
 		int (*log_cmd) (void *ptr, char *proc, char *command);
-
 	} db;
 
 	struct {
@@ -150,7 +147,6 @@ typedef struct thor_data {
 	struct {
 		int (*to_ui) (void*);
 	} ui;
-
 } thor_data_t;
 
 void* thor_(void);
