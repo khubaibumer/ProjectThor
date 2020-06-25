@@ -4,4 +4,4 @@ compiler:
   - clang
 os:
   - linux
-script: build.sh
+script: ./build.sh
