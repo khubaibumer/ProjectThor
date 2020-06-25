@@ -1,9 +1,9 @@
 # libThor
 Interfacing Library for c-lightning
 
-[![CodeFactor](https://www.codefactor.io/repository/github/khubaibumer/libthor/badge?s=431fd03279c42ac1ec2eaa4238b0b139d9388921)](https://www.codefactor.io/repository/github/khubaibumer/libthor)
+## [![CodeFactor](https://www.codefactor.io/repository/github/khubaibumer/libthor/badge?s=431fd03279c42ac1ec2eaa4238b0b139d9388921)](https://www.codefactor.io/repository/github/khubaibumer/libthor)
 
-[![Build Status](https://travis-ci.com/khubaibumer/libThor.svg?token=1CSkg4TqiLRRZPUNDexe&branch=master)](https://travis-ci.com/khubaibumer/libThor)
+## [![Build Status](https://travis-ci.com/khubaibumer/libThor.svg?token=1CSkg4TqiLRRZPUNDexe&branch=master)](https://travis-ci.com/khubaibumer/libThor)
 
 
 ## :: LIST OF COMMANDS ::
