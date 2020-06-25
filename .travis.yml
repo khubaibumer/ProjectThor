@@ -1,5 +1,5 @@
 before_install:
-  - sudo apt-get -y install openssl libssl-dev libsqlite3-dev sqlite3
+  - sudo apt-get -y install openssl libssl-dev libsqlite3-dev sqlite3 libcrypto++-dev --install-recommends
 addons:
   apt:
     update: true
