@@ -74,7 +74,6 @@ static inline int find_cmd(char *in) {
 }
 
 static inline int send_response(void *node, const char *fmt, ...) {
-
 	char *repose = calloc(5*1000*1000, sizeof(char));
 	va_list arg;
 	va_start(arg, fmt);
