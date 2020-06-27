@@ -26,5 +26,5 @@ deploy:
   file:
    - "../INSTALL.sh"
    - "THOR"
-#  skip_cleanup: true
+  skip_cleanup: true
 

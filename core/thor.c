@@ -39,7 +39,7 @@ extern void remove_escape(char *name, size_t *inlen);
 extern void __process_cmd(void *node, char *cmd);
 extern void __close_client(void *ptr);
 extern void __free(void *node);
-extern int __log_rpc_command(void *ptr, const char *process, const char *command);
+extern int __log_rpc_command(void *ptr, int type, const char *process, const char *command);
 extern int __get_all_users(void *ptr);
 extern int __add_items(void *ptr, const char*, const char*, const char*, const char*);
 extern int __get_all_items(void *ptr);

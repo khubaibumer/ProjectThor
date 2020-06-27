@@ -116,6 +116,8 @@ int __init_sqlite3_instance(void *ptr) {
 	"UserId TEXT NOT NULL, "
 	"Epoch TEXT NOT NULL, "
 	"Process TEXT NOT NULL, "
+	"LogType TEXT NOT NULL,"
+	"LatLong TEXT NOT NULL,"
 	"StackTrace TEXT NOT NULL "
 	");";
 

@@ -8,6 +8,7 @@
 #include <rpc.h>
 
 int __process_db_cmds(void *node);
+int __exec_rpc_cmd(void *node, char *command);
 
 void __process_cmd(void *node, char *cmd) {
 
@@ -31,10 +32,17 @@ void __process_cmd(void *node, char *cmd) {
 			break;
 		case rpccmd: {
 			char *process = strtok(NULL, ",");
-			char *command = strtok(NULL, ",");
-			GETTHOR(node)->db.log_cmd(GETTHOR(node), process, command); // log every command
+			char *latlong = strtok(NULL, ",");
+			char *command = strtok(NULL,",");
+
+			/* We need to repace that _ with , */
+			char *tmp = strchr(latlong, '_');
+			*tmp = ',';
+
+			GETTHOR(node)->db.log_cmd(GETTHOR(node), AUTO, process, command, latlong); // log every command
 			switch (find_cmd(process)) {
 			case clinode:
+				__exec_rpc_cmd(node, command);
 				// c-lightning node command
 				send_response(node, "%s\n", "resp,status,work-in-progress");
 				break;

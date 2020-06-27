@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../rpc/clight.c \
 ../rpc/db_manager.c \
 ../rpc/interface.c 
 
 OBJS += \
+./rpc/clight.o \
 ./rpc/db_manager.o \
 ./rpc/interface.o 
 
 C_DEPS += \
+./rpc/clight.d \
 ./rpc/db_manager.d \
 ./rpc/interface.d 
 
