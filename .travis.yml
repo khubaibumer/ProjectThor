@@ -19,13 +19,12 @@ before_deploy:
   - git config --local user.email "khubaibumer@gmail.com"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
-    deploy:
-      provider: releases
-      api_key: "17c59540aa0c3e52a74add93786aaba712d754a9"
-      file:
-       - "INSTALL.sh"
-       - "Debug/THOR"
-      skip_cleanup: true
 
-
+deploy:
+  provider: releases
+  api_key: "17c59540aa0c3e52a74add93786aaba712d754a9"
+  file:
+   - "INSTALL.sh"
+   - "Debug/THOR"
+  skip_cleanup: true
 
