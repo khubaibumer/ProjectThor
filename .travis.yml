@@ -24,7 +24,7 @@ deploy:
   provider: releases
   api_key: "17c59540aa0c3e52a74add93786aaba712d754a9"
   file:
-   - "INSTALL.sh"
-   - "Debug/THOR"
+   - "../INSTALL.sh"
+   - "THOR"
   skip_cleanup: true
 
