@@ -14,7 +14,7 @@ int __exec_rpc_cmd(void *node, char *command) {
 	size_t len = strlen(command);
 	/*	Our Commands will be enclosed in []	*/
 	command[0] = ' '; // Removing [
-	command[len - 1] = '\0';
+	command[len - 1] = '\0'; // Removing ]
 	log.i("Command to Run: %s\n", command);
 
 	/*	Now create a buffer for clight response	*/
@@ -32,7 +32,7 @@ int __exec_rpc_cmd(void *node, char *command) {
 		strcat(resp, buf);
 
 	log.i("Response is: %s\n", resp);
-	send_response(node, "resp,status,rpc-cmd,cli-node,%s\n", resp);
+	send_response(node, "resp,status,rpc-cmd,cli-node,[ %s ]\n", resp);
 
 	pclose(fp);
 	free(resp);
