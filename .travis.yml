@@ -15,7 +15,6 @@ script:
  - make all
 
 before_deploy:
-  # Set up git user name and tag this commit
   - git config --local user.name "khubaibumer"
   - git config --local user.email "khubaibumer@gmail.com"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
@@ -27,4 +26,6 @@ before_deploy:
        - "INSTALL.sh"
        - "Debug/THOR"
       skip_cleanup: true
+
+
 
