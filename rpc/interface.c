@@ -44,7 +44,7 @@ void __process_cmd(void *node, char *cmd) {
 			case clinode:
 				__exec_rpc_cmd(node, command);
 				// c-lightning node command
-				send_response(node, "%s\n", "resp,status,work-in-progress");
+//				send_response(node, "%s\n", "resp,status,work-in-progress");
 				break;
 
 			default:
