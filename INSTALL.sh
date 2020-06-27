@@ -25,16 +25,14 @@ printf "  - libsqlite3-dev\n\n"
 
 # Assuming that we need to install these dependencies lets dowload and install them
 
-sudo apt install libssl-dev libsqlite3-dev --install-recommends --upgrade
-
-if [ $? -ne 0 ]
+if ! sudo apt install libssl-dev libsqlite3-dev --install-recommends --upgrade
 then
 	printf "\nPlease Correct the Issues mentioned above and Retry\n"
 	exit 1
 fi
 
 printf "\n\nPlease Enter Installation Directory: "
-read DIR
+read -r DIR
 
 printf "\n\nProject THOR will be installed to $DIR \n"
 
@@ -47,33 +45,33 @@ sudo chown $USR $DIR -R
 printf "\n\nGenerating Configuration File . . .\n"
 
 printf "Enter IP Address to Bind Server: "
-read IP
+read -r IP
 
 printf "Enter PORT to Bind Server: "
-read PORT
+read -r PORT
 
 printf "Do you want to Create a new Certificate file? [y/n]: "
-read NC
+read -r NC
 
 if [ "$NC" = "y" ]
 then
 	printf "Enter Certificate File Name: "
-	read CERT
+	read -r CERT
 	CERTP=$DIR/$CERT
 	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $CERTP -out $CERTP
 else
         printf "Enter Existing Certificate File Path: "
-        read CERTP
+        read -r CERTP
 fi
 
 printf "Enter Logfile Name: "
-read LOGFILE
+read -r LOGFILE
 
 printf "Do you Want to Encrypt Logfile? [y/n]: "
-read ENC
+read -r ENC
 
 printf "Enter DataBase Name: "
-read DB
+read -r DB
 
 printf "\n\nConfiguration File is being Generated\n"
 
