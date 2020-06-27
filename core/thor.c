@@ -43,12 +43,14 @@ extern int __get_all_users(void *ptr);
 extern int __add_items(void *ptr, const char*, const char*, const char*, const char*);
 extern int __get_all_items(void *ptr);
 extern int __delete_item(void *ptr, const char *name);
+extern char* __copy_string(char*);
 
 static const thor_data_t init_data_root = {
 
 		.exec_flags = ROOT_USR,
 		.load_config = __load_cfg,
 		.mknod = __mknod,
+		.copy_str = __copy_string,
 		.set_state = __set_state,
 		.trim = remove_escape,
 		.free = __free,
@@ -58,7 +60,6 @@ static const thor_data_t init_data_root = {
 
 		.db.is_open = 0,
 		.db.db_hndl = NULL,
-		.db.db_name = "thor.db",
 		.db.init_db = __init_sqlite3_instance,
 		.db.get_role = __get_usr_role,
 		.db.psswd_db.creat_usr = __create_usr_table,
@@ -118,10 +119,10 @@ static const thor_data_t init_data_dflt = {
 
 		.exec_flags = DFL_USR,
 		.mknod = __mknod,
+		.copy_str = __copy_string,
 		.trim = remove_escape,
 
 		.db.is_open = 0,
-		.db.db_name = "thor.db",
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
 		.db.log_cmd = __log_rpc_command,
@@ -157,10 +158,10 @@ static const thor_data_t init_data_elvt = {
 
 		.exec_flags = ELVT_USR,
 		.mknod = __mknod,
+		.copy_str = __copy_string,
 		.trim = remove_escape,
 
 		.db.is_open = 0,
-		.db.db_name = "thor.db",
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
 		.db.psswd_db.update_usr = __update_usr_table,
@@ -230,9 +231,17 @@ void* __mknod(int mode) {
 	return NULL;
 }
 
+char* __copy_string(char *s1) {
+	size_t len = strlen(s1) + 1;
+	char *s2 = calloc(len, sizeof(char));
+	memcpy(s2,s1,len);
+
+	return s2;
+}
+
 int __load_cfg (void *ptr) {
 
-/*
+
 	DECLARE_STATIC_SYMBOL(const char*, ipK) = "IP=";
 	DECLARE_STATIC_SYMBOL(const char*, prtK) = "PORT=";
 	DECLARE_STATIC_SYMBOL(const char*, crtK) = "CERT=";
@@ -252,31 +261,54 @@ int __load_cfg (void *ptr) {
 	char *cer;
 	char *logF;
 	char *db;
+	char *tmp;
 	unsigned char buf[512] = { };
-	if(fgets(buf, 511, cfp)) {
-		ip = strtok(buf, ipK);
-		printf("%s %s\n", ipK, ip);
+	if (fgets(buf, 511, cfp)) {
+		tmp = strtok(buf, ipK);
+		if (tmp)
+			ip = CAST(THIS)->copy_str(tmp);
 	}
-	if(fgets(buf, 511, cfp)) {
-		port = strtok(buf, prtK);
-		printf("%s %s\n", prtK, port);
+	if (fgets(buf, 511, cfp)) {
+		tmp = strtok(buf, prtK);
+		if (tmp)
+			port = CAST(THIS)->copy_str(tmp);
 	}
-	if(fgets(buf, 511, cfp)) {
-		cer = strtok(buf, crtK);
-		printf("%s %s\n", crtK, cer);
+	if (fgets(buf, 511, cfp)) {
+		tmp = strtok(buf, crtK);
+		if (tmp)
+			cer = CAST(THIS)->copy_str(tmp);
 	}
-	if(fgets(buf, 511, cfp)) {
-		logF = strtok(buf, logK);
-		printf("%s %s\n", logK, logF);
+	if (fgets(buf, 511, cfp)) {
+		tmp = strtok(buf, logK);
+		if (tmp)
+			logF = CAST(THIS)->copy_str(tmp);
 	}
-	if(fgets(buf, 511, cfp)) {
-		db = strtok(buf, dbK);
-		printf("%s %s\n", dbK, db);
+	if (fgets(buf, 511, cfp)) {
+		tmp = strtok(buf, dbK);
+		if (tmp)
+			db = CAST(THIS)->copy_str(tmp);
 	}
+	printf("%s %s\n", ipK, ip);
+	printf("%s %s\n", prtK, port);
+	printf("%s %s\n", crtK, cer);
+	printf("%s %s\n", logK, logF);
+	printf("%s %s\n", dbK, db);
+
+	CAST(ptr)->db.db_name = (db);
+	CAST(ptr)->server.port = atoi(port);
+	CAST(ptr)->ssl_tls.certifiate = (cer);
+	log.set_file(logF);
+	CAST(ptr)->server.ip = (ip);
+	CAST(ptr)->logfile = logF;
+
+/*
+	CAST(ptr)->server.port = atoi(port);
+	CAST(ptr)->db.db_name = CAST(THIS)->copy_str(db);
+	CAST(ptr)->ssl_tls.certifiate = CAST(THIS)->copy_str(cer);
+	log.set_file(logF);
+	CAST(ptr)->server.ip = CAST(THIS)->copy_str(ip);
+	CAST(ptr)->logfile = CAST(THIS)->copy_str(logF);
 */
-
-
-
 
 	return 0;
 }

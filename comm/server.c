@@ -189,9 +189,11 @@ void __up(void *ptr) {
 
 	CAST(ptr)->ssl_tls.ssl_init(ptr);
 
-	get_ip(ptr);
+	if(CAST(ptr)->server.ip == NULL)
+		get_ip(ptr);
 
-	CAST(ptr)->server.port = 50002;
+	if(CAST(ptr)->server.port == 0)
+		CAST(ptr)->server.port = 50002;
 
 	CAST(ptr)->server.sock.fd = CREATE_INET_SERVER(CAST(ptr)->server.ip,
 			CAST(ptr)->server.port, CAST(ptr)->client.max_count);

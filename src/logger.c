@@ -205,6 +205,20 @@ FILE* __get_logfile(void) {
 	return stderr;
 }
 
+void set_file(const char *file) {
+
+	if(logfile) {
+		fclose(logfile);
+		logfile = NULL;
+	}
+
+	if (logfile == NULL) {
+		logfile = fopen(file, "aw+");
+		setvbuf(logfile, NULL, _IOLBF, 1024);
+	}
+
+}
+
 logger_t get_logger_instance(void) {
 
 	if (logfile == NULL) {

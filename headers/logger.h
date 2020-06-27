@@ -69,6 +69,7 @@ typedef struct {
 	log_f e;
 	log_f f;
 	FILE* (*get) (void);
+	void (*set_file) (const char *);
 } logger_t;
 
 extern logger_t get_logger_instance( void );

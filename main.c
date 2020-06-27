@@ -14,7 +14,7 @@ extern int register_users();
 
 int main(int argc, char **argv) {
 
-//	CAST(THIS)->load_config(THIS);
+	CAST(THIS)->load_config(THIS);
 	CAST(THIS)->db.init_db(THIS);
 	register_users();
 

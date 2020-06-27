@@ -39,7 +39,9 @@ typedef struct thor_data {
 	/*	Flags of execution	*/
 	uint32_t exec_flags;
 	uint16_t use_ssl;
+	char *logfile;
 	int (*load_config) (void*);
+	char* (*copy_str) (char*);
 	struct {
 		int (*write) (void*, const void*, size_t);
 		int (*read) (void*, void*, size_t);
@@ -50,6 +52,7 @@ typedef struct thor_data {
 		BIO *bio;
 	    SSL_CTX *ctx;
 	    SSL_SESSION *session;
+	    char *certifiate;
 	} ssl_tls;
 
 	struct {
