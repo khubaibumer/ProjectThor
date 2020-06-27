@@ -24,7 +24,7 @@ Interfacing Library for c-lightning
   
 > db,del,items,<name>,<quantity>,<price>{,<extra>}
 
-> rpc-cmd,cli-node,[command to execute]
+> rpc-cmd,cli-node,lat_long,[command to execute]
 
 
 ## :: LIST OF RESPONSE ::
