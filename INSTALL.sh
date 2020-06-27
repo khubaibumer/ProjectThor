@@ -81,6 +81,7 @@ echo "IP=$IP" > $CFG
 echo "PORT=$PORT" >> $CFG
 echo "CERT=$CERTP" >> $CFG
 echo "LOG=$DIR/$LOGFILE" >> $CFG
+echo "DB=$DIR/$DB" >> $CFG
 
 if [ "$ENC" = "y" ]
 then
@@ -88,8 +89,6 @@ then
 else
 	echo "SEC=0" >> $CFG
 fi
-
-echo "DB=$DIR/$DB" >> $CFG
 
 printf "\n\n## EOF\n" >> $CFG
 

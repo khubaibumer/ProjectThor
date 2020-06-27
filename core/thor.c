@@ -8,11 +8,12 @@
 #include <thor.h>
 #include <stdio.h>
 #include <list.h>
+#include <errno.h>
 
 #pragma GCC diagnostic ignored "-Wdiscarded-qualifiers"
 
 PRIVATE const char root[] = "/thor";
-PRIVATE const char config[] = "thor.config";
+PRIVATE const char config[] = "thor.cfg";
 
 extern int __load_cfg (void*);
 extern void __up (void*);
@@ -45,7 +46,7 @@ extern int __get_all_items(void *ptr);
 extern int __delete_item(void *ptr, const char *name);
 extern char* __copy_string(char*);
 
-static const thor_data_t init_data_root = {
+static thor_data_t init_data_root = {
 
 		.exec_flags = ROOT_USR,
 		.load_config = __load_cfg,
@@ -115,7 +116,7 @@ static const thor_data_t init_data_root = {
 		.ui.to_ui =  NULL,
 };
 
-static const thor_data_t init_data_dflt = {
+static thor_data_t init_data_dflt = {
 
 		.exec_flags = DFL_USR,
 		.mknod = __mknod,
@@ -154,7 +155,7 @@ static const thor_data_t init_data_dflt = {
 
 };
 
-static const thor_data_t init_data_elvt = {
+static thor_data_t init_data_elvt = {
 
 		.exec_flags = ELVT_USR,
 		.mknod = __mknod,
@@ -254,6 +255,8 @@ int __load_cfg (void *ptr) {
 	FILE *cfp = fopen(cfg, "r");
 	if(cfp == NULL) {
 		// store defaults
+		perror("Invalid Installation Directory");
+		exit(errno);
 	}
 
 	char *ip;
@@ -263,36 +266,49 @@ int __load_cfg (void *ptr) {
 	char *db;
 	char *tmp;
 	unsigned char buf[512] = { };
-	if (fgets(buf, 511, cfp)) {
+	if (fgets(&buf[0], 511, cfp)) {
 		tmp = strtok(buf, ipK);
 		if (tmp)
 			ip = CAST(THIS)->copy_str(tmp);
 	}
-	if (fgets(buf, 511, cfp)) {
+	if (fgets(&buf[0], 511, cfp)) {
 		tmp = strtok(buf, prtK);
 		if (tmp)
 			port = CAST(THIS)->copy_str(tmp);
 	}
-	if (fgets(buf, 511, cfp)) {
+	if (fgets(&buf[0], 511, cfp)) {
 		tmp = strtok(buf, crtK);
 		if (tmp)
 			cer = CAST(THIS)->copy_str(tmp);
 	}
-	if (fgets(buf, 511, cfp)) {
+	if (fgets(&buf[0], 511, cfp)) {
 		tmp = strtok(buf, logK);
 		if (tmp)
 			logF = CAST(THIS)->copy_str(tmp);
 	}
-	if (fgets(buf, 511, cfp)) {
+	if (fgets(&buf[0], 511, cfp)) {
 		tmp = strtok(buf, dbK);
 		if (tmp)
 			db = CAST(THIS)->copy_str(tmp);
 	}
-	printf("%s %s\n", ipK, ip);
-	printf("%s %s\n", prtK, port);
-	printf("%s %s\n", crtK, cer);
-	printf("%s %s\n", logK, logF);
-	printf("%s %s\n", dbK, db);
+
+	size_t len = strlen(db)+1;
+	CAST(ptr)->trim(db, &len);
+
+	len = strlen(port)+1;
+	CAST(ptr)->trim(port, &len);
+
+	len = strlen(ip)+1;
+	CAST(ptr)->trim(ip, &len);
+
+	len = strlen(cer)+1;
+	CAST(ptr)->trim(cer, &len);
+
+	len = strlen(logF)+1;
+	CAST(ptr)->trim(logF, &len);
+
+	len = strlen(db)+1;
+	CAST(ptr)->trim(db, &len);
 
 	CAST(ptr)->db.db_name = (db);
 	CAST(ptr)->server.port = atoi(port);
@@ -301,14 +317,12 @@ int __load_cfg (void *ptr) {
 	CAST(ptr)->server.ip = (ip);
 	CAST(ptr)->logfile = logF;
 
-/*
-	CAST(ptr)->server.port = atoi(port);
-	CAST(ptr)->db.db_name = CAST(THIS)->copy_str(db);
-	CAST(ptr)->ssl_tls.certifiate = CAST(THIS)->copy_str(cer);
-	log.set_file(logF);
-	CAST(ptr)->server.ip = CAST(THIS)->copy_str(ip);
-	CAST(ptr)->logfile = CAST(THIS)->copy_str(logF);
-*/
+	log.i("%s %s\n", ipK, ip);
+	log.i("%s %s\n", prtK, port);
+	log.i("%s %s\n", crtK, cer);
+	log.i("%s %s\n", logK, logF);
+	log.i("%s %s\n", dbK, db);
+
 
 	return 0;
 }
@@ -320,7 +334,7 @@ void __free(void *node) {
 
 void* thor_() {
 
-	static thor_data_t *data = (const thor_data_t*) &init_data_root;
+	static thor_data_t *data = &init_data_root;
 
 	return data;
 }

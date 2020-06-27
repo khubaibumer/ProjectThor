@@ -205,7 +205,7 @@ FILE* __get_logfile(void) {
 	return stderr;
 }
 
-void set_file(const char *file) {
+void __set_file(const char *file) {
 
 	if(logfile) {
 		fclose(logfile);
@@ -235,6 +235,7 @@ logger_t get_logger_instance(void) {
 	logger.v = _logv;
 	logger.w = _logw;
 	logger.get = __get_logfile;
+	logger.set_file = __set_file;
 
 	return logger;
 }
