@@ -21,7 +21,8 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 }
 
 PRIVATE
-static int get_user_mode_from_db(void *data, int argc, char **argv, char **azColName) {
+static int get_user_mode_from_db(void *data, int argc, char **argv,
+		char **azColName) {
 	int *_mode = (int*) data;
 	for (int i = 0; i < argc; i++) {
 		log.v("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
@@ -46,8 +47,8 @@ int __get_usr_role(void *ptr, const char *name, const char *pass) {
 	log.i("%s\n", sql);
 	free(pswd);
 
-	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, get_user_mode_from_db, &mode,
-			&err_msg);
+	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, get_user_mode_from_db,
+			&mode, &err_msg);
 	if (rt != SQLITE_OK) {
 		sqlite3_free(err_msg);
 	} else {
@@ -72,13 +73,13 @@ int __init_sqlite3_instance(void *ptr) {
 	/* Now Create Tables if not exists */
 	/* (ID,UserName,UserPsswd,PrivMode,AdditionalInfo) */
 	char *sql = "create table if not exists "
-			USER_TABLE " ( ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, "
-			"UserName TEXT NOT NULL, "
-			"UserPsswd TEXT NOT NULL, "
-			"PrivMode INTEGER NOT NULL, "
-			"AdditionalInfo TEXT, "
-			"UNIQUE(UserName, PrivMode)"
-			");";
+	USER_TABLE " ( ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, "
+	"UserName TEXT NOT NULL, "
+	"UserPsswd TEXT NOT NULL, "
+	"PrivMode INTEGER NOT NULL, "
+	"AdditionalInfo TEXT, "
+	"UNIQUE(UserName, PrivMode)"
+	");";
 
 	rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, callback, 0, &err_msg);
 	if (rt != SQLITE_OK) {
@@ -91,13 +92,13 @@ int __init_sqlite3_instance(void *ptr) {
 	/* Now Create Tables if not exists */
 	/* (ID,Name,Quantity,Price,AdditionalInfo) */
 	char *sql1 = "create table if not exists "
-			ITEM_TABLE " ( ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, "
-			"Name TEXT NOT NULL, "
-			"Quantity TEXT NOT NULL, "
-			"Price TEXT NOT NULL, "
-			"AdditionalInfo TEXT, "
-			"UNIQUE(Name)"
-			");";
+	ITEM_TABLE " ( ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, "
+	"Name TEXT NOT NULL, "
+	"Quantity TEXT NOT NULL, "
+	"Price TEXT NOT NULL, "
+	"AdditionalInfo TEXT, "
+	"UNIQUE(Name)"
+	");";
 
 	rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql1, callback, 0, &err_msg);
 	if (rt != SQLITE_OK) {
@@ -110,13 +111,13 @@ int __init_sqlite3_instance(void *ptr) {
 	/* Now Create Tables if not exists */
 	/* (ID,Name,Quantity,Price,AdditionalInfo) */
 	char *sql2 = "create table if not exists "
-			LOGS_TABLE " ( ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, "
-			"User TEXT NOT NULL, "
-			"UserId TEXT NOT NULL, "
-			"Epoch TEXT NOT NULL, "
-			"Process TEXT NOT NULL, "
-			"StackTrace TEXT NOT NULL "
-			");";
+	LOGS_TABLE " ( ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, "
+	"User TEXT NOT NULL, "
+	"UserId TEXT NOT NULL, "
+	"Epoch TEXT NOT NULL, "
+	"Process TEXT NOT NULL, "
+	"StackTrace TEXT NOT NULL "
+	");";
 
 	rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql2, callback, 0, &err_msg);
 	if (rt != SQLITE_OK) {
