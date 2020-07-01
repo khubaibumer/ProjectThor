@@ -6,8 +6,37 @@
  */
 
 #include <thor.h>
+#include <mappings.h>
+
 #define ITEM_TABLE "ItemsInformation"
 #define SCHEMA " (Name,Quantity,Price,AdditionalInfo) "
+
+int __update_items_info(void *ptr, const char *qual, int key,
+		const char *updated) {
+
+	/*	update UserPsswd set UserName='admin' where ID=(select ID from UserPsswd where UserName='Admin');	*/
+
+	char sql[256] = { };
+
+	const char *col_name = get_mapping(key);
+	if (!col_name)
+		return -1;
+
+	sprintf(sql,
+			"UPDATE %s SET %s='%s' where ID=(SELECT ID FROM %s where Name='%s' );",
+			ITEM_TABLE, col_name, updated, ITEM_TABLE, qual);
+
+	log.i("Query is: %s\n", sql);
+
+	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, NULL, 0,
+			&CAST(ptr)->rpc.return_value.response);
+	if (rt != SQLITE_OK) {
+		log.e("Error: %s\n", CAST(ptr)->rpc.return_value.response);
+		return -1;
+	}
+
+	return 0;
+}
 
 int __add_items(void *ptr, const char *name, const char *quantity,
 		const char *price, const char *extra) {

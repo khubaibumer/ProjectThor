@@ -50,6 +50,21 @@ int __process_db_items_cmds(void *node, enum commands action) {
 	}
 		break;
 	case update: {
+		char *name = strtok(NULL, ",");
+		char *key = strtok(NULL, ",");
+		char *value = strtok(NULL, ",");
+
+		if(GETTHOR(node)->db.items.update_item) {
+			if(GETTHOR(node)->db.items.update_item(GETTHOR(node), name, find_cmd(key), value) == 0)
+				send_response(node, "resp,ok,0,response,%s\n",
+				GETTHOR(node)->rpc.return_value.ret.value == NULL ? "success" :
+				GETTHOR(node)->rpc.return_value.ret.value);
+			else
+				send_response(node, "resp,fail,reason,%s\n",
+				GETTHOR(node)->rpc.return_value.response == NULL ? "db error" :
+				GETTHOR(node)->rpc.return_value.response);
+		}
+
 		send_response(node, "%s\n", "resp,status,work-in-progress");
 	}
 		break;
@@ -125,7 +140,21 @@ int __process_db_user_cmds(void *node, enum commands action) {
 	}
 		break;
 	case update: {
-		send_response(node, "%s\n", "resp,status,work-in-progress");
+		/* db,update,items,<name>,<key>,<value>	*/
+		char *name = strtok(NULL, ",");
+		char *key = strtok(NULL, ",");
+		char *value = strtok(NULL, ",");
+
+		if(GETTHOR(node)->db.psswd_db.update_usr) {
+			if(GETTHOR(node)->db.psswd_db.update_usr(GETTHOR(node), name, find_cmd(key), value) == 0)
+				send_response(node, "resp,ok,0,response,%s\n",
+				GETTHOR(node)->rpc.return_value.ret.value == NULL ? "success" :
+				GETTHOR(node)->rpc.return_value.ret.value);
+			else
+				send_response(node, "resp,fail,reason,%s\n",
+				GETTHOR(node)->rpc.return_value.response == NULL ? "db error" :
+				GETTHOR(node)->rpc.return_value.response);
+		}
 	}
 		break;
 	case getlist: {
@@ -190,6 +219,10 @@ PRIVATE int __process_db_cmds(void *node) {
 		switch (table) {
 		case user:
 			//TODO: implement
+			__process_db_user_cmds(node, update);
+			break;
+		case items:
+			__process_db_items_cmds(node, update);
 			break;
 		default:
 			send_response(node, "%s\n", "resp,fail,reason,invalid command");
@@ -221,8 +254,10 @@ PRIVATE int __process_db_cmds(void *node) {
 		break;
 	};
 
-	if (GETTHOR(node)->rpc.return_value.response)
+	if (GETTHOR(node)->rpc.return_value.response) {
 		sqlite3_free(GETTHOR(node)->rpc.return_value.response);
+		GETTHOR(node)->rpc.return_value.response = NULL;
+	}
 
 	return 0;
 }

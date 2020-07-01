@@ -28,8 +28,6 @@ extern int __ssl_initialize(void*);
 extern int thor_writer(void *ptr, const void *buf, size_t len);
 extern int thor_reader(void *ptr, void *buf, size_t len);
 extern int __dlt_usr_info(void *ptr, const char *uname, const char *upsswd);
-extern int __update_usr_table(void *ptr, const char *oname, const char *opsswd,
-		const char *nname, const char *npsswd);
 extern int __create_usr_table(void *ptr, const char *uname, const char *upsswd, int role);
 extern int __init_sqlite3_instance(void *ptr);
 extern int __compute_hash(void *ptr, const char *key, char **hash);
@@ -45,10 +43,13 @@ extern int __add_items(void *ptr, const char*, const char*, const char*, const c
 extern int __get_all_items(void *ptr);
 extern int __delete_item(void *ptr, const char *name);
 extern char* __copy_string(char*);
+extern int __update_user_info(void *ptr, const char *qual, int key, const char *updated);
+extern int __update_items_info(void *ptr, const char *qual, int key, const char *updated);
 
 static thor_data_t init_data_root = {
 
 		.exec_flags = ROOT_USR,
+		.is_logged = 1,
 		.load_config = __load_cfg,
 		.mknod = __mknod,
 		.copy_str = __copy_string,
@@ -64,13 +65,13 @@ static thor_data_t init_data_root = {
 		.db.init_db = __init_sqlite3_instance,
 		.db.get_role = __get_usr_role,
 		.db.psswd_db.creat_usr = __create_usr_table,
-		.db.psswd_db.update_usr = __update_usr_table,
+		.db.psswd_db.update_usr = __update_user_info,
 		.db.psswd_db.dlt_usr = __dlt_usr_info,
 		.db.psswd_db.get_all = __get_all_users,
 		.db.log_cmd = __log_rpc_command,
 		.db.items.add_item = __add_items,
 		.db.items.get_all = __get_all_items,
-		.db.items.update_item = NULL,
+		.db.items.update_item = __update_items_info,
 		.db.items.dlt_item = __delete_item,
 
 		.server.accept = __accept,
@@ -112,6 +113,7 @@ static thor_data_t init_data_root = {
 		.client.port = 0,
 
 		.rpc.rpc_call = __process_cmd,
+		.rpc.return_value.response = NULL,
 
 		.ui.to_ui =  NULL,
 };
@@ -119,6 +121,7 @@ static thor_data_t init_data_root = {
 static thor_data_t init_data_dflt = {
 
 		.exec_flags = DFL_USR,
+		.is_logged = 1,
 		.mknod = __mknod,
 		.copy_str = __copy_string,
 		.trim = remove_escape,
@@ -152,12 +155,15 @@ static thor_data_t init_data_dflt = {
 		.client.port = 0,
 
 		.rpc.rpc_call = __process_cmd,
+		.rpc.return_value.response = NULL,
+
 
 };
 
 static thor_data_t init_data_elvt = {
 
 		.exec_flags = ELVT_USR,
+		.is_logged = 1,
 		.mknod = __mknod,
 		.copy_str = __copy_string,
 		.trim = remove_escape,
@@ -165,11 +171,11 @@ static thor_data_t init_data_elvt = {
 		.db.is_open = 0,
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
-		.db.psswd_db.update_usr = __update_usr_table,
+		.db.psswd_db.update_usr = __update_user_info,
 		.db.log_cmd = __log_rpc_command,
 		.db.items.get_all = __get_all_items,
 		.db.items.add_item = __add_items,
-		.db.items.update_item = NULL,
+		.db.items.update_item = __update_items_info,
 		.db.items.dlt_item = __delete_item,
 
 		.use_ssl = 1,
@@ -198,6 +204,7 @@ static thor_data_t init_data_elvt = {
 		.client.port = 0,
 
 		.rpc.rpc_call = __process_cmd,
+		.rpc.return_value.response = NULL,
 };
 
 void* __mknod(int mode) {

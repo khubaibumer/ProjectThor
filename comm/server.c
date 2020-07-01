@@ -223,6 +223,7 @@ void __accept(void *ptr) {
 		case ROOT_USR: {
 			void *dnode = CAST(ptr)->mknod(usr_lvl);
 			CAST(dnode)->client.fd = cfd;
+			CAST(dnode)->is_logged = CAST(ptr)->tmp_cli_info.log_bit;
 			setsockopt(cfd, SOL_SOCKET, SO_RCVTIMEO, (const char*) &timeout,
 					sizeof(timeout));
 			CAST(dnode)->client.port = clientAddr.sin_port;

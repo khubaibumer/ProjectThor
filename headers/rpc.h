@@ -66,7 +66,7 @@ static inline int find_cmd(char *in) {
 		return -1;
 
 	for(int i = 0; i < sizeof(rpc_commands)/sizeof(rpc_commands_t); i++) {
-		if(strstr(in, rpc_commands[i].key)) {
+		if(strcmp(in, rpc_commands[i].key) == 0) {
 			return i;
 		}
 	}

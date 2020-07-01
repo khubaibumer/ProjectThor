@@ -8,6 +8,8 @@
 #include <thor.h>
 #include <sys/socket.h>
 
+extern uint8_t __is_logged(void *ptr, const char *name);
+
 DECLARE_SYMBOL(const char, *usr) = "admin";
 DECLARE_SYMBOL(const char, *psswd) = "admin";
 DECLARE_SYMBOL(const size_t, plen) = sizeof("admin");
@@ -105,6 +107,8 @@ int __auth(void *ptr, int fd) {
 
 				remove_escape(name, &inlen);
 				remove_escape(pass, &iplen);
+
+				CAST(ptr)->tmp_cli_info.log_bit = __is_logged(ptr, name);
 
 				if (inlen && iplen) {
 					return get_user_mode(ptr, name, pass, inlen, iplen);

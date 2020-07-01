@@ -42,6 +42,7 @@ typedef struct thor_data {
 	/*	Flags of execution	*/
 	uint32_t exec_flags;
 	uint16_t use_ssl;
+	uint8_t is_logged;
 	char *logfile;
 	int (*load_config) (void*);
 	char* (*copy_str) (char*);
@@ -61,6 +62,7 @@ typedef struct thor_data {
 	struct {
 		SSL *tssl;
 		BIO *tbio;
+		uint8_t log_bit;
 	} tmp_cli_info;
 
 	struct {
@@ -101,11 +103,16 @@ typedef struct thor_data {
 		sqlite3 *db_hndl;
 		uint8_t is_open;
 
+		/*
+		 * int __update_user_info(void *ptr, const char *qual, int key,
+		const char *updated)
+		 * */
+
 		int (*init_db) (void *);
 		int (*get_role) (void *, const char *, const char *);
 		struct {
 			int (*creat_usr) (void *, const char *, const char *, int);
-			int (*update_usr) (void *, const char *, const char *, const char *, const char *);
+			int (*update_usr) (void *, const char *, int, const char *);
 			int (*dlt_usr) (void *, const char *, const char *);
 			int (*get_all) (void*);
 		} psswd_db;

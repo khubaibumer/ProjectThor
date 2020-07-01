@@ -39,7 +39,9 @@ void __process_cmd(void *node, char *cmd) {
 			char *tmp = strchr(latlong, '_');
 			*tmp = ',';
 
-			GETTHOR(node)->db.log_cmd(GETTHOR(node), AUTO, process, command, latlong); // log every command
+			if(GETTHOR(node)->is_logged) // If User is set to be logged for every rpc-cmd
+				GETTHOR(node)->db.log_cmd(GETTHOR(node), AUTO, process, command, latlong); // log every command
+
 			switch (find_cmd(process)) {
 			case clinode:
 				__exec_rpc_cmd(node, command);

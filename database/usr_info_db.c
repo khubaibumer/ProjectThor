@@ -7,8 +7,48 @@
 
 #include <thor.h>
 #include <sqlite3.h>
+#include <mappings.h>
 
-#define USER_TABLE "UserInformation"
+#define USER_TABLE " UserInformation "
+#define SCHEMA " (UserName,UserPsswd,PrivMode,IsLogged,AdditionalInfo) "
+
+int __update_user_info(void *ptr, const char *qual, int key,
+		const char *updated) {
+
+	/*	update UserPsswd set UserName='admin' where ID=(select ID from UserPsswd where UserName='Admin');	*/
+
+	char sql[256] = { };
+	char *hashed = NULL;
+	if (key == userpass) {
+		// We need to hash password
+		size_t pass_len = strlen(updated);
+		CAST(ptr)->ssl_tls.hash(ptr, updated, &hashed);
+	} else {
+		hashed = updated;
+	}
+
+	const char *col_name = get_mapping(key);
+	if (!col_name)
+		return -1;
+
+	sprintf(sql,
+			"UPDATE %s SET %s='%s' where ID=(SELECT ID FROM %s where UserName='%s' );",
+			USER_TABLE, col_name, hashed, USER_TABLE, qual);
+
+	log.i("Query is: %s\n", sql);
+
+	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, NULL, 0,
+			&CAST(ptr)->rpc.return_value.response);
+	if (rt != SQLITE_OK) {
+		log.e("Error: %s\n", CAST(ptr)->rpc.return_value.response);
+
+		if (key == userpass)
+			free(hashed);
+		return -1;
+	}
+
+	return 0;
+}
 
 int callback_(void *NotUsed, int argc, char **argv, char **azColName) {
 	int i;
@@ -26,11 +66,9 @@ int __create_usr_table(void *ptr, const char *uname, const char *upsswd,
 
 	CAST(ptr)->ssl_tls.hash(ptr, upsswd, &psswd);
 
-	char sql[256] =
-			"INSERT INTO " USER_TABLE "(UserName,UserPsswd,PrivMode,AdditionalInfo) "
-			"VALUES( ";
+	char sql[256] = "INSERT INTO " USER_TABLE SCHEMA "VALUES( ";
 	size_t len = strlen(sql);
-	sprintf(&sql[len], "'%s','%s',%d,''); ", uname, psswd, role);
+	sprintf(&sql[len], "'%s','%s',%d,%d,''); ", uname, psswd, role, 1); // by default every user is logged
 
 	log.i("Query is: %s\n", sql);
 
@@ -43,15 +81,6 @@ int __create_usr_table(void *ptr, const char *uname, const char *upsswd,
 	}
 
 	free(psswd);
-
-	return 0;
-}
-
-int __update_usr_table(void *ptr, const char *oname, const char *opsswd,
-		const char *nname, const char *npsswd) {
-
-	log.d("%s() called\n", __func__);
-	//update UserPsswd set UserName='admin' where ID=(select ID from UserPsswd where UserName='Admin');
 
 	return 0;
 }
