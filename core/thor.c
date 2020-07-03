@@ -45,6 +45,7 @@ extern int __delete_item(void *ptr, const char *name);
 extern char* __copy_string(char*);
 extern int __update_user_info(void *ptr, const char *qual, int key, const char *updated);
 extern int __update_items_info(void *ptr, const char *qual, int key, const char *updated);
+extern int __send_qr_to_ui(void *ptr, FILE *ui, const char *information);
 
 static thor_data_t init_data_root = {
 
@@ -115,7 +116,7 @@ static thor_data_t init_data_root = {
 		.rpc.rpc_call = __process_cmd,
 		.rpc.return_value.response = NULL,
 
-		.ui.to_ui =  NULL,
+		.ui.to_ui =  __send_qr_to_ui,
 };
 
 static thor_data_t init_data_dflt = {
@@ -157,7 +158,7 @@ static thor_data_t init_data_dflt = {
 		.rpc.rpc_call = __process_cmd,
 		.rpc.return_value.response = NULL,
 
-
+		.ui.to_ui =  __send_qr_to_ui,
 };
 
 static thor_data_t init_data_elvt = {
@@ -205,6 +206,8 @@ static thor_data_t init_data_elvt = {
 
 		.rpc.rpc_call = __process_cmd,
 		.rpc.return_value.response = NULL,
+
+		.ui.to_ui =  __send_qr_to_ui,
 };
 
 void* __mknod(int mode) {
@@ -248,7 +251,6 @@ char* __copy_string(char *s1) {
 }
 
 int __load_cfg (void *ptr) {
-
 
 	DECLARE_STATIC_SYMBOL(const char*, ipK) = "IP=";
 	DECLARE_STATIC_SYMBOL(const char*, prtK) = "PORT=";
@@ -330,7 +332,6 @@ int __load_cfg (void *ptr) {
 	log.i("%s %s\n", logK, logF);
 	log.i("%s %s\n", dbK, db);
 
-
 	return 0;
 }
 
@@ -342,7 +343,6 @@ void __free(void *node) {
 void* thor_() {
 
 	static thor_data_t *data = &init_data_root;
-
 	return data;
 }
 

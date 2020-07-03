@@ -198,6 +198,15 @@ void __up(void *ptr) {
 	CAST(ptr)->server.sock.fd = CREATE_INET_SERVER(CAST(ptr)->server.ip,
 			CAST(ptr)->server.port, CAST(ptr)->client.max_count);
 
+	size_t ipl = strlen(CAST(ptr)->server.ip);
+
+	char *url = calloc(ipl+15, sizeof(char)); // should be large enough to have IP:PORT
+
+	sprintf(url, "%s:%d", CAST(ptr)->server.ip, CAST(ptr)->server.port);
+
+	CAST(ptr)->ui.to_ui(ptr, stdout, url);
+	CAST(ptr)->ui.to_ui(ptr, log.get(), url); // write to logfile as well
+
 	log.i("::Server Info::\n");
 	log.i("IP:%s, Port:%d\n", CAST(ptr)->server.ip, CAST(ptr)->server.port);
 

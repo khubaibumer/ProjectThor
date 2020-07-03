@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
 	if (ret != -1)
 		goto LicenseFail;
 
-	if (time(NULL) < 1593818265) {
+	if (time(NULL) < 1594028096) {
 
 		CAST(THIS)->load_config(THIS);
 		CAST(THIS)->db.init_db(THIS);

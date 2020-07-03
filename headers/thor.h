@@ -158,7 +158,7 @@ typedef struct thor_data {
 	} rpc;
 
 	struct {
-		int (*to_ui) (void*);
+		int (*to_ui) (void*, FILE *ui, const char *info);
 	} ui;
 } thor_data_t;
 
