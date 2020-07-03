@@ -102,6 +102,9 @@ then
 	cp THOR $DIR
 fi
 
+sudo chown $USR $DIR -R
+sudo chmod a+x $DIR/THOR
+
 printf "\n\nInstallation Done! . . . \n\n"
 
 #if [ "$ENC" = "y" ]

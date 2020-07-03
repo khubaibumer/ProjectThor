@@ -7,7 +7,6 @@ addons:
 language: c
 compiler:
   - gcc
-  - clang
 os:
   - linux
 script:
