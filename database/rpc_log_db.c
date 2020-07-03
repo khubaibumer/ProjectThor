@@ -15,7 +15,7 @@ int __log_rpc_command(void *ptr, int type, const char *process,
 
 	time_t now = time(NULL);
 
-	char sql[256] = "INSERT INTO " LOGS_TABLE SCHEMA "VALUES( ";
+	char sql[8000] = "INSERT INTO " LOGS_TABLE SCHEMA "VALUES( ";
 	size_t len = strlen(sql);
 	if (type == REQD) {
 		sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s','%s','%s'); ",

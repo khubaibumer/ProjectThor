@@ -33,9 +33,9 @@ void* serve_clients(void *ptr) {
 
 				if (GETTHOR(node)->client.is_connected != 0) {
 
-					char buf[1024] = { };
+					char buf[8000] = { };
 					int bytes = GETTHOR(node)->ssl_tls.read(GETTHOR(node), buf,
-							1023);
+							7999);
 
 					size_t bsz = strlen(buf);
 					GETTHOR(node)->trim(buf, &bsz);
