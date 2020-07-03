@@ -96,7 +96,13 @@ printf "\n\nConfiguration File Generated Successfuly with parameters\n\n"
 cat $CFG
 
 printf "\n\nInstalling Server to Path Specified . . . \n\n"
-cp Debug/THOR $DIR
+
+if ! cp Debug/THOR $DIR 2> /dev/null
+then 
+	cp THOR $DIR
+fi
+
+printf "\n\nInstallation Done! . . . \n\n"
 
 #if [ "$ENC" = "y" ]
 #then
