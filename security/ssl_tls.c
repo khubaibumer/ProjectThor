@@ -64,7 +64,7 @@ void show_certs(SSL *ssl) {
 int __ssl_initialize(void *ptr) {
 
 	CAST(ptr)->ssl_tls.ctx = init_server_ctx();
-	load_certs(CAST(ptr)->ssl_tls.ctx, "/cert/mycert.pem", "/cert/mycert.pem");
+	load_certs(CAST(ptr)->ssl_tls.ctx, CAST(ptr)->ssl_tls.certifiate, CAST(ptr)->ssl_tls.certifiate);
 
 	CAST(ptr)->use_ssl = 1;
 	return 0;
