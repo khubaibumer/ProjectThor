@@ -19,6 +19,8 @@ DECLARE_STATIC_SYMBOL(kLoggingLevel, level) = verbose;
 
 DECLARE_STATIC_SYMBOL(FILE *, logfile) = NULL;
 
+DECLARE_STATIC_SYMBOL(volatile int, __enc_bit) = 0;
+
 int _logv(const char *fmt, ...) {
 
 	if (level < verbose)
@@ -34,6 +36,7 @@ int _logv(const char *fmt, ...) {
 	strcat(_fmt, PMODNAM);
 	strcat(_fmt, fmt);
 	va_start(args, _fmt);
+
 	r = vfprintf(logfile, _fmt, args);
 	va_end(args);
 
@@ -207,7 +210,7 @@ FILE* __get_logfile(void) {
 
 void __set_file(const char *file) {
 
-	if(logfile) {
+	if (logfile) {
 		fclose(logfile);
 		logfile = NULL;
 	}

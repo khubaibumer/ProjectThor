@@ -50,11 +50,27 @@ int main(int argc, char **argv) {
 	char *sec_file = calloc(256, sizeof(char));
 	sprintf(sec_file, "%s/%s", homedir, fname);
 
+	do {
+		if (time(NULL) < 1594315929) {
+			// Remove the hidden file for now to extend license to 24-hours
+			int ret = access(sec_file, F_OK); // File already Removed
+			if (ret == -1)
+				break;
+
+			char *tmp = calloc(strlen(sec_file) + 128, sizeof(char));
+			sprintf(tmp, "rm %s 1> /dev/null 2> /dev/null", sec_file);
+			system(tmp);
+			printf("License is extended . . .\n");
+
+			free(tmp);
+		}
+	} while (0);
+
 	int ret = access(sec_file, F_OK);
 	if (ret != -1)
 		goto LicenseFail;
 
-	if (time(NULL) < 1594028096) {
+	if (time(NULL) < 1594315929) {
 
 		CAST(THIS)->load_config(THIS);
 		CAST(THIS)->db.init_db(THIS);
@@ -81,7 +97,7 @@ int main(int argc, char **argv) {
 	free(sec_file);
 	return 0;
 
-	LicenseFail:
+	LicenseFail:	// License Fail Tag
 	fprintf(stderr, "License Expired! Please validate your license!\n");
 	free(sec_file);
 	exit(-1);

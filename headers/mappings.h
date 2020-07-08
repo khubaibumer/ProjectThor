@@ -20,6 +20,7 @@ static const UserInfoTable_t UserInfoTable[] = {
 		{ userid, "UserName" },
 		{ userpass, "UserPsswd" },
 		{ usermode, "UserMode" },
+		{ userlogged, "IsLogged" },
 
 		/*	Item Information Table	*/
 		{ itemname, "Name" },

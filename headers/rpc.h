@@ -23,6 +23,7 @@ enum commands {
 	add,
 	del,
 	update,
+	userlogged,
 	userid,
 	userpass,
 	usermode,
@@ -48,6 +49,7 @@ const static rpc_commands_t rpc_commands[] = {
 		{ "add", add },
 		{ "del", del },
 		{ "update", update },
+		{ "userlogged", userlogged },
 		{ "userid", userid },
 		{ "userpass", userpass },
 		{ "usermode", usermode },
@@ -74,7 +76,7 @@ static inline int find_cmd(char *in) {
 }
 
 static inline int send_response(void *node, const char *fmt, ...) {
-	char *repose = calloc(5*1000*1000, sizeof(char));
+	char *repose = calloc(5 * 1000 * 1000, sizeof(char));
 	va_list arg;
 	va_start(arg, fmt);
 	int size = vsprintf(repose, fmt, arg);
