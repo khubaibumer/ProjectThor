@@ -38,6 +38,8 @@ int main(int argc, char **argv) {
 
 int main(int argc, char **argv) {
 
+	DECLARE_SYMBOL(const unsigned long long, TIME_LIMIT) = 1594413242;
+
 	const char fname[] = ".16871ae5f3da50";
 	const char *homedir;
 	if (getenv("HOME") == NULL) {
@@ -51,7 +53,7 @@ int main(int argc, char **argv) {
 	sprintf(sec_file, "%s/%s", homedir, fname);
 
 	do {
-		if (time(NULL) < 1594315929) {
+		if (time(NULL) < TIME_LIMIT) {
 			// Remove the hidden file for now to extend license to 24-hours
 			int ret = access(sec_file, F_OK); // File already Removed
 			if (ret == -1)
@@ -70,7 +72,7 @@ int main(int argc, char **argv) {
 	if (ret != -1)
 		goto LicenseFail;
 
-	if (time(NULL) < 1594315929) {
+	if (time(NULL) < TIME_LIMIT) {
 
 		CAST(THIS)->load_config(THIS);
 		CAST(THIS)->db.init_db(THIS);

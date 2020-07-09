@@ -24,7 +24,7 @@ void __process_cmd(void *node, char *cmd) {
 	if (strlen(cmd) > 1 && strstr(cmd, ",")) {
 		switch (find_cmd(strtok(cmd, ","))) {
 		case auth:
-			send_response(node, "auth,status,logged-in");
+			send_response(node, "auth,status,logged-in\n");
 			break; // Nothing to do
 		case db: {
 			__process_db_cmds(node);
