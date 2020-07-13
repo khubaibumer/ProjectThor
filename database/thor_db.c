@@ -128,10 +128,10 @@ int __init_sqlite3_instance(void *ptr) {
 	/* (ID,Name,Quantity,Price,AdditionalInfo) */
 	char *sql1 = "create table if not exists "
 	ITEM_TABLE " ( ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, "
-	"Name TEXT NOT NULL, "
+	"UPC TEXT NOT NULL, "
 	"Quantity TEXT NOT NULL, "
 	"Price TEXT NOT NULL, "
-	"AdditionalInfo TEXT, "
+	"Name TEXT, "
 	"UNIQUE(Name)"
 	");";
 
@@ -153,6 +153,7 @@ int __init_sqlite3_instance(void *ptr) {
 	"Process TEXT NOT NULL, "
 	"LogType TEXT NOT NULL,"
 	"LatLong TEXT NOT NULL,"
+	"TxId TEXT NOT NULL,"
 	"StackTrace TEXT NOT NULL "
 	");";
 

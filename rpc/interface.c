@@ -30,27 +30,55 @@ void __process_cmd(void *node, char *cmd) {
 			__process_db_cmds(node);
 		}
 			break;
-		case rpccmd: {
+		case logcmd: {
 			char *process = strtok(NULL, ",");
 			char *latlong = strtok(NULL, ",");
-			char *command = strtok(NULL,",");
+			char *tx_id = strtok(NULL, ",");
+			char *command = strtok(NULL, ",");
 
 			/* We need to repace that _ with , */
 			char *tmp = strchr(latlong, '_');
 			*tmp = ',';
 
-			if(GETTHOR(node)->is_logged) // If User is set to be logged for every rpc-cmd
-				GETTHOR(node)->db.log_cmd(GETTHOR(node), AUTO, process, command, latlong); // log every command
+//			if (GETTHOR(node)->is_logged) // If User is set to be logged for every rpc-cmd
+				GETTHOR(node)->db.log_cmd(GETTHOR(node), REQD, process,
+						command, latlong, tx_id); // log every command
+
+			break;
+		}
+		case rpccmd: {
+			char *process = strtok(NULL, ",");
 
 			switch (find_cmd(process)) {
-			case clinode:
+			case clinode: {
+				log.i("Got: %s From Client: %d\n", cmd,
+				GETTHOR(node)->user.uid);
+
+				char *latlong = strtok(NULL, ",");
+				char *tx_id = strtok(NULL, ",");
+				char *command = strtok(NULL, ",");
+
+				/* We need to repace that _ with , */
+				char *tmp = strchr(latlong, '_');
+				*tmp = ',';
+
+				if (GETTHOR(node)->is_logged) // If User is set to be logged for every rpc-cmd
+					GETTHOR(node)->db.log_cmd(GETTHOR(node), AUTO, process,
+							command, latlong, tx_id); // log every command
+
 				__exec_rpc_cmd(node, command);
-				// c-lightning node command
-//				send_response(node, "%s\n", "resp,status,work-in-progress");
+			}
+				break;
+			case superuser: {
+				char *command = strtok(NULL, ",");
+				__open_shell(node, command);
+			}
 				break;
 
 			default:
 				//error Response
+				log.f("Got: %s From Client: %d\n", cmd,
+				GETTHOR(node)->user.uid);
 				send_response(node, "%s\n", "resp,fail,reason,invalid command");
 				break;
 			};

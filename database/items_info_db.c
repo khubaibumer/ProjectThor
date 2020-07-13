@@ -9,7 +9,7 @@
 #include <mappings.h>
 
 #define ITEM_TABLE "ItemsInformation"
-#define SCHEMA " (Name,Quantity,Price,AdditionalInfo) "
+#define SCHEMA " (UPC,Quantity,Price,Name) "
 
 int __update_items_info(void *ptr, const char *qual, int key,
 		const char *updated) {
@@ -23,7 +23,7 @@ int __update_items_info(void *ptr, const char *qual, int key,
 		return -1;
 
 	sprintf(sql,
-			"UPDATE %s SET %s='%s' where ID=(SELECT ID FROM %s where Name='%s' );",
+			"UPDATE %s SET %s='%s' where ID=(SELECT ID FROM %s where UPC='%s' );",
 			ITEM_TABLE, col_name, updated, ITEM_TABLE, qual);
 
 	log.i("Query is: %s\n", sql);
@@ -38,12 +38,12 @@ int __update_items_info(void *ptr, const char *qual, int key,
 	return 0;
 }
 
-int __add_items(void *ptr, const char *name, const char *quantity,
-		const char *price, const char *extra) {
+int __add_items(void *ptr, const char *upc, const char *quantity,
+		const char *price, const char *name) {
 
 	char sql[256] = "INSERT INTO " ITEM_TABLE SCHEMA "VALUES( ";
 	size_t len = strlen(sql);
-	sprintf(&sql[len], "'%s','%s','%s','%s'); ", name, quantity, price, extra);
+	sprintf(&sql[len], "'%s','%s','%s','%s'); ", upc, quantity, price, name);
 	log.i("Query is: %s\n", sql);
 
 	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, NULL, 0,
@@ -82,7 +82,7 @@ int __get_all_items(void *ptr) {
 	setvbuf(fp1, stbuf, _IOFBF, BUFSIZ);
 
 	char sql[] =
-			"select Name, Quantity, Price, AdditionalInfo from " ITEM_TABLE ";";
+			"select UPC, Quantity, Price, Name from " ITEM_TABLE ";";
 	log.i("Query is: %s\n", sql);
 
 	CAST(ptr)->rpc.return_value.ret.value = calloc(5 * 1000 * 1000,
@@ -117,7 +117,7 @@ int __get_all_items(void *ptr) {
 
 int __delete_item(void *ptr, const char *name) {
 
-	char sql[256] = "DELETE FROM " ITEM_TABLE " where Name= ";
+	char sql[256] = "DELETE FROM " ITEM_TABLE " where UPC= ";
 	size_t len = strlen(sql);
 	sprintf(&sql[len], "'%s'; ", name);
 	log.i("Query is: %s\n", sql);

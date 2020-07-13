@@ -34,7 +34,9 @@ enum commands {
 	itemname,
 	itemcount,
 	itemprice,
-	itemextra,
+	itemupc,
+	superuser,
+	logcmd,
 };
 
 typedef struct {
@@ -60,7 +62,9 @@ const static rpc_commands_t rpc_commands[] = {
 		{ "item-name", itemname },
 		{ "item-quantity", itemcount },
 		{ "item-price", itemprice },
-		{ "item-extra", itemextra },
+		{ "item-upc", itemupc },
+		{ "super-mode", superuser },
+		{ "log-cmd", logcmd },
 };
 
 static inline int find_cmd(char *in) {

@@ -40,9 +40,6 @@ void* serve_clients(void *ptr) {
 					size_t bsz = strlen(buf);
 					GETTHOR(node)->trim(buf, &bsz);
 					if (bytes != -1 && bytes != 0) {
-						log.i("Got: %s From Client: %d\n", buf,
-						GETTHOR(node)->user.uid);
-
 						GETTHOR(node)->rpc.rpc_call(node, buf);
 					} else {
 						if (bytes == 0) {

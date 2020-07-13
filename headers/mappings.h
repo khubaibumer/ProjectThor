@@ -23,10 +23,10 @@ static const UserInfoTable_t UserInfoTable[] = {
 		{ userlogged, "IsLogged" },
 
 		/*	Item Information Table	*/
-		{ itemname, "Name" },
+		{ itemupc, "UPC" },
 		{ itemprice, "Price" },
 		{ itemcount, "Quantity" },
-		{ itemextra, "AdditionalInfo" },
+		{ itemname, "Name" },
 };
 
 static inline const char* get_mapping(int key) {

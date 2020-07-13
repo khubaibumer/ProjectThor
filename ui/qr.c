@@ -23,7 +23,7 @@ static void print_qr(const uint8_t qrcode[], FILE *ui) {
 
 int __send_qr_to_ui(void *ptr, FILE *ui, const char *information) {
 
-	enum qrcodegen_Ecc errCorLvl = qrcodegen_Ecc_HIGH;  // Error correction level
+	enum qrcodegen_Ecc errCorLvl = qrcodegen_Ecc_LOW;  // Error correction level
 
 	// Make and print the QR Code symbol
 	uint8_t qrcode[qrcodegen_BUFFER_LEN_MAX];

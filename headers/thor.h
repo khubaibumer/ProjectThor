@@ -124,7 +124,7 @@ typedef struct thor_data {
 			int (*get_all) (void*);
 		} items;
 
-		int (*log_cmd) (void *ptr, int type, char *proc, char *command, char *latlong);
+		int (*log_cmd) (void *ptr, int type, char *proc, char *command, char *latlong, char *tx_id);
 	} db;
 
 	struct {

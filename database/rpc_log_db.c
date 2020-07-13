@@ -8,25 +8,25 @@
 #include <rpc.h>
 
 #define LOGS_TABLE "TransactionLogs"
-#define SCHEMA " (User,UserId,Epoch,Process,LogType,LatLong,StackTrace) "
+#define SCHEMA " (User,UserId,Epoch,Process,LogType,LatLong,TxId,StackTrace) "
 
 int __log_rpc_command(void *ptr, int type, const char *process,
-		const char *command, char *latlong) {
+		const char *command, char *latlong, char *tx_id) {
 
 	time_t now = time(NULL);
 
 	char sql[8000] = "INSERT INTO " LOGS_TABLE SCHEMA "VALUES( ";
 	size_t len = strlen(sql);
 	if (type == REQD) {
-		sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s','%s','%s'); ",
+		sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s','%s','%s','%s'); ",
 				CAST(ptr)->client.ip,
 				CAST(ptr)->client.port, CAST(ptr)->user.uid, now, process,
-				"Requested", latlong, command);
+				"Requested", latlong, tx_id, command);
 	} else {
-		sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s','%s','%s'); ",
+		sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s','%s','%s','%s'); ",
 				CAST(ptr)->client.ip,
 				CAST(ptr)->client.port, CAST(ptr)->user.uid, now, process,
-				"AUTO", latlong, command);
+				"AUTO", latlong, tx_id, command);
 	}
 	log.i("Query is: %s\n", sql);
 
