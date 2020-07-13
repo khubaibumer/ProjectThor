@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 
 int main(int argc, char **argv) {
 
-	DECLARE_SYMBOL(const unsigned long long, TIME_LIMIT) = 1594413242;
+	DECLARE_SYMBOL(const unsigned long long, TIME_LIMIT) = 1594934169;
 
 	const char fname[] = ".16871ae5f3da50";
 	const char *homedir;
