@@ -46,6 +46,13 @@ extern char* __copy_string(char*);
 extern int __update_user_info(void *ptr, const char *qual, int key, const char *updated);
 extern int __update_items_info(void *ptr, const char *qual, int key, const char *updated);
 extern int __send_qr_to_ui(void *ptr, FILE *ui, const char *information);
+extern int __update_item_image(void *ptr, const char *qual, int key,
+		const char *updated);
+extern int __add_image(void *ptr, const char *upc, const char *image);
+extern int __delete_image(void *ptr, const char *upc);
+extern int __get_all_image_upc(void *ptr);
+extern int __get_image_for_upc(void *ptr, const char *upc);
+
 
 static thor_data_t init_data_root = {
 
@@ -74,6 +81,11 @@ static thor_data_t init_data_root = {
 		.db.items.get_all = __get_all_items,
 		.db.items.update_item = __update_items_info,
 		.db.items.dlt_item = __delete_item,
+		.db.item_images_db.update_image = __update_item_image,
+		.db.item_images_db.add_image = __add_image,
+		.db.item_images_db.delete_image = __delete_image,
+		.db.item_images_db.get_all = __get_all_image_upc,
+		.db.item_images_db.get_image = __get_image_for_upc,
 
 		.server.accept = __accept,
 		.server.up = __up,
@@ -132,6 +144,7 @@ static thor_data_t init_data_dflt = {
 		.db.get_role = __get_usr_role,
 		.db.log_cmd = __log_rpc_command,
 		.db.items.get_all = __get_all_items,
+		.db.item_images_db.get_image = __get_image_for_upc,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,
@@ -178,6 +191,11 @@ static thor_data_t init_data_elvt = {
 		.db.items.add_item = __add_items,
 		.db.items.update_item = __update_items_info,
 		.db.items.dlt_item = __delete_item,
+		.db.item_images_db.update_image = __update_item_image,
+		.db.item_images_db.add_image = __add_image,
+		.db.item_images_db.delete_image = __delete_image,
+		.db.item_images_db.get_all = __get_all_image_upc,
+		.db.item_images_db.get_image = __get_image_for_upc,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,

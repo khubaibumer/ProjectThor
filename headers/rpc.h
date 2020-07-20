@@ -37,6 +37,9 @@ enum commands {
 	itemupc,
 	superuser,
 	logcmd,
+	images,
+	imageextra,
+	getimage,
 };
 
 typedef struct {
@@ -65,6 +68,9 @@ const static rpc_commands_t rpc_commands[] = {
 		{ "item-upc", itemupc },
 		{ "super-mode", superuser },
 		{ "log-cmd", logcmd },
+		{ "images", images },
+		{ "image-extra", imageextra },
+		{ "get-image", getimage },
 };
 
 static inline int find_cmd(char *in) {
@@ -80,7 +86,7 @@ static inline int find_cmd(char *in) {
 }
 
 static inline int send_response(void *node, const char *fmt, ...) {
-	char *repose = calloc(5 * 1000 * 1000, sizeof(char));
+	char *repose = calloc(MB(15), sizeof(char));
 	va_list arg;
 	va_start(arg, fmt);
 	int size = vsprintf(repose, fmt, arg);

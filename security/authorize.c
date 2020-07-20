@@ -90,8 +90,8 @@ int __auth(void *ptr, int fd) {
 		CAST(ptr)->tmp_cli_info.tbio = sbio;
 
 		char buf[1024] = { };
-		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,who\n",
-				sizeof("auth,who\n"));
+		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,who,<$#EOT#$>\n",
+				sizeof("auth,who,<$#EOT#$>\n"));
 		SSL_read(CAST(ptr)->tmp_cli_info.tssl, buf, 1024);
 
 		log.v("Got: %s\n", buf);

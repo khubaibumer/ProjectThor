@@ -34,6 +34,9 @@
 #define AUTO 0
 #define REQD 1
 
+#define KB(x) (x * 1000)
+#define MB(x) (x * 1000 * 1000)
+
 #define PRIVATE __attribute__((hidden))
 
 extern void* serve_clients(void *ptr);
@@ -103,11 +106,6 @@ typedef struct thor_data {
 		sqlite3 *db_hndl;
 		uint8_t is_open;
 
-		/*
-		 * int __update_user_info(void *ptr, const char *qual, int key,
-		const char *updated)
-		 * */
-
 		int (*init_db) (void *);
 		int (*get_role) (void *, const char *, const char *);
 		struct {
@@ -123,6 +121,14 @@ typedef struct thor_data {
 			int (*dlt_item) (void*, const char*);
 			int (*get_all) (void*);
 		} items;
+
+		struct {
+			int (*update_image) (void*, const char*, int, const char*);
+			int (*add_image) (void*, const char*, const char*);
+			int (*delete_image) (void*, const char*);
+			int (*get_all) (void*);
+			int (*get_image) (void*, const char*);
+		} item_images_db;
 
 		int (*log_cmd) (void *ptr, int type, char *proc, char *command, char *latlong, char *tx_id);
 	} db;

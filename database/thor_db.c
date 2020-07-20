@@ -10,6 +10,7 @@
 #define USER_TABLE "UserInformation"
 #define ITEM_TABLE "ItemsInformation"
 #define LOGS_TABLE "TransactionLogs"
+#define IMAGES_TABLE "ItemImages"
 
 PRIVATE
 static int get_user_logging_mode_from_db(void *data, int argc, char **argv,
@@ -38,7 +39,6 @@ uint8_t __is_logged(void *ptr, const char *name) {
 	} else {
 		return mode;
 	}
-
 
 	return 1; // Default case is every user rpc-cmd is logged
 }
@@ -158,6 +158,24 @@ int __init_sqlite3_instance(void *ptr) {
 	");";
 
 	rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql2, callback, 0, &err_msg);
+	if (rt != SQLITE_OK) {
+		printf("Error in creating table: %s\n", err_msg);
+		sqlite3_free(err_msg);
+	}
+
+	/*	Create Item Images Table	*/
+	err_msg = NULL;
+	/* Now Create Tables if not exists */
+	/* (ID,UPC,Image,ExtraInfo) */
+	char *sql3 = "create table if not exists "
+	IMAGES_TABLE " ( ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, "
+	"UPC TEXT NOT NULL, "
+	"Image BLOB NOT NULL, "
+	"Extra TEXT, "
+	"UNIQUE(UPC)"
+	");";
+
+	rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql3, callback, 0, &err_msg);
 	if (rt != SQLITE_OK) {
 		printf("Error in creating table: %s\n", err_msg);
 		sqlite3_free(err_msg);

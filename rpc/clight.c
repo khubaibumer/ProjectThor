@@ -75,7 +75,7 @@ void __open_shell(void *node, char *command) {
 		strcat(resp, buf);
 
 	log.i("Response is: %s\n", resp);
-	send_response(node, "resp,status,rpc-cmd,cli-node,[ %s ]\n", resp);
+	send_response(node, "resp,status,rpc-cmd,cli-node,[ %s ]", resp);
 
 	pclose(fp);
 	free(process);

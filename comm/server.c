@@ -250,11 +250,11 @@ void __accept(void *ptr) {
 			}
 
 			char response[25] = { };
-			sprintf(response, "auth,ok,%d\n", usr_lvl);
+			sprintf(response, "auth,ok,%d", usr_lvl);
 
 			if (CAST(dnode)->ssl_tls.write(dnode, response,
 					strlen(response) + 1) <= 0)
-				perror("Error Writing!\n");
+				perror("Error Writing!");
 
 			insert_node(&CAST(ptr)->ctrl.list_head, dnode);
 			++CAST(ptr)->ctrl.actv_client_count;
@@ -287,8 +287,8 @@ PRIVATE
 void __kick(void *ptr, int _fd) {
 
 	if (CAST(ptr)->use_ssl) {
-		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,fail,-1\n",
-				sizeof("auth,fail,-1\n"));
+		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,fail,-1,<$#EOT#$>\n",
+				sizeof("auth,fail,-1,<$#EOT#$>\n"));
 	} else {
 		send(_fd, "You are being kicked out!", 1024, 0);
 	}

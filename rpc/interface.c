@@ -24,7 +24,7 @@ void __process_cmd(void *node, char *cmd) {
 	if (strlen(cmd) > 1 && strstr(cmd, ",")) {
 		switch (find_cmd(strtok(cmd, ","))) {
 		case auth:
-			send_response(node, "auth,status,logged-in\n");
+			send_response(node, "auth,status,logged-in");
 			break; // Nothing to do
 		case db: {
 			__process_db_cmds(node);
@@ -40,7 +40,6 @@ void __process_cmd(void *node, char *cmd) {
 			char *tmp = strchr(latlong, '_');
 			*tmp = ',';
 
-//			if (GETTHOR(node)->is_logged) // If User is set to be logged for every rpc-cmd
 				GETTHOR(node)->db.log_cmd(GETTHOR(node), REQD, process,
 						command, latlong, tx_id); // log every command
 
@@ -79,7 +78,7 @@ void __process_cmd(void *node, char *cmd) {
 				//error Response
 				log.f("Got: %s From Client: %d\n", cmd,
 				GETTHOR(node)->user.uid);
-				send_response(node, "%s\n", "resp,fail,reason,invalid command");
+				send_response(node, "%s", "resp,fail,reason,invalid command");
 				break;
 			};
 
@@ -88,11 +87,11 @@ void __process_cmd(void *node, char *cmd) {
 
 		default:
 			// error Response
-			send_response(node, "%s\n", "resp,fail,reason,invalid command");
+			send_response(node, "%s", "resp,fail,reason,invalid command");
 			break;
 		};
 	} else {
-		send_response(node, "%s\n", "resp,fail,reason,invalid command format");
+		send_response(node, "%s", "resp,fail,reason,invalid command format");
 	}
 }
 

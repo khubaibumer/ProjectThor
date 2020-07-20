@@ -33,9 +33,18 @@ void* serve_clients(void *ptr) {
 
 				if (GETTHOR(node)->client.is_connected != 0) {
 
-					char buf[8000] = { };
-					int bytes = GETTHOR(node)->ssl_tls.read(GETTHOR(node), buf,
-							7999);
+					char *buf = calloc(MB(15), sizeof(char));
+					char _buf[8000] = { };
+					int bytes = 0;
+
+					do {
+						bytes = GETTHOR(node)->ssl_tls.read(GETTHOR(node), _buf,
+								7999);
+						if (bytes == -1 || bytes == 0)
+							break;
+
+						strcat(buf, _buf);
+					} while (strstr(_buf, "<$#EOT#$>") == NULL);
 
 					size_t bsz = strlen(buf);
 					GETTHOR(node)->trim(buf, &bsz);
@@ -46,6 +55,7 @@ void* serve_clients(void *ptr) {
 							GETTHOR(node)->client.is_connected = 0;
 						}
 					}
+					free(buf);
 				}
 			}
 			node = get_next_node(&node);

@@ -81,8 +81,7 @@ int __get_all_items(void *ptr) {
 	fp1 = fopen("/dev/null", "w+");
 	setvbuf(fp1, stbuf, _IOFBF, BUFSIZ);
 
-	char sql[] =
-			"select UPC, Quantity, Price, Name from " ITEM_TABLE ";";
+	char sql[] = "select UPC, Quantity, Price, Name from " ITEM_TABLE ";";
 	log.i("Query is: %s\n", sql);
 
 	CAST(ptr)->rpc.return_value.ret.value = calloc(5 * 1000 * 1000,
@@ -110,6 +109,7 @@ int __get_all_items(void *ptr) {
 	log.v("%s\n", CAST(ptr)->rpc.return_value.ret.value);
 
 	fclose(fp1);
+	free(CAST(ptr)->rpc.return_value.ret.value);
 	fp1 = NULL;
 
 	return 0;
@@ -131,4 +131,3 @@ int __delete_item(void *ptr, const char *name) {
 
 	return 0;
 }
-

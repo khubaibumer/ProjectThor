@@ -16,6 +16,8 @@
 
 extern int register_users();
 
+#define POST_BUY_BUILD
+
 #ifdef POST_BUY_BUILD
 
 int main(int argc, char **argv) {

@@ -148,4 +148,3 @@ int __get_all_users(void *ptr) {
 
 	return 0;
 }
-

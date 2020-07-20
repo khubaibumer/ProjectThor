@@ -27,6 +27,10 @@ static const UserInfoTable_t UserInfoTable[] = {
 		{ itemprice, "Price" },
 		{ itemcount, "Quantity" },
 		{ itemname, "Name" },
+
+		/*	Item Image Table	*/
+		{ images, "Image" },
+		{ imageextra, "Extra" },
 };
 
 static inline const char* get_mapping(int key) {
