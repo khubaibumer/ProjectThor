@@ -40,6 +40,13 @@ enum commands {
 	images,
 	imageextra,
 	getimage,
+	control,
+	listpeers,
+	gettax,
+	kickpeer,
+	turndown,
+	iteminterface,
+	execquery,
 };
 
 typedef struct {
@@ -71,6 +78,13 @@ const static rpc_commands_t rpc_commands[] = {
 		{ "images", images },
 		{ "image-extra", imageextra },
 		{ "get-image", getimage },
+		{ "control", control },
+		{ "list-peers", listpeers },
+		{ "get-tax", gettax },
+		{ "kick-peer", kickpeer },
+		{ "shutdown", turndown },
+		{ "item-interface", iteminterface },
+		{ "execute-query", execquery },
 };
 
 static inline int find_cmd(char *in) {

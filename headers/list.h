@@ -119,7 +119,7 @@ typedef struct data_node {
 
 /*		foreach_node_callback register		*/
 /*		void (*callback_f)(data_node_t*)	*/
-#define foreach_node_callback(_head, FUNC)								\
+#define foreach_node_callback(_head, FUNC, args)						\
 	({																	\
 		data_node_t *node = (data_node_t*) *_head;						\
 		do{																\
@@ -127,7 +127,7 @@ typedef struct data_node {
 				break;													\
 			;;;															\
 			while(node != NULL)	{										\
-				FUNC(node);												\
+				FUNC(node, args);										\
 				node = node->next;										\
 			}															\
 		} while(0);														\

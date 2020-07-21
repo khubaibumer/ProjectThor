@@ -17,6 +17,11 @@ void __set_state(int state) {
 	process_state = state;
 }
 
+int __get_state() {
+
+	return process_state;
+}
+
 void* serve_clients(void *ptr) {
 
 	sleep(10);

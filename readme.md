@@ -71,22 +71,69 @@ For Example you want to run "lightning-cli newaddr" the rpc varient will be
 
 #### Add Item
 
- > db,add,items,(name),(quantity),(price),(extra)
+ > db,add,items,(upc),(quantity),(price),(name)
  
 #### Delete Items
 
- > db,del,items,(name)
+ > db,del,items,(upc)
  
 #### Update Items
 
- > db,update,items,(name),(key),(value)
+ > db,update,items,(upc),(key),(value)
  
  Where keys are:
  * item-name
  * item-quantity
  * item-price
- * item-extra
+ * item-upc
  
 #### Get List of Items
 
  > db,get-list,items
+
+### Log Data
+
+ > log-cmd,(process),(lat_long),(txId),(data)
+ 
+### Image Database
+
+#### Add Image
+
+ > db,add,images,(upc),(image)
+ 
+#### Delete Image
+
+ > db,del,images,(upc)
+ 
+#### Update Images
+
+ > db,update,images,(upc),(key),(value)
+ 
+ Where keys are:
+ * item-upc
+ * images
+ 
+#### Get List of UPCs in Image DB
+
+ > db,get-list,images
+ 
+#### Get Image for a UPC
+
+ > db,get-image,images,(upc)
+ 
+### Control Interface
+
+#### Get Applicable Tax
+
+ > control,get-tax
+ 
+#### List Peers (active users)
+
+ > control,list-peers
+ 
+
+
+ **IMPORTANT NOTE**
+
+ * All Commands to the server must end with footer ",<$#EOT#$>"
+ * Any command not ending on this footer will cause the server to hang

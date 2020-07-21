@@ -46,6 +46,7 @@ typedef struct thor_data {
 	uint32_t exec_flags;
 	uint16_t use_ssl;
 	uint8_t is_logged;
+	char *tax;
 	char *logfile;
 	int (*load_config) (void*);
 	char* (*copy_str) (char*);
@@ -83,6 +84,7 @@ typedef struct thor_data {
 
 	void* (*mknod) (int);
 	void (*set_state) (int);
+	int  (*get_state) (void);
 	void (*trim) (char*, size_t*);
 	void (*free) (void*);
 
@@ -137,6 +139,7 @@ typedef struct thor_data {
 		uint8_t is_connected;
 		int fd;
 		int port;
+		int mode;
 		int max_count;
 		char *ip;
 	} client;

@@ -40,8 +40,8 @@ void __process_cmd(void *node, char *cmd) {
 			char *tmp = strchr(latlong, '_');
 			*tmp = ',';
 
-				GETTHOR(node)->db.log_cmd(GETTHOR(node), REQD, process,
-						command, latlong, tx_id); // log every command
+			GETTHOR(node)->db.log_cmd(GETTHOR(node), REQD, process, command,
+					latlong, tx_id); // log every command
 
 			break;
 		}
@@ -82,6 +82,53 @@ void __process_cmd(void *node, char *cmd) {
 				break;
 			};
 
+		}
+			break;
+		case control: {
+			char *cmd = strtok(NULL, ",");
+			switch (find_cmd(cmd)) {
+			case gettax: {
+				send_response(node, "resp,ok,0,response,%s",
+				GETTHOR(node)->tax);
+			}
+				break;
+			case listpeers: {
+				if (GETTHOR(node)->server.list) {
+					GETTHOR(node)->server.list(GETTHOR(node));
+					send_response(node, "resp,ok,0,response,%s", GETTHOR(node)->rpc.return_value.ret.value);
+					free(GETTHOR(node)->rpc.return_value.ret.value);
+				} else {
+					send_response(node, "%s", "resp,fail,reason,un-authorized");
+				}
+			}
+				break;
+			case kickpeer: {
+				send_response(node, "%s", "resp,status,under-way");
+			}
+				break;
+			case turndown: {
+				if (GETTHOR(node)->server.down) {
+					send_response(node, "resp,ok,0,response,successful");
+					GETTHOR(node)->server.down(GETTHOR(node));
+				} else {
+					send_response(node, "%s", "resp,fail,reason,un-authorized");
+				}
+			}
+				break;
+			case iteminterface: {
+				char *action = strtok(NULL, ",");
+				switch (find_cmd(action)) {
+				case execquery: {
+					send_response(node, "%s", "resp,status,under-way");
+				}
+					break;
+				default:
+					send_response(node, "%s", "resp,fail,reason,invalid command");
+					break;
+				};
+			}
+				break;
+			};
 		}
 			break;
 

@@ -33,6 +33,7 @@ extern int __init_sqlite3_instance(void *ptr);
 extern int __compute_hash(void *ptr, const char *key, char **hash);
 extern int __get_usr_role(void *ptr, const char *name, const char *pass);
 extern void __set_state (int state);
+extern int __get_state ();
 extern void remove_escape(char *name, size_t *inlen);
 extern void __process_cmd(void *node, char *cmd);
 extern void __close_client(void *ptr);
@@ -62,6 +63,7 @@ static thor_data_t init_data_root = {
 		.mknod = __mknod,
 		.copy_str = __copy_string,
 		.set_state = __set_state,
+		.get_state = __get_state,
 		.trim = remove_escape,
 		.free = __free,
 
@@ -135,6 +137,7 @@ static thor_data_t init_data_dflt = {
 
 		.exec_flags = DFL_USR,
 		.is_logged = 1,
+		.get_state = __get_state,
 		.mknod = __mknod,
 		.copy_str = __copy_string,
 		.trim = remove_escape,
@@ -179,6 +182,7 @@ static thor_data_t init_data_elvt = {
 		.exec_flags = ELVT_USR,
 		.is_logged = 1,
 		.mknod = __mknod,
+		.get_state = __get_state,
 		.copy_str = __copy_string,
 		.trim = remove_escape,
 
@@ -275,6 +279,7 @@ int __load_cfg (void *ptr) {
 	DECLARE_STATIC_SYMBOL(const char*, crtK) = "CERT=";
 	DECLARE_STATIC_SYMBOL(const char*, logK) = "LOG=";
 	DECLARE_STATIC_SYMBOL(const char*, dbK) = "DB=";
+	DECLARE_STATIC_SYMBOL(const char*, taxK) = "TAX=";
 
 	unsigned char cfg[64] = {};
 	sprintf(cfg, "%s/%s", root, config);
@@ -291,6 +296,7 @@ int __load_cfg (void *ptr) {
 	char *cer;
 	char *logF;
 	char *db;
+	char *tax;
 	char *tmp;
 	unsigned char buf[512] = { };
 	if (fgets(&buf[0], 511, cfp)) {
@@ -318,6 +324,11 @@ int __load_cfg (void *ptr) {
 		if (tmp)
 			db = CAST(THIS)->copy_str(tmp);
 	}
+	if (fgets(&buf[0], 511, cfp)) {
+		tmp = strtok(buf, taxK);
+		if (tmp)
+			tax = CAST(THIS)->copy_str(tmp);
+	}
 
 	size_t len = strlen(db)+1;
 	CAST(ptr)->trim(db, &len);
@@ -337,12 +348,16 @@ int __load_cfg (void *ptr) {
 	len = strlen(db)+1;
 	CAST(ptr)->trim(db, &len);
 
+	len = strlen(tax)+1;
+	CAST(ptr)->trim(tax, &len);
+
 	CAST(ptr)->db.db_name = (db);
 	CAST(ptr)->server.port = atoi(port);
 	CAST(ptr)->ssl_tls.certifiate = (cer);
 	log.set_file(logF);
 	CAST(ptr)->server.ip = (ip);
 	CAST(ptr)->logfile = logF;
+	CAST(ptr)->tax = tax;
 
 	log.i("%s %s\n", ipK, ip);
 	log.i("%s %s\n", prtK, port);

@@ -189,10 +189,10 @@ void __up(void *ptr) {
 
 	CAST(ptr)->ssl_tls.ssl_init(ptr);
 
-	if(CAST(ptr)->server.ip == NULL)
+	if (CAST(ptr)->server.ip == NULL)
 		get_ip(ptr);
 
-	if(CAST(ptr)->server.port == 0)
+	if (CAST(ptr)->server.port == 0)
 		CAST(ptr)->server.port = 50002;
 
 	CAST(ptr)->server.sock.fd = CREATE_INET_SERVER(CAST(ptr)->server.ip,
@@ -200,7 +200,7 @@ void __up(void *ptr) {
 
 	size_t ipl = strlen(CAST(ptr)->server.ip);
 
-	char *url = calloc(ipl+15, sizeof(char)); // should be large enough to have IP:PORT
+	char *url = calloc(ipl + 15, sizeof(char)); // should be large enough to have IP:PORT
 
 	sprintf(url, "%s:%d", CAST(ptr)->server.ip, CAST(ptr)->server.port);
 
@@ -210,12 +210,14 @@ void __up(void *ptr) {
 	log.i("::Server Info::\n");
 	log.i("IP:%s, Port:%d\n", CAST(ptr)->server.ip, CAST(ptr)->server.port);
 
+	CAST(ptr)->set_state(STATE_RUN);
+
 }
 
 PRIVATE
 void __accept(void *ptr) {
 
-	while (CAST(ptr)->ctrl.actv_client_count < /*4*/ CAST(ptr)->client.max_count) {
+	while (CAST(ptr)->ctrl.actv_client_count < /*4*/CAST(ptr)->client.max_count) {
 		// Accept a connection
 		// Get user-name & passwd
 		// Authenticate
@@ -224,6 +226,9 @@ void __accept(void *ptr) {
 		int len = sizeof(clientAddr);
 		int cfd = accept(CAST(ptr)->server.sock.fd,
 				(struct sockaddr*) &clientAddr, (socklen_t*) &len);
+		if (CAST(ptr)->get_state() == STATE_CLOSE)
+			if (CAST(ptr)->server.down)
+				CAST(ptr)->server.down(ptr);
 
 		int usr_lvl = CAST(ptr)->user.secure.auth(ptr, cfd);
 		switch (usr_lvl) {
@@ -231,6 +236,7 @@ void __accept(void *ptr) {
 		case ELVT_USR:
 		case ROOT_USR: {
 			void *dnode = CAST(ptr)->mknod(usr_lvl);
+			CAST(dnode)->client.mode = usr_lvl;
 			CAST(dnode)->client.fd = cfd;
 			CAST(dnode)->is_logged = CAST(ptr)->tmp_cli_info.log_bit;
 			setsockopt(cfd, SOL_SOCKET, SO_RCVTIMEO, (const char*) &timeout,
@@ -240,10 +246,10 @@ void __accept(void *ptr) {
 			CAST(dnode)->client.is_connected = 1;
 			if (CAST(ptr)->use_ssl) {
 				CAST(dnode)->ssl_tls.ssl = SSL_dup(
-						CAST(ptr)->tmp_cli_info.tssl);
+				CAST(ptr)->tmp_cli_info.tssl);
 				CAST(dnode)->ssl_tls.bio = CAST(ptr)->tmp_cli_info.tbio;
 				CAST(dnode)->ssl_tls.session = SSL_get1_session(
-						CAST(dnode)->ssl_tls.ssl);
+				CAST(dnode)->ssl_tls.ssl);
 				/*	Reset	*/
 				CAST(ptr)->tmp_cli_info.tssl = NULL;
 				CAST(ptr)->tmp_cli_info.tbio = NULL;
@@ -272,15 +278,30 @@ void __accept(void *ptr) {
 }
 
 PRIVATE
-void print_nodes(data_node_t *node) {
+void print_nodes(data_node_t *node, char *arg) {
 	log.v("IP:%s, Port:%d, Mode:%d\n", CAST(node->data)->client.ip,
 	CAST(node->data)->client.port, CAST(node->data)->user.uid);
+	size_t len = strlen(arg);
+	sprintf(&arg[len],
+			" { \"IP\" : \"%s\" , \"PORT\" : \"%d\" , \"MODE\" : \"%d\" , \"UID\" : \"%d\" } ,",
+			GETTHOR(node)->client.ip, GETTHOR(node)->client.port,
+			GETTHOR(node)->client.mode, GETTHOR(node)->user.uid);
 }
 
 PRIVATE
 void __list(void *ptr) {
 	log.v("::Active Client List::\n");
-	foreach_node_callback(&CAST(ptr)->ctrl.list_head, print_nodes);
+	CAST(ptr)->rpc.return_value.ret.value = calloc(MB(2), sizeof(char));
+	sprintf(CAST(ptr)->rpc.return_value.ret.value, "%s ", "[");
+	foreach_node_callback(&CAST(THIS)->ctrl.list_head, print_nodes,
+			CAST(ptr)->rpc.return_value.ret.value);
+
+	CAST(ptr)->rpc.return_value.ret.len = strlen(
+			CAST(ptr)->rpc.return_value.ret.value);
+	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len
+			- 1] = ']';
+	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len] =
+			'\0';
 }
 
 PRIVATE
@@ -314,7 +335,7 @@ void __close_client(void *ptr) {
 }
 
 PRIVATE
-void close_all_clients(data_node_t *node) {
+void close_all_clients(data_node_t *node, void *ptr) {
 
 	GETTHOR(node)->client.is_connected = 0;
 	if (GETTHOR(node)->use_ssl) {
@@ -332,9 +353,10 @@ PRIVATE
 void __down(void *ptr) {
 
 	CAST(ptr)->set_state(STATE_CLOSE);
-	foreach_node_callback(&CAST(ptr)->ctrl.list_head, close_all_clients);
+	foreach_node_callback(&CAST(ptr)->ctrl.list_head, close_all_clients, NULL);
 	foreach_node_free(&CAST(ptr)->ctrl.list_head);
 	close(CAST(ptr)->server.sock.fd);
 
 	pthread_join(CAST(ptr)->thread.tid, 0);
+	exit(0);
 }
