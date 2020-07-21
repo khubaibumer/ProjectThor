@@ -73,6 +73,9 @@ read -r ENC
 printf "Enter DataBase Name: "
 read -r DB
 
+printf "Enter Applicable Tax: "
+read -r TAX
+
 printf "\n\nConfiguration File is being Generated\n"
 
 sleep 2
@@ -82,6 +85,7 @@ echo "PORT=$PORT" >> $CFG
 echo "CERT=$CERTP" >> $CFG
 echo "LOG=$DIR/$LOGFILE" >> $CFG
 echo "DB=$DIR/$DB" >> $CFG
+echo "TAX=$TAX" >> $CFG
 
 if [ "$ENC" = "y" ]
 then
