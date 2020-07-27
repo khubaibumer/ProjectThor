@@ -156,7 +156,7 @@ int _logc(const char *fmt, ...) {
 
 int _loge(const char *fmt, ...) {
 
-	if (level < error)
+	if (level < error_)
 		return 0;
 
 	DECLARE_SYMBOL(va_list, args);

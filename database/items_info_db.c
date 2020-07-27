@@ -77,7 +77,7 @@ int get_items_list(void *_buf, int argc, char **argv, char **azColName) {
 
 int __get_all_items(void *ptr) {
 
-	static char stbuf[5 * 1000 * 1000] = { }; // 5mb
+	char *stbuf = calloc(MB(5), sizeof(char));
 	fp1 = fopen("/dev/null", "w+");
 	setvbuf(fp1, stbuf, _IOFBF, BUFSIZ);
 
@@ -109,7 +109,7 @@ int __get_all_items(void *ptr) {
 	log.v("%s\n", CAST(ptr)->rpc.return_value.ret.value);
 
 	fclose(fp1);
-	free(CAST(ptr)->rpc.return_value.ret.value);
+	free(stbuf);
 	fp1 = NULL;
 
 	return 0;

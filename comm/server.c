@@ -358,5 +358,4 @@ void __down(void *ptr) {
 	close(CAST(ptr)->server.sock.fd);
 
 	pthread_join(CAST(ptr)->thread.tid, 0);
-	exit(0);
 }

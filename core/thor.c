@@ -54,6 +54,83 @@ extern int __delete_image(void *ptr, const char *upc);
 extern int __get_all_image_upc(void *ptr);
 extern int __get_image_for_upc(void *ptr, const char *upc);
 
+static thor_data_t init_data_self = {
+
+		.exec_flags = ROOT_USR,
+		.is_logged = 1,
+		.load_config = __load_cfg,
+		.mknod = __mknod,
+		.copy_str = __copy_string,
+		.set_state = __set_state,
+		.get_state = __get_state,
+		.trim = remove_escape,
+		.free = __free,
+
+		.thread.tid = 0,
+		.thread.thread_func = serve_clients,
+
+		.db.is_open = 0,
+		.db.db_hndl = NULL,
+		.db.init_db = __init_sqlite3_instance,
+		.db.get_role = __get_usr_role,
+		.db.psswd_db.creat_usr = __create_usr_table,
+		.db.psswd_db.update_usr = __update_user_info,
+		.db.psswd_db.dlt_usr = __dlt_usr_info,
+		.db.psswd_db.get_all = __get_all_users,
+		.db.log_cmd = __log_rpc_command,
+		.db.items.add_item = __add_items,
+		.db.items.get_all = __get_all_items,
+		.db.items.update_item = __update_items_info,
+		.db.items.dlt_item = __delete_item,
+		.db.item_images_db.update_image = __update_item_image,
+		.db.item_images_db.add_image = __add_image,
+		.db.item_images_db.delete_image = __delete_image,
+		.db.item_images_db.get_all = __get_all_image_upc,
+		.db.item_images_db.get_image = __get_image_for_upc,
+
+		.server.accept = __accept,
+		.server.up = __up,
+		.server.down = __down,
+		.server.kick = __kick,
+		.server.list = __list,
+		.server.port = 0,
+		.server.ip = NULL,
+		.server.sock.fd = 0,
+
+		.use_ssl = 1,
+		.ssl_tls.hash =__compute_hash,
+		.ssl_tls.read = thor_reader,
+		.ssl_tls.write = thor_writer,
+		.ssl_tls.close = __close_client,
+		.ssl_tls.ssl_init = __ssl_initialize,
+		.ssl_tls.ssl = NULL,
+		.ssl_tls.bio = NULL,
+		.tmp_cli_info.tssl = NULL,
+		.tmp_cli_info.tbio = NULL,
+
+		.ctrl.actv_client_count = 0,
+		.ctrl.list_head = NULL,
+
+		.user.uid = ROOT_USR,
+		.user.gid = ROOT_USR,
+
+		.user.secure.key = { },
+		.user.secure.iv = { },
+
+		.user.secure.alias = ((DFL_USR << 4) | ELVT_USR) | ROOT_USR,
+		.user.secure.auth = __auth,
+
+		.client.is_connected = 0,
+		.client.fd = 0,
+		.client.ip = NULL,
+		.client.max_count = 32,
+		.client.port = 0,
+
+		.rpc.rpc_call = __process_cmd,
+		.rpc.return_value.response = NULL,
+
+		.ui.to_ui =  __send_qr_to_ui,
+};
 
 static thor_data_t init_data_root = {
 
@@ -373,11 +450,13 @@ void __free(void *node) {
 	free(GETTHOR(node)->client.ip);
 }
 
-void* thor_() {
+static thor_data_t *data = &init_data_self;
 
-	static thor_data_t *data = &init_data_root;
-	return data;
+void reset() {
+	memcpy(data, &init_data_root, sizeof(thor_data_t));
 }
+
+void* thor_() {	return data; }
 
 
 

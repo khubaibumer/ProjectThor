@@ -27,7 +27,7 @@ typedef int (*log_f) (const char *fmt, ...);
 
 typedef enum {
 	fatal = 1, ///< log.f() is enabled
-	error,	///< log.e() and higher is enabled
+	error_,	///< log.e() and higher is enabled
 	critical,	///< log.c() and higher is enabled
 	warning, 	///< log.w() and higher is enabled
 	alert,	///< log.a() and higher is enabled
@@ -40,7 +40,7 @@ static __always_inline const char *loglvl_to_str(kLoggingLevel __lvl__) {
 	switch(__lvl__) {
 	case fatal:
 		return "fatal";
-	case error:
+	case error_:
 		return "error";
 	case critical:
 		return "critical";
