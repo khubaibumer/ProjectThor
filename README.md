@@ -5,6 +5,8 @@ Interfacing Library for c-lightning
 
 ## [![Build Status](https://travis-ci.com/khubaibumer/libThor.svg?token=1CSkg4TqiLRRZPUNDexe&branch=master)](https://travis-ci.com/khubaibumer/libThor)
 
+## [![Codacy Badge](https://app.codacy.com/project/badge/Grade/519d1d8ac4b94317b3f344d12e39eeb5)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=khubaibumer/libThor&amp;utm_campaign=Badge_Grade)
+
 
 ## :: LIST OF COMMANDS ::
 
