@@ -34,10 +34,10 @@ To use RPC Command Line Interface use the following
 ### Basic RPC Command Structure
 
 RPC Command Compromises of
- > rpc-cmd,(process),(lat_long),[ (arguments to process) ]
+ > rpc-cmd,(process),(lat_long),(txId),[ (arguments to process) ]
 For Example you want to run "lightning-cli newaddr" the rpc varient will be
 
- > rpc-cmd,cli-node,12.321_-91.123,[ newaddr ]
+ > rpc-cmd,cli-node,12.321_-91.123,1,[ newaddr ]
  
 * Please Note that there are no Spaces in Between ',' and ONE Space each between '['<space> args <space>']'
 

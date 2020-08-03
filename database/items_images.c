@@ -14,11 +14,11 @@
 int __update_item_image(void *ptr, const char *qual, int key,
 		const char *updated) {
 
-	char *sql = calloc(MB(12), sizeof(char));
-
 	const char *col_name = get_mapping(key);
 	if (!col_name)
 		return -1;
+
+	char *sql = calloc(MB(12), sizeof(char));
 
 	sprintf(sql,
 			"UPDATE %s SET %s='%s' where ID=(SELECT ID FROM %s where UPC='%s' );",
@@ -41,8 +41,6 @@ int __update_item_image(void *ptr, const char *qual, int key,
 int __add_image(void *ptr, const char *upc, const char *image) {
 
 	char *sql = calloc(MB(12), sizeof(char));
-
-	size_t image_len = strlen(image);
 
 	sprintf(sql,
 			"INSERT INTO " IMAGE_TABLE SCHEMA "VALUES( " "'%s','%s',' '); ",
@@ -92,6 +90,8 @@ int get_upc_list(void *_buf, int argc, char **argv, char **azColName) {
 	}
 	(buf)[--len] = '\0';
 	len += sprintf(&buf[len], "}%s", ",");
+
+	assert(len > 0);
 
 	fprintf(img, "%s", buf);
 

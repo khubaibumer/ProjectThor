@@ -21,7 +21,7 @@ int __update_user_info(void *ptr, const char *qual, int key,
 	char *hashed = NULL;
 	if (key == userpass) {
 		// We need to hash password
-		size_t pass_len = strlen(updated);
+		size_t pass_len = strnlen(updated, 128); // As it is MD5
 		CAST(ptr)->ssl_tls.hash(ptr, updated, &hashed);
 	} else {
 		hashed = updated;
@@ -67,7 +67,7 @@ int __create_usr_table(void *ptr, const char *uname, const char *upsswd,
 	CAST(ptr)->ssl_tls.hash(ptr, upsswd, &psswd);
 
 	char sql[256] = "INSERT INTO " USER_TABLE SCHEMA "VALUES( ";
-	size_t len = strlen(sql);
+	size_t len = strnlen(sql, 256);
 	sprintf(&sql[len], "'%s','%s',%d,%d,''); ", uname, psswd, role, 1); // by default every user is logged
 
 	log.i("Query is: %s\n", sql);
@@ -106,6 +106,8 @@ int get_user_list(void *_buf, int argc, char **argv, char **azColName) {
 	}
 	(buf)[--len] = '\0';
 	len += sprintf(&buf[len], "}%s", ",");
+
+	assert(len > 0);
 
 	fprintf(fp, "%s", buf);
 	return 0;

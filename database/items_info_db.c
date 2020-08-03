@@ -71,6 +71,8 @@ int get_items_list(void *_buf, int argc, char **argv, char **azColName) {
 	(buf)[--len] = '\0';
 	len += sprintf(&buf[len], "}%s", ",");
 
+	assert(len > 0);
+
 	fprintf(fp1, "%s", buf);
 	return 0;
 }
@@ -92,20 +94,20 @@ int __get_all_items(void *ptr) {
 			&CAST(ptr)->rpc.return_value.ret,
 			&CAST(ptr)->rpc.return_value.response);
 	if (rt != SQLITE_OK) {
+		free(stbuf);
 		log.e("Error: %s\n", CAST(ptr)->rpc.return_value.response);
 		return -1;
 	}
 
 	sprintf(CAST(ptr)->rpc.return_value.ret.value, "[ %s", stbuf);
 
-	CAST(ptr)->rpc.return_value.ret.len = strlen(
-	CAST(ptr)->rpc.return_value.ret.value);
+	CAST(ptr)->rpc.return_value.ret.len = strnlen(
+			CAST(ptr)->rpc.return_value.ret.value, MB(5) + 20);
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len
 			- 1] = ']';
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len] =
 			'\0';
 
-	memset(stbuf, 0, strlen(stbuf) + 1);
 	log.v("%s\n", CAST(ptr)->rpc.return_value.ret.value);
 
 	fclose(fp1);

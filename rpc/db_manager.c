@@ -122,7 +122,7 @@ int __process_db_user_cmds(void *node, enum commands action) {
 	case del: {
 		char *name = strtok(NULL, ",");
 		char *pass = strtok(NULL, ",");
-		int mode = atoi(strtok(NULL, ","));
+//		int mode = atoi(strtok(NULL, ","));
 		if (GETTHOR(node)->db.psswd_db.dlt_usr) {
 			if (GETTHOR(node)->db.psswd_db.dlt_usr(GETTHOR(node), name, pass)
 					== 0)

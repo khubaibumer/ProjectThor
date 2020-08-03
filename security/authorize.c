@@ -71,7 +71,7 @@ void remove_escape(char *name, size_t *inlen) {
 			name[i] = '\0';
 	}
 
-	*inlen = strlen(name);
+	*inlen = strnlen(name, *inlen);
 }
 
 int __auth(void *ptr, int fd) {
@@ -82,14 +82,14 @@ int __auth(void *ptr, int fd) {
 		SSL *ssl = SSL_new(CAST(THIS)->ssl_tls.ctx);
 		SSL_set_bio(ssl, sbio, sbio);
 		if (SSL_accept(ssl) <= 0) {
-			perror("Error");
+			ERR_print_errors(sbio);
 		}
 		SSL_do_handshake(ssl);
 
 		CAST(ptr)->tmp_cli_info.tssl = SSL_dup(ssl);
 		CAST(ptr)->tmp_cli_info.tbio = sbio;
 
-		char buf[1024] = { };
+		char buf[1025] = { };
 		SSL_write(CAST(ptr)->tmp_cli_info.tssl, "auth,who,<$#EOT#$>\n",
 				sizeof("auth,who,<$#EOT#$>\n"));
 		SSL_read(CAST(ptr)->tmp_cli_info.tssl, buf, 1024);
@@ -101,6 +101,9 @@ int __auth(void *ptr, int fd) {
 				char *cmd = strtok(buf, ",");
 				char *name = strtok(NULL, ",");
 				char *pass = strtok(NULL, ",");
+
+				if(memcmp(cmd, "auth", strlen("auth")) != 0)
+					return -1;
 
 				size_t inlen = name == NULL ? 0 : strlen(name);
 				size_t iplen = pass == NULL ? 0 : strlen(pass);
@@ -116,15 +119,21 @@ int __auth(void *ptr, int fd) {
 			}
 		}
 	} else {
-		char name[1024] = { };
-		char pass[1024] = { };
+		char name[1025] = { };
+		char pass[1025] = { };
 		int wb = send(fd, "Enter Username: ", sizeof("Enter Username: "), 0);
-		wb = recv(fd, name, 1024, 0);
-		wb = send(fd, "Enter Password: ", sizeof("Enter Password: "), 0);
-		wb = recv(fd, pass, 1024, 0);
-
 		if (wb < 0)
 			perror("something wrong!");
+		wb = recv(fd, name, 1024, 0);
+		if (wb < 0)
+			perror("something wrong!");
+		wb = send(fd, "Enter Password: ", sizeof("Enter Password: "), 0);
+		if (wb < 0)
+			perror("something wrong!");
+		wb = recv(fd, pass, 1024, 0);
+		if (wb < 0)
+			perror("something wrong!");
+
 
 		size_t unlen = strlen(name);
 		size_t uplen = strlen(pass);

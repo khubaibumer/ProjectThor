@@ -21,7 +21,7 @@ void __process_cmd(void *node, char *cmd) {
 	}
 
 	/*	Other than bye are valid rpc_calls	*/
-	if (strlen(cmd) > 1 && strstr(cmd, ",")) {
+	if (strstr(cmd, "<$#EOT#$>") > 1 && strstr(cmd, ",")) {
 		switch (find_cmd(strtok(cmd, ","))) {
 		case auth:
 			send_response(node, "auth,status,logged-in");
@@ -88,14 +88,22 @@ void __process_cmd(void *node, char *cmd) {
 			char *cmd = strtok(NULL, ",");
 			switch (find_cmd(cmd)) {
 			case gettax: {
-				send_response(node, "resp,ok,0,response,%s",
-				GETTHOR(node)->tax);
+				send_response(node, "resp,ok,0,response,%s", CAST(THIS)->tax);
+			}
+				break;
+			case setlogginglevel: {
+
+			}
+				break;
+			case getlogginglevel: {
+
 			}
 				break;
 			case listpeers: {
 				if (GETTHOR(node)->server.list) {
 					GETTHOR(node)->server.list(GETTHOR(node));
-					send_response(node, "resp,ok,0,response,%s", GETTHOR(node)->rpc.return_value.ret.value);
+					send_response(node, "resp,ok,0,response,%s",
+							GETTHOR(node)->rpc.return_value.ret.value);
 					free(GETTHOR(node)->rpc.return_value.ret.value);
 				} else {
 					send_response(node, "%s", "resp,fail,reason,un-authorized");
@@ -123,7 +131,8 @@ void __process_cmd(void *node, char *cmd) {
 				}
 					break;
 				default:
-					send_response(node, "%s", "resp,fail,reason,invalid command");
+					send_response(node, "%s",
+							"resp,fail,reason,invalid command");
 					break;
 				};
 			}

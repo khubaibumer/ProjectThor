@@ -29,7 +29,7 @@ int __exec_rpc_cmd(void *node, char *command) {
 	/*	Now create a buffer for clight response	*/
 	unsigned char *resp = calloc(RESPSZ, sizeof(char));
 	if (resp == NULL) {
-		send_response(node, "%s\n", "resp,fail,reason,cannot execute command");
+		send_response(node, "%s", "resp,fail,reason,cannot execute command");
 		return -1;
 	}
 
@@ -41,7 +41,7 @@ int __exec_rpc_cmd(void *node, char *command) {
 		strcat(resp, buf);
 
 	log.i("Response is: %s\n", resp);
-	send_response(node, "resp,status,rpc-cmd,cli-node,[ %s ]\n", resp);
+	send_response(node, "resp,status,rpc-cmd,cli-node,[ %s ]", resp);
 
 	pclose(fp);
 	free(process);
@@ -63,7 +63,8 @@ void __open_shell(void *node, char *command) {
 	/*	Now create a buffer for clight response	*/
 	unsigned char *resp = calloc(RESPSZ, sizeof(char));
 	if (resp == NULL) {
-		send_response(node, "%s\n", "resp,fail,reason,cannot execute command");
+		free(process);
+		send_response(node, "%s", "resp,fail,reason,cannot execute command");
 		return ;
 	}
 

@@ -47,6 +47,8 @@ enum commands {
 	turndown,
 	iteminterface,
 	execquery,
+	setlogginglevel,
+	getlogginglevel,
 };
 
 typedef struct {
@@ -85,6 +87,8 @@ const static rpc_commands_t rpc_commands[] = {
 		{ "shutdown", turndown },
 		{ "item-interface", iteminterface },
 		{ "execute-query", execquery },
+		{ "set-logging", setlogginglevel },
+		{ "get-logging", getlogginglevel },
 };
 
 static inline int find_cmd(char *in) {

@@ -19,6 +19,7 @@
 #include <openssl/ssl.h>
 #include <sqlite3.h>
 #include <pthread.h>
+#include <assert.h>
 
 #define CAST(x) ((thor_data_t*) x)
 #define GETTHOR(x) ((thor_data_t*) (((data_node_t*) x)->data))
@@ -49,7 +50,7 @@ typedef struct thor_data {
 	char *tax;
 	char *logfile;
 	int (*load_config) (void*);
-	char* (*copy_str) (char*);
+	char* (*copy_str) (char*, size_t max_len);
 	struct {
 		int (*write) (void*, const void*, size_t);
 		int (*read) (void*, void*, size_t);
