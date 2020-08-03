@@ -96,13 +96,13 @@ int __auth(void *ptr, int fd) {
 
 		log.v("Got: %s\n", buf);
 
-		if (strlen(buf) > 0) {
+		if (strnlen(buf, 1024) > 0) {
 			if (strstr(buf, ",")) {
 				char *cmd = strtok(buf, ",");
 				char *name = strtok(NULL, ",");
 				char *pass = strtok(NULL, ",");
 
-				if(memcmp(cmd, "auth", strlen("auth")) != 0)
+				if(strncmp(cmd, "auth", 4) != 0)
 					return -1;
 
 				size_t inlen = name == NULL ? 0 : strlen(name);
@@ -135,8 +135,8 @@ int __auth(void *ptr, int fd) {
 			perror("something wrong!");
 
 
-		size_t unlen = strlen(name);
-		size_t uplen = strlen(pass);
+		size_t unlen = strnlen(name, 1024);
+		size_t uplen = strnlen(pass, 1024);
 
 		if (name[unlen - 1] == '\n')
 			name[--unlen] = '\0';

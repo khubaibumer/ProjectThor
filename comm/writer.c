@@ -13,7 +13,7 @@ extern ssize_t send(int __fd, const void *__buf, size_t __n, int __flags);
 char* attach_footer(char *buf, size_t *len) {
 	char *_buf = calloc(*len + 15, sizeof(char));
 	sprintf(_buf, "%s,<$#EOT#$>\n", buf);
-	*len = strlen(_buf);
+	*len = strnlen(_buf, *len);
 
 	return _buf;
 }

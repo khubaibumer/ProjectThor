@@ -259,7 +259,7 @@ void __accept(void *ptr) {
 			sprintf(response, "auth,ok,%d", usr_lvl);
 
 			if (CAST(dnode)->ssl_tls.write(dnode, response,
-					strlen(response) + 1) <= 0)
+					strnlen(response, 24) + 1) <= 0)
 				perror("Error Writing!");
 
 			insert_node(&CAST(ptr)->ctrl.list_head, dnode);
@@ -296,8 +296,8 @@ void __list(void *ptr) {
 	foreach_node_callback(&CAST(THIS)->ctrl.list_head, print_nodes,
 			CAST(ptr)->rpc.return_value.ret.value);
 
-	CAST(ptr)->rpc.return_value.ret.len = strlen(
-			CAST(ptr)->rpc.return_value.ret.value);
+	CAST(ptr)->rpc.return_value.ret.len = strnlen(
+			CAST(ptr)->rpc.return_value.ret.value, MB(2));
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len
 			- 1] = ']';
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len] =

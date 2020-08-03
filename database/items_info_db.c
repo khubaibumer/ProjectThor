@@ -42,7 +42,7 @@ int __add_items(void *ptr, const char *upc, const char *quantity,
 		const char *price, const char *name) {
 
 	char sql[256] = "INSERT INTO " ITEM_TABLE SCHEMA "VALUES( ";
-	size_t len = strlen(sql);
+	size_t len = strnlen(sql, 256);
 	sprintf(&sql[len], "'%s','%s','%s','%s'); ", upc, quantity, price, name);
 	log.i("Query is: %s\n", sql);
 

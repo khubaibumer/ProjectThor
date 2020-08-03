@@ -16,7 +16,7 @@ int __log_rpc_command(void *ptr, int type, const char *process,
 	time_t now = time(NULL);
 
 	char sql[8000] = "INSERT INTO " LOGS_TABLE SCHEMA "VALUES( ";
-	size_t len = strlen(sql);
+	size_t len = strnlen(sql, 8000);
 	if (type == REQD) {
 		sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s','%s','%s','%s'); ",
 				CAST(ptr)->client.ip,

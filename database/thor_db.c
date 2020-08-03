@@ -75,7 +75,7 @@ int __get_usr_role(void *ptr, const char *name, const char *pass) {
 	CAST(ptr)->ssl_tls.hash(ptr, pass, &pswd);
 
 	char sql[256] = "SELECT PrivMode FROM " USER_TABLE " WHERE ";
-	size_t len = strlen(sql);
+	size_t len = strnlen(sql, 256);
 	sprintf(&sql[len], " UserName = '%s' AND UserPsswd = '%s' ;", name, pswd);
 
 	log.i("%s\n", sql);

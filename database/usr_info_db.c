@@ -21,7 +21,6 @@ int __update_user_info(void *ptr, const char *qual, int key,
 	char *hashed = NULL;
 	if (key == userpass) {
 		// We need to hash password
-		size_t pass_len = strnlen(updated, 128); // As it is MD5
 		CAST(ptr)->ssl_tls.hash(ptr, updated, &hashed);
 	} else {
 		hashed = updated;
@@ -115,38 +114,40 @@ int get_user_list(void *_buf, int argc, char **argv, char **azColName) {
 
 int __get_all_users(void *ptr) {
 
-	static char stbuf[7000] = { };
+	char *stbuf = calloc(MB(2), sizeof(char));
 	fp = fopen("/dev/null", "w+");
 	setvbuf(fp, stbuf, _IOFBF, BUFSIZ);
 
 	char sql[] = "select * from " USER_TABLE ";";
 	log.i("Query is: %s\n", sql);
 
-	CAST(ptr)->rpc.return_value.ret.value = calloc(7000, sizeof(char));
+	CAST(ptr)->rpc.return_value.ret.value = calloc(MB(1), sizeof(char));
 	CAST(ptr)->rpc.return_value.ret.len = sprintf(
 	CAST(ptr)->rpc.return_value.ret.value, "%s", "[ ");
 	int rt = sqlite3_exec(CAST(ptr)->db.db_hndl, sql, get_user_list,
 			&CAST(ptr)->rpc.return_value.ret,
 			&CAST(ptr)->rpc.return_value.response);
 	if (rt != SQLITE_OK) {
+		free(stbuf);
+		fclose(fp);
 		log.e("Error: %s\n", CAST(ptr)->rpc.return_value.response);
 		return -1;
 	}
 
 	sprintf(CAST(ptr)->rpc.return_value.ret.value, "[ %s", stbuf);
 
-	CAST(ptr)->rpc.return_value.ret.len = strlen(
-	CAST(ptr)->rpc.return_value.ret.value);
+	CAST(ptr)->rpc.return_value.ret.len = strnlen(
+			CAST(ptr)->rpc.return_value.ret.value, MB(1));
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len
 			- 1] = ']';
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len] =
 			'\0';
 
-	memset(stbuf, 0, strlen(stbuf) + 1);
 	log.v("%s\n", CAST(ptr)->rpc.return_value.ret.value);
 
 	fclose(fp);
 	fp = NULL;
+	free(stbuf);
 
 	return 0;
 }

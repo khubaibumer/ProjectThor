@@ -62,7 +62,7 @@ int __add_image(void *ptr, const char *upc, const char *image) {
 int __delete_image(void *ptr, const char *upc) {
 
 	char sql[256] = "DELETE FROM " IMAGE_TABLE " where UPC= ";
-	size_t len = strlen(sql);
+	size_t len = strnlen(sql, 210); // Max UPC is 13 character long
 	sprintf(&sql[len], "'%s'; ", upc);
 	log.i("Query is: %s\n", sql);
 
@@ -112,14 +112,17 @@ int __get_all_image_upc(void *ptr) {
 			&CAST(ptr)->rpc.return_value.ret,
 			&CAST(ptr)->rpc.return_value.response);
 	if (rt != SQLITE_OK) {
+		free(stbuf);
+		fclose(img);
+		img = NULL;
 		log.e("Error: %s\n", CAST(ptr)->rpc.return_value.response);
 		return -1;
 	}
 
 	sprintf(CAST(ptr)->rpc.return_value.ret.value, "[ %s", stbuf);
 
-	CAST(ptr)->rpc.return_value.ret.len = strlen(
-	CAST(ptr)->rpc.return_value.ret.value);
+	CAST(ptr)->rpc.return_value.ret.len = strnlen(
+			CAST(ptr)->rpc.return_value.ret.value, MB(3));
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len
 			- 1] = ']';
 	CAST(ptr)->rpc.return_value.ret.value[CAST(ptr)->rpc.return_value.ret.len] =
@@ -146,6 +149,8 @@ int get_image_from_upc(void *_buf, int argc, char **argv, char **azColName) {
 	}
 	(buf)[--len] = '\0';
 	len += sprintf(&buf[len], "}%s", ",");
+
+	assert(len > 0);
 
 	fprintf(img, "%s", buf);
 

@@ -15,7 +15,7 @@ extern void __open_shell(void *node, char *command);
 
 int __exec_rpc_cmd(void *node, char *command) {
 
-	size_t len = strlen(command);
+	size_t len = strnlen(command, KB(700)); // Max Command Length - unlikely
 	/*	create a new buffer for command	*/
 	unsigned char *process = calloc(sizeof(PROCESS) + len + 1, sizeof(unsigned char));
 	/*	Our Commands will be enclosed in []	*/
