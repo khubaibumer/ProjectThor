@@ -173,6 +173,9 @@ int __get_image_for_upc(void *ptr, const char *upc) {
 			&CAST(ptr)->rpc.return_value.ret,
 			&CAST(ptr)->rpc.return_value.response);
 	if (rt != SQLITE_OK) {
+		fclose(img);
+		img = NULL;
+		free(stbuf);
 		log.e("Error: %s\n", CAST(ptr)->rpc.return_value.response);
 		return -1;
 	}

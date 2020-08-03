@@ -38,9 +38,9 @@ printf "\n\nProject THOR will be installed to $DIR \n"
 
 CFG=$DIR/thor.cfg
 
-sudo mkdir -p $DIR
-sudo touch $CFG
-sudo chown $USR $DIR -R
+sudo mkdir -p "$DIR"
+sudo touch "$CFG"
+sudo chown "$USR" "$DIR" -R
 
 printf "\n\nGenerating Configuration File . . .\n"
 
@@ -80,34 +80,34 @@ printf "\n\nConfiguration File is being Generated\n"
 
 sleep 2
 
-echo "IP=$IP" > $CFG
-echo "PORT=$PORT" >> $CFG
-echo "CERT=$CERTP" >> $CFG
-echo "LOG=$DIR/$LOGFILE" >> $CFG
-echo "DB=$DIR/$DB" >> $CFG
-echo "TAX=$TAX" >> $CFG
+echo "IP=$IP" > "$CFG"
+echo "PORT=$PORT" >> "$CFG"
+echo "CERT=$CERTP" >> "$CFG"
+echo "LOG=$DIR/$LOGFILE" >> "$CFG"
+echo "DB=$DIR/$DB" >> "$CFG"
+echo "TAX=$TAX" >> "$CFG"
 
 if [ "$ENC" = "y" ]
 then
-	echo "SEC=1" >> $CFG
+	echo "SEC=1" >> "$CFG"
 else
-	echo "SEC=0" >> $CFG
+	echo "SEC=0" >> "$CFG"
 fi
 
-printf "\n\n## EOF\n" >> $CFG
+printf "\n\n## EOF\n" >> "$CFG"
 
 printf "\n\nConfiguration File Generated Successfuly with parameters\n\n"
-cat $CFG
+cat "$CFG"
 
 printf "\n\nInstalling Server to Path Specified . . . \n\n"
 
 if ! cp Debug/THOR $DIR 2> /dev/null
 then 
-	cp THOR $DIR
+	cp THOR "$DIR"
 fi
 
-sudo chown $USR $DIR -R
-sudo chmod a+x $DIR/THOR
+sudo chown "$USR" "$DIR" -R
+sudo chmod a+x "$DIR/THOR"
 
 printf "\n\nInstallation Done! . . . \n\n"
 
