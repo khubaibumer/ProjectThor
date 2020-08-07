@@ -168,6 +168,12 @@ typedef struct thor_data {
 	} rpc;
 
 	struct {
+		void (*set_mode) (const char *mode);
+		char* (*get_mode) (void);
+		char* (*get_all) (void);
+	} logger;
+
+	struct {
 		int (*to_ui) (void*, FILE *ui, const char *info);
 	} ui;
 } thor_data_t;

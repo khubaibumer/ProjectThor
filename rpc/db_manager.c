@@ -64,6 +64,8 @@ int __process_db_items_cmds(void *node, enum commands action) {
 				send_response(node, "resp,fail,reason,%s",
 				GETTHOR(node)->rpc.return_value.response == NULL ? "db error" :
 				GETTHOR(node)->rpc.return_value.response);
+		} else {
+			send_response(node, "%s", "resp,status,fail,reason,unauthorized");
 		}
 	}
 		break;

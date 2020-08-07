@@ -198,8 +198,30 @@ int _logf(const char *fmt, ...) {
 	return r;
 }
 
-void set_logging_level(kLoggingLevel _level) {
+void set_logging_level(const char *value) {
+	size_t len = strnlen(value, 15);
+	kLoggingLevel _level = str_to_loglvl(value, len);
 	level = _level;
+}
+
+char* get_all_log_levels() {
+	char *levels = calloc(KB(512), sizeof(char));
+	strcat(levels, " [ { log-levels : [ ");
+
+	for (int i = 0; i < sizeof(loglevels) / sizeof(loglevel_t); i++) {
+		strcat(levels, loglevels[i].value);
+		strcat(levels, ",");
+	}
+	size_t len = strnlen(levels, KB(200));
+	levels[len - 1] = ']';
+	levels[len] = ' ';
+	strcat(levels, " } ] ");
+
+	return levels;
+}
+
+char* get_loggin_level() {
+	return loglvl_to_str(level);
 }
 
 FILE* __get_logfile(void) {

@@ -92,18 +92,36 @@ void __process_cmd(void *node, char *cmd) {
 			}
 				break;
 			case setlogginglevel: {
-
+				char *log_level = strtok(NULL, ",");
+				if (GETTHOR(node)->logger.set_mode) {
+					CAST(THIS)->logger.set_mode(log_level);
+					send_response(node, "resp,ok,0,response,%s", "success");
+				} else
+					send_response(node, "%s", "resp,fail,reason,un-authorized");
 			}
 				break;
 			case getlogginglevel: {
-
+				if (GETTHOR(node)->logger.get_mode) {
+					char *mode = CAST(THIS)->logger.get_mode();
+					send_response(node, "resp,ok,0,response,%s", mode);
+				} else
+					send_response(node, "%s", "resp,fail,reason,un-authorized");
+			}
+				break;
+			case getloglevels: {
+				if (GETTHOR(node)->logger.get_all) {
+					char *_all = CAST(THIS)->logger.get_all();
+					send_response(node, "resp,ok,0,response,%s", _all);
+					free(_all);
+				} else
+					send_response(node, "%s", "resp,fail,reason,un-authorized");
 			}
 				break;
 			case listpeers: {
 				if (GETTHOR(node)->server.list) {
 					GETTHOR(node)->server.list(GETTHOR(node));
 					send_response(node, "resp,ok,0,response,%s",
-							GETTHOR(node)->rpc.return_value.ret.value);
+					GETTHOR(node)->rpc.return_value.ret.value);
 					free(GETTHOR(node)->rpc.return_value.ret.value);
 				} else {
 					send_response(node, "%s", "resp,fail,reason,un-authorized");

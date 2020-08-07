@@ -36,27 +36,36 @@ typedef enum {
 	verbose 	///< log.v() and higher is enabled
 } kLoggingLevel;
 
-static __always_inline const char *loglvl_to_str(kLoggingLevel __lvl__) {
-	switch(__lvl__) {
-	case fatal:
-		return "fatal";
-	case error_:
-		return "error";
-	case critical:
-		return "critical";
-	case warning:
-		return "warning";
-	case alert:
-		return "alert";
-	case info:
-		return "info";
-	case debug:
-		return "debug";
-	case verbose:
-		return "verbose";
-	default:
-		return "unknown";
-	};
+typedef struct {
+	kLoggingLevel key;
+	char *value;
+} loglevel_t;
+
+static const loglevel_t loglevels[] = {
+		{ fatal, "fatal" },
+		{ error_, "error" },
+		{ critical, "critical" },
+		{ warning, "warning" },
+		{ alert, "alert" },
+		{ info, "info" },
+		{ debug, "debug" },
+		{ verbose, "verbose" },
+};
+
+static __always_inline const char *loglvl_to_str(const kLoggingLevel __lvl__) {
+	for(int i = 0; i < sizeof(loglevels) / sizeof(loglevel_t); i++) {
+		if(loglevels[i].key == __lvl__)
+			return loglevels[i].value;
+	}
+	return "unknown";
+}
+
+static __always_inline kLoggingLevel str_to_loglvl(const char *key, size_t len) {
+	for(int i = 0; i < sizeof(loglevels) / sizeof(loglevel_t); i++) {
+		if(strncmp(key, loglevels[i].value, len) == 0)
+			return loglevels[i].key;
+	}
+	return -1;
 }
 
 typedef struct {
@@ -73,8 +82,6 @@ typedef struct {
 } logger_t;
 
 extern logger_t get_logger_instance( void );
-
-extern void set_logging_level(kLoggingLevel _level);
 
 static __always_inline logger_t __get_logger_instance( void ) {
 	return get_logger_instance();

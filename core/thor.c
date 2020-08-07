@@ -53,6 +53,9 @@ extern int __add_image(void *ptr, const char *upc, const char *image);
 extern int __delete_image(void *ptr, const char *upc);
 extern int __get_all_image_upc(void *ptr);
 extern int __get_image_for_upc(void *ptr, const char *upc);
+extern void set_logging_level(const char *value);
+extern char* get_loggin_level(void);
+extern char *get_all_log_levels();
 
 static thor_data_t init_data_self = {
 
@@ -65,6 +68,10 @@ static thor_data_t init_data_self = {
 		.get_state = __get_state,
 		.trim = remove_escape,
 		.free = __free,
+
+		.logger.set_mode = set_logging_level,
+		.logger.get_mode = get_loggin_level,
+		.logger.get_all = get_all_log_levels,
 
 		.thread.tid = 0,
 		.thread.thread_func = serve_clients,
@@ -144,6 +151,10 @@ static thor_data_t init_data_root = {
 		.trim = remove_escape,
 		.free = __free,
 
+		.logger.set_mode = set_logging_level,
+		.logger.get_mode = get_loggin_level,
+		.logger.get_all = get_all_log_levels,
+
 		.thread.tid = 0,
 		.thread.thread_func = serve_clients,
 
@@ -219,12 +230,16 @@ static thor_data_t init_data_dflt = {
 		.copy_str = __copy_string,
 		.trim = remove_escape,
 
+		.logger.set_mode = NULL,
+		.logger.get_mode = NULL,
+
 		.db.is_open = 0,
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
 		.db.log_cmd = __log_rpc_command,
 		.db.items.get_all = __get_all_items,
 		.db.item_images_db.get_image = __get_image_for_upc,
+		.db.items.update_item = __update_items_info,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,
@@ -263,6 +278,9 @@ static thor_data_t init_data_elvt = {
 		.copy_str = __copy_string,
 		.trim = remove_escape,
 
+		.logger.set_mode = NULL,
+		.logger.get_mode = NULL,
+
 		.db.is_open = 0,
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
@@ -277,6 +295,7 @@ static thor_data_t init_data_elvt = {
 		.db.item_images_db.delete_image = __delete_image,
 		.db.item_images_db.get_all = __get_all_image_upc,
 		.db.item_images_db.get_image = __get_image_for_upc,
+		.db.items.update_item = __update_items_info,
 
 		.use_ssl = 1,
 		.ssl_tls.hash =__compute_hash,

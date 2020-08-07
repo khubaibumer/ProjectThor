@@ -49,6 +49,7 @@ enum commands {
 	execquery,
 	setlogginglevel,
 	getlogginglevel,
+	getloglevels,
 };
 
 typedef struct {
@@ -89,6 +90,7 @@ const static rpc_commands_t rpc_commands[] = {
 		{ "execute-query", execquery },
 		{ "set-logging", setlogginglevel },
 		{ "get-logging", getlogginglevel },
+		{ "get-log-levels", getloglevels },
 };
 
 static inline int find_cmd(char *in) {
