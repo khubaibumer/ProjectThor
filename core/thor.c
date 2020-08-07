@@ -395,57 +395,58 @@ int __load_cfg (void *ptr) {
 	char *db = NULL;
 	char *tax = NULL;
 	char *tmp = NULL;
-	unsigned char buf[512] = { };
-	if (fgets(&buf[0], 511, cfp)) {
+	unsigned char buf[1024] = { };
+
+	if (fgets(&buf[0], 1023, cfp)) {
 		tmp = strtok(buf, ipK);
 		if (tmp)
-			ip = CAST(THIS)->copy_str(tmp, 512);
+			ip = CAST(THIS)->copy_str(tmp, 1023);
 	}
-	if (fgets(&buf[0], 511, cfp)) {
+	if (fgets(&buf[0], 1023, cfp)) {
 		tmp = strtok(buf, prtK);
 		if (tmp)
-			port = CAST(THIS)->copy_str(tmp, 512);
+			port = CAST(THIS)->copy_str(tmp, 1023);
 	}
-	if (fgets(&buf[0], 511, cfp)) {
+	if (fgets(&buf[0], 1023, cfp)) {
 		tmp = strtok(buf, crtK);
 		if (tmp)
-			cer = CAST(THIS)->copy_str(tmp, 512);
+			cer = CAST(THIS)->copy_str(tmp, 1023);
 	}
-	if (fgets(&buf[0], 511, cfp)) {
+	if (fgets(&buf[0], 1023, cfp)) {
 		tmp = strtok(buf, logK);
 		if (tmp)
-			logF = CAST(THIS)->copy_str(tmp, 512);
+			logF = CAST(THIS)->copy_str(tmp, 1023);
 	}
-	if (fgets(&buf[0], 511, cfp)) {
+	if (fgets(&buf[0], 1023, cfp)) {
 		tmp = strtok(buf, dbK);
 		if (tmp)
-			db = CAST(THIS)->copy_str(tmp, 512);
+			db = CAST(THIS)->copy_str(tmp, 1023);
 	}
-	if (fgets(&buf[0], 511, cfp)) {
+	if (fgets(&buf[0], 1023, cfp)) {
 		tmp = strtok(buf, taxK);
 		if (tmp)
-			tax = CAST(THIS)->copy_str(tmp, 512);
+			tax = CAST(THIS)->copy_str(tmp, 1023);
 	}
 
-	size_t len = strnlen(db, 512)+1;
+	size_t len = strnlen(db, 1023)+1;
 	CAST(ptr)->trim(db, &len);
 
-	len = strnlen(port, 512)+1;
+	len = strnlen(port, 1023)+1;
 	CAST(ptr)->trim(port, &len);
 
-	len = strnlen(ip, 512)+1;
+	len = strnlen(ip, 1023)+1;
 	CAST(ptr)->trim(ip, &len);
 
-	len = strnlen(cer, 512)+1;
+	len = strnlen(cer, 1023)+1;
 	CAST(ptr)->trim(cer, &len);
 
-	len = strnlen(logF, 512)+1;
+	len = strnlen(logF, 1023)+1;
 	CAST(ptr)->trim(logF, &len);
 
-	len = strnlen(db, 512)+1;
+	len = strnlen(db, 1023)+1;
 	CAST(ptr)->trim(db, &len);
 
-	len = strnlen(tax, 512)+1;
+	len = strnlen(tax, 1023)+1;
 	CAST(ptr)->trim(tax, &len);
 
 	CAST(ptr)->db.db_name = (db);
@@ -478,6 +479,3 @@ void reset() {
 }
 
 void* thor_() {	return data; }
-
-
-

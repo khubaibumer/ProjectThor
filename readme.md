@@ -131,7 +131,17 @@ For Example you want to run "lightning-cli newaddr" the rpc varient will be
 
  > control,list-peers
  
+#### Set Logfile Logging Level
 
+ > control,set-logging,(logging level)
+ 
+#### Get Logfile Logging Level
+
+ > control,get_logging
+ 
+#### Get List of Available Logging Levels
+
+ > control,get-log-levels
 
  **IMPORTANT NOTE**
 
