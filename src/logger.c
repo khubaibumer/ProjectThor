@@ -206,10 +206,12 @@ void set_logging_level(const char *value) {
 
 char* get_all_log_levels() {
 	char *levels = calloc(KB(512), sizeof(char));
-	strcat(levels, " [ { log-levels : [ ");
+	strcat(levels, " [ { \"log-levels\" : [ ");
 
 	for (int i = 0; i < sizeof(loglevels) / sizeof(loglevel_t); i++) {
+		strcat(levels, "\"");
 		strcat(levels, loglevels[i].value);
+		strcat(levels, "\"");
 		strcat(levels, ",");
 	}
 	size_t len = strnlen(levels, KB(200));
