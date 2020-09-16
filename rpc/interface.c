@@ -55,7 +55,9 @@ void __process_cmd(void *node, char *cmd) {
 
 				char *latlong = strtok(NULL, ",");
 				char *tx_id = strtok(NULL, ",");
-				char *command = strtok(NULL, ",");
+				char *command = strtok(NULL, "<$#EOT#$>");
+
+				command[strlen(command) - 1] = '\0';
 
 				/* We need to repace that _ with , */
 				char *tmp = strchr(latlong, '_');
