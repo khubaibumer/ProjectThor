@@ -2,6 +2,7 @@
 
 Interfacing Server for c-lightning
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cdd4518037f74f0ca66caa4c721214b7)](https://app.codacy.com/gh/khubaibumer/ProjectThor?utm_source=github.com&utm_medium=referral&utm_content=khubaibumer/ProjectThor&utm_campaign=Badge_Grade_Settings)
 ## [![CodeFactor](https://www.codefactor.io/repository/github/khubaibumer/libthor/badge?s=431fd03279c42ac1ec2eaa4238b0b139d9388921)](https://www.codefactor.io/repository/github/khubaibumer/libthor)
 
 ## [![Build Status](https://travis-ci.com/khubaibumer/libThor.svg?token=1CSkg4TqiLRRZPUNDexe&branch=master)](https://travis-ci.com/khubaibumer/libThor)
