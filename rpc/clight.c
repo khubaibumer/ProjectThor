@@ -81,6 +81,4 @@ void __open_shell(void *node, char *command) {
 	pclose(fp);
 	free(process);
 	free(resp);
-	return ;
 }
-

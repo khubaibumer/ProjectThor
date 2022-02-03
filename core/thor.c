@@ -57,6 +57,8 @@ extern void set_logging_level(const char *value);
 extern char* get_loggin_level(void);
 extern char *get_all_log_levels();
 
+typedef int (*rpc_command_t)(void *, int, char *, char *, char *, char *);
+
 static thor_data_t init_data_self = {
 
 		.exec_flags = ROOT_USR,
@@ -84,7 +86,7 @@ static thor_data_t init_data_self = {
 		.db.psswd_db.update_usr = __update_user_info,
 		.db.psswd_db.dlt_usr = __dlt_usr_info,
 		.db.psswd_db.get_all = __get_all_users,
-		.db.log_cmd = (int (*)(void *, int, char *, char *, char *, char *)) __log_rpc_command,
+		.db.log_cmd = (rpc_command_t) __log_rpc_command,
 		.db.items.add_item = __add_items,
 		.db.items.get_all = __get_all_items,
 		.db.items.update_item = __update_items_info,
@@ -166,7 +168,7 @@ static thor_data_t init_data_root = {
 		.db.psswd_db.update_usr = __update_user_info,
 		.db.psswd_db.dlt_usr = __dlt_usr_info,
 		.db.psswd_db.get_all = __get_all_users,
-		.db.log_cmd = (int (*)(void *, int, char *, char *, char *, char *)) __log_rpc_command,
+		.db.log_cmd = (rpc_command_t) __log_rpc_command,
 		.db.items.add_item = __add_items,
 		.db.items.get_all = __get_all_items,
 		.db.items.update_item = __update_items_info,
@@ -236,7 +238,7 @@ static thor_data_t init_data_dflt = {
 		.db.is_open = 0,
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
-		.db.log_cmd = (int (*)(void *, int, char *, char *, char *, char *)) __log_rpc_command,
+		.db.log_cmd = (rpc_command_t) __log_rpc_command,
 		.db.items.get_all = __get_all_items,
 		.db.item_images_db.get_image = __get_image_for_upc,
 		.db.items.update_item = __update_items_info,
@@ -285,7 +287,7 @@ static thor_data_t init_data_elvt = {
 		.db.db_hndl = NULL,
 		.db.get_role = __get_usr_role,
 		.db.psswd_db.update_usr = __update_user_info,
-		.db.log_cmd = (int (*)(void *, int, char *, char *, char *, char *)) __log_rpc_command,
+		.db.log_cmd = (rpc_command_t) __log_rpc_command,
 		.db.items.get_all = __get_all_items,
 		.db.items.add_item = __add_items,
 		.db.items.update_item = __update_items_info,
