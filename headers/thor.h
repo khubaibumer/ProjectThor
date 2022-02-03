@@ -38,7 +38,11 @@
 #define KB(x) (x * 1000)
 #define MB(x) (x * 1000 * 1000)
 
+#ifdef __cplusplus
 #define PRIVATE __attribute__((hidden))
+#else
+#define PRIVATE
+#endif
 
 extern void* serve_clients(void *ptr);
 

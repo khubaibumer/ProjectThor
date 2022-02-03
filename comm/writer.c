@@ -21,7 +21,7 @@ char* attach_footer(char *buf, size_t *len) {
 int thor_writer(void *ptr, const void *buf, size_t len) {
 
 	int ret = -1;
-	buf = attach_footer(buf, &len);
+	buf = attach_footer((char*)buf, &len);
 
 	if (CAST(ptr)->use_ssl) {
 		ret = SSL_write(CAST(ptr)->ssl_tls.ssl, buf, len);
@@ -29,7 +29,7 @@ int thor_writer(void *ptr, const void *buf, size_t len) {
 		ret = send(CAST(ptr)->client.fd, buf, len, 0);
 	}
 
-	free(buf);
+	free((void*)buf);
 	return ret;
 }
 

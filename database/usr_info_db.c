@@ -23,7 +23,7 @@ int __update_user_info(void *ptr, const char *qual, int key,
 		// We need to hash password
 		CAST(ptr)->ssl_tls.hash(ptr, updated, &hashed);
 	} else {
-		hashed = updated;
+		hashed = (char*) updated;
 	}
 
 	const char *col_name = get_mapping(key);

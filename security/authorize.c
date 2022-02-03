@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 
 extern uint8_t __is_logged(void *ptr, const char *name);
+extern void ERR_print_errors(BIO*);
 
 DECLARE_SYMBOL(const char, *usr) = "admin";
 DECLARE_SYMBOL(const char, *psswd) = "admin";

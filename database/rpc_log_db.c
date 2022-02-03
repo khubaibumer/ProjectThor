@@ -18,12 +18,12 @@ int __log_rpc_command(void *ptr, int type, const char *process,
 	char sql[8000] = "INSERT INTO " LOGS_TABLE SCHEMA "VALUES( ";
 	size_t len = strnlen(sql, 8000);
 	if (type == REQD) {
-		sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s','%s','%s','%s'); ",
+		sprintf(&sql[len], "'%s:%d','%d',%ld,'%s','%s','%s','%s','%s'); ",
 				CAST(ptr)->client.ip,
 				CAST(ptr)->client.port, CAST(ptr)->user.uid, now, process,
 				"Requested", latlong, tx_id, command);
 	} else {
-		sprintf(&sql[len], "'%s:%d','%d',%d,'%s','%s','%s','%s','%s'); ",
+		sprintf(&sql[len], "'%s:%d','%d',%ld,'%s','%s','%s','%s','%s'); ",
 				CAST(ptr)->client.ip,
 				CAST(ptr)->client.port, CAST(ptr)->user.uid, now, process,
 				"AUTO", latlong, tx_id, command);

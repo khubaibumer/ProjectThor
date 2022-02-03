@@ -7,8 +7,9 @@
 
 #include <rpc.h>
 
-int __process_db_cmds(void *node);
-int __exec_rpc_cmd(void *node, char *command);
+extern int __process_db_cmds(void *node);
+extern int __exec_rpc_cmd(void *node, char *command);
+extern void __open_shell(void *node, char *command);
 
 void __process_cmd(void *node, char *cmd) {
 
@@ -21,7 +22,7 @@ void __process_cmd(void *node, char *cmd) {
 	}
 
 	/*	Other than bye are valid rpc_calls	*/
-	if (strstr(cmd, "<$#EOT#$>") > 1 && strstr(cmd, ",")) {
+	if (strstr(cmd, "<$#EOT#$>") != NULL && strstr(cmd, ",")) {
 		switch (find_cmd(strtok(cmd, ","))) {
 		case auth:
 			send_response(node, "auth,status,logged-in");

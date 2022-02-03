@@ -16,7 +16,7 @@ SSL_CTX* init_server_ctx(void) {
 	SSL_CTX *ctx;
 	OpenSSL_add_all_algorithms(); /* load & register all cryptos, etc. */
 	SSL_load_error_strings(); /* load all error messages */
-	method = TLS_server_method(); /* create new server-method instance */
+	method = (SSL_METHOD*) TLS_server_method(); /* create new server-method instance */
 	ctx = SSL_CTX_new(method); /* create new context from method */
 	if (ctx == NULL) {
 		ERR_print_errors_fp(stderr);

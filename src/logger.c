@@ -223,7 +223,7 @@ char* get_all_log_levels() {
 }
 
 char* get_loggin_level() {
-	return loglvl_to_str(level);
+	return (char*)loglvl_to_str(level);
 }
 
 FILE* __get_logfile(void) {
