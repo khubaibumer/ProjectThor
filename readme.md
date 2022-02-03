@@ -2,8 +2,8 @@
 
 Interfacing Server for c-lightning
 
-## [![CodeFactor](https://www.codefactor.io/repository/github/khubaibumer/projectthor/badge)](https://www.codefactor.io/repository/github/khubaibumer/projectthor)
-## [![Codacy Badge](https://app.codacy.com/project/badge/Grade/519d1d8ac4b94317b3f344d12e39eeb5)](https://www.codacy.com/gh/khubaibumer/ProjectThor/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=khubaibumer/ProjectThor&amp;utm_campaign=Badge_Grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/khubaibumer/projectthor/badge)](https://www.codefactor.io/repository/github/khubaibumer/projectthor)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/519d1d8ac4b94317b3f344d12e39eeb5)](https://www.codacy.com/gh/khubaibumer/ProjectThor/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=khubaibumer/ProjectThor&amp;utm_campaign=Badge_Grade)
 [![CircleCI](https://circleci.com/gh/khubaibumer/ProjectThor/tree/master.svg?style=svg)](https://circleci.com/gh/khubaibumer/ProjectThor/tree/master)
 
 ## Installation
